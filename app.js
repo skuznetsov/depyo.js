@@ -27,5 +27,4 @@ function DecompileModule(filename)
         console.log(`EXCEPTION: ${ex}`);
     }
 }
-
-DecompileModule("/Users/sergey/Forensics/EVE/EVE_Mac_Client/tq/EVE.app/Contents/Resources/build/code/carbon/common/script/net/machoNet.pyo");
+DecompileModule(process.argv[2]);
