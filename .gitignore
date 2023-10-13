@@ -1,0 +1,5 @@
+.vscode/
+*.py*
+*.dump
+sss*
+*.*asm
