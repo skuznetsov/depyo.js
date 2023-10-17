@@ -13,9 +13,15 @@ let g_cliArgs = {
     raw: false,
     dump: false,
     asm: false,
+    stats: false,
+    skipSource: false,
     baseDir: null,
     filename: []
 };
+
+let g_totalThroughput = 0;
+let g_totalExecTime = 0;
+let g_totalFiles = 0;
 
 function parseCLIParams() {
     for (let idx = 2; idx < process.argv.length; idx++ ) {
@@ -26,6 +32,10 @@ function parseCLIParams() {
             g_cliArgs.raw = true;
         } else if (cliParam.toLowerCase() == "--dump") {
             g_cliArgs.dump = true;
+        } else if (cliParam.toLowerCase() == "--stats") {
+            g_cliArgs.stats = true;
+        } else if (cliParam.toLowerCase() == "--skip-source-gen") {
+            g_cliArgs.skipSource = true;
         } else if (cliParam.toLowerCase() == "--basedir") {
             g_cliArgs.baseDir = process.argv[++idx];
         } else {
@@ -37,6 +47,7 @@ function parseCLIParams() {
 function decompilePycObject(data) {
     try
     {
+        let startTS = process.hrtime.bigint();
         let rdr = new PycReader(data);
         let obj = rdr.ReadObject();
         let filename = g_baseDir + obj.FileName;
@@ -56,12 +67,19 @@ function decompilePycObject(data) {
             fs.writeFileSync(filenameBase + ".pyasm", PycDisassembler.Disassemble(obj));
         }
         fs.writeFileSync(filenameBase + ".py", PycDecompiler.Decompile(obj).toString());
+        let secs = parseInt(process.hrtime.bigint() - startTS) / 1000000000;
+        g_totalExecTime += secs;
+        let throughput = data.length / secs;
+        g_totalThroughput += data.length;
+        g_totalFiles++;
+        if (g_cliArgs.stats) {
+            console.log(`Done in ${secs} secs. Throughput: ${throughput} bytes/second.`);
+        }
     }
     catch (ex)
     {
         console.log(`EXCEPTION: ${ex}`);
     }
-
 }
 
 
@@ -85,3 +103,6 @@ parseCLIParams()
 g_baseDir = (g_cliArgs.baseDir ? g_cliArgs.baseDir : path.dirname(g_cliArgs.filename)) + '/decompiled/';
 
 DecompileModule(g_cliArgs.filename);
+if (g_cliArgs.stats) {
+    console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime} secs. Throughput: ${g_totalThroughput/g_totalExecTime} bytes/second.`);
+}
