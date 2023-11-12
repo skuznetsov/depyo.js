@@ -9,7 +9,8 @@ const fs = require('fs');
 const path = require('path');
 
 let g_baseDir = './decompiled/';
-let g_cliArgs = {
+global.g_cliArgs = {
+    debug: false,
     raw: false,
     dump: false,
     asm: false,
@@ -19,7 +20,8 @@ let g_cliArgs = {
     filename: []
 };
 
-let g_totalThroughput = 0;
+let g_totalInThroughput = 0;
+let g_totalOutThroughput = 0;
 let g_totalExecTime = 0;
 let g_totalFiles = 0;
 
@@ -28,6 +30,8 @@ function parseCLIParams() {
         let cliParam = process.argv[idx];
         if (cliParam.toLowerCase() == "--asm") {
             g_cliArgs.asm = true;
+        } else if (cliParam.toLowerCase() == "--debug") {
+            g_cliArgs.debug = true;
         } else if (cliParam.toLowerCase() == "--raw") {
             g_cliArgs.raw = true;
         } else if (cliParam.toLowerCase() == "--dump") {
@@ -47,10 +51,31 @@ function parseCLIParams() {
 function decompilePycObject(data) {
     try
     {
+        let filename = null, obj = null;
         let startTS = process.hrtime.bigint();
         let rdr = new PycReader(data);
-        let obj = rdr.ReadObject();
-        let filename = g_baseDir + obj.FileName;
+        try {
+            obj = rdr.ReadObject();
+            filename = g_baseDir + obj.FileName;
+        } catch (ex) {
+            if (ex instanceof PycReader.LoadError) {
+                // Save the binary file if it not already exists for future manual analysis.
+                if (!ex.FileName) {
+                    return;
+                }
+                filename = g_baseDir + ex.FileName;
+                let dirPath =  path.dirname(filename);
+                if (!fs.existsSync(dirPath)) {
+                    fs.mkdirSync(dirPath, {recursive: true});
+                }
+                let filenamePyc = filename.substring(0, filename.lastIndexOf('.')) + ".pyc";
+                fs.writeFileSync(filenamePyc, rdr.Reader);
+                console.log(`Error: ${ex.message}\nFile: ${filenamePyc}\nPosition: ${ex.position}`);
+                return;
+            }
+            console.log(`Error: ${ex.message}\nStack:\n${ex.stacktrace}`);
+            return;
+        }
         console.log(`Processing ${filename}...`);
         let dirPath =  path.dirname(filename);
         if (!fs.existsSync(dirPath)) {
@@ -66,14 +91,17 @@ function decompilePycObject(data) {
         if (g_cliArgs.asm) {
             fs.writeFileSync(filenameBase + ".pyasm", PycDisassembler.Disassemble(obj));
         }
-        fs.writeFileSync(filenameBase + ".py", PycDecompiler.Decompile(obj).toString());
+        let pySrc = PycDecompiler.Decompile(obj).toString();
+        fs.writeFileSync(filenameBase + ".py", pySrc);
         let secs = parseInt(process.hrtime.bigint() - startTS) / 1000000000;
         g_totalExecTime += secs;
-        let throughput = data.length / secs;
-        g_totalThroughput += data.length;
+        let inThroughput = data.length / secs;
+        let outThroughput = pySrc.length / secs;
+        g_totalInThroughput += data.length;
+        g_totalOutThroughput += pySrc.length;
         g_totalFiles++;
         if (g_cliArgs.stats) {
-            console.log(`Done in ${secs} secs. Throughput: ${throughput} bytes/second.`);
+            console.log(`Done in ${secs} secs. In Throughput: ${inThroughput} bytes/second. Out Throughput: ${outThroughput} bytes/second.`);
         }
     }
     catch (ex)
@@ -103,6 +131,4 @@ parseCLIParams()
 g_baseDir = (g_cliArgs.baseDir ? g_cliArgs.baseDir : path.dirname(g_cliArgs.filename)) + '/decompiled/';
 
 DecompileModule(g_cliArgs.filename);
-if (g_cliArgs.stats) {
-    console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime} secs. Throughput: ${g_totalThroughput/g_totalExecTime} bytes/second.`);
-}
+console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime} secs. In: ${g_totalInThroughput} bytes. In Throughput: ${g_totalInThroughput/g_totalExecTime} bytes/second.  Out ${g_totalOutThroughput} bytes. Out Throughput: ${g_totalOutThroughput/g_totalExecTime} bytes/second.`);
