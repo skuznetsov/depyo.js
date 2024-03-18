@@ -91,17 +91,19 @@ function decompilePycObject(data) {
         if (g_cliArgs.asm) {
             fs.writeFileSync(filenameBase + ".pyasm", PycDisassembler.Disassemble(obj));
         }
+        let genStartTS = process.hrtime.bigint();
         let pySrc = PycDecompiler.Decompile(obj).toString();
+        let genSecs = parseInt(process.hrtime.bigint() - genStartTS) / 1000000000;
         fs.writeFileSync(filenameBase + ".py", pySrc);
         let secs = parseInt(process.hrtime.bigint() - startTS) / 1000000000;
         g_totalExecTime += secs;
-        let inThroughput = data.length / secs;
-        let outThroughput = pySrc.length / secs;
+        let inThroughput = data.length / genSecs;
+        let outThroughput = pySrc.length / genSecs;
         g_totalInThroughput += data.length;
         g_totalOutThroughput += pySrc.length;
         g_totalFiles++;
         if (g_cliArgs.stats) {
-            console.log(`Done in ${secs} secs. In Throughput: ${inThroughput} bytes/second. Out Throughput: ${outThroughput} bytes/second.`);
+            console.log(`Done in ${genSecs} secs. In Throughput: ${inThroughput} bytes/second. Out Throughput: ${outThroughput} bytes/second.`);
         }
     }
     catch (ex)
@@ -114,15 +116,19 @@ function decompilePycObject(data) {
 function DecompileModule(filenames)
 {
     for (let filename of filenames) {
-        let zipReader = new ZipReader(filename);
-        if (zipReader.isZipFile()) {
-            for (let entry of zipReader.entries()) {
-                let uncompressedData = zlib.inflateSync(entry.data);
+        try {
+            let zipReader = new ZipReader(filename);
+            if (zipReader.isZipFile()) {
+                for (let entry of zipReader.entries()) {
+                    let uncompressedData = zlib.inflateSync(entry.data);
 
-                decompilePycObject(uncompressedData);
+                    decompilePycObject(uncompressedData);
+                }
+            } else {
+                decompilePycObject(filename);
             }
-        } else {
-            decompilePycObject(filename);
+        } catch (ex) {
+            console.log(`Processing of file ${filename} was unsuccessful due to: ${ex.message}`);
         }
     }
 }
