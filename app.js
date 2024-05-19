@@ -7,6 +7,7 @@ const ZipReader = require('./lib/zip_reader');
 const zlib = require('zlib');
 const fs = require('fs');
 const path = require('path');
+const PycResult = require('./lib/PycResult');
 
 let g_baseDir = './decompiled/';
 global.g_cliArgs = {
@@ -98,7 +99,9 @@ function decompilePycObject(data) {
             }
         }
         let genStartTS = process.hrtime.bigint();
-        let pySrc = PycDecompiler.Decompile(obj).toASTString();
+        let ast = PycDecompiler.Decompile(obj);
+        let pycResult = ast.codeFragment();
+        let pySrc = pycResult.toString();
         let genSecs = parseInt(process.hrtime.bigint() - genStartTS) / 1000000000;
         if (g_cliArgs.sendToStdout) {
             console.log(`\n\n${filenameBase}.py\n-------\n${pySrc}`);
