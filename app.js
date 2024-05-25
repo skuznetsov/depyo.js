@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
-const PycReader = require('./lib/PycReader')
+const {PycReader} = require('./lib/PycReader')
 const PycDecompiler = require('./lib/PycDecompiler');
 const PycDisassembler = require('./lib/PycDisassembler');
 const ZipReader = require('./lib/zip_reader');
 const zlib = require('zlib');
 const fs = require('fs');
-const path = require('path');
+const Path = require('path');
+const PycResult = require('./lib/PycResult');
 
 let g_baseDir = './decompiled/';
 global.g_cliArgs = {
@@ -16,8 +17,11 @@ global.g_cliArgs = {
     asm: false,
     stats: false,
     skipSource: false,
+    skipPath: false,
+    sendToStdout: false,
+    fileExt: 'py',
     baseDir: null,
-    filename: []
+    filenames: []
 };
 
 let g_totalInThroughput = 0;
@@ -40,10 +44,16 @@ function parseCLIParams() {
             g_cliArgs.stats = true;
         } else if (cliParam.toLowerCase() == "--skip-source-gen") {
             g_cliArgs.skipSource = true;
+        } else if (cliParam.toLowerCase() == "--skip-path") {
+            g_cliArgs.skipPath = true;
+        } else if (cliParam.toLowerCase() == "--out") {
+            g_cliArgs.sendToStdout = true;
         } else if (cliParam.toLowerCase() == "--basedir") {
             g_cliArgs.baseDir = process.argv[++idx];
+        } else if (cliParam.toLowerCase() == "--file-ext") {
+            g_cliArgs.fileExt = process.argv[++idx];
         } else {
-            g_cliArgs.filename.push(cliParam);
+            g_cliArgs.filenames.push(cliParam);
         }
     }
 }
@@ -64,8 +74,8 @@ function decompilePycObject(data) {
                     return;
                 }
                 filename = g_baseDir + ex.FileName;
-                let dirPath =  path.dirname(filename);
-                if (!fs.existsSync(dirPath)) {
+                let dirPath =  Path.dirname(filename);
+                if (!g_cliArgs.skipPath && !fs.existsSync(dirPath)) {
                     fs.mkdirSync(dirPath, {recursive: true});
                 }
                 let filenamePyc = filename.substring(0, filename.lastIndexOf('.')) + ".pyc";
@@ -77,24 +87,36 @@ function decompilePycObject(data) {
             return;
         }
         console.log(`Processing ${filename}...`);
-        let dirPath =  path.dirname(filename);
-        if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath, {recursive: true});
-        }
+        let dirPath =  Path.dirname(filename);
         let filenameBase = filename.substring(0, filename.lastIndexOf('.'));
-        if (g_cliArgs.raw) {
-            fs.writeFileSync(filenameBase + ".pyc", rdr.Reader);
+        if (g_cliArgs.skipPath) {
+            filenameBase = "./" + filenameBase.substring(dirPath.length + 1);
         }
-        if (g_cliArgs.dump) {
-            fs.writeFileSync(filenameBase + ".dump", PycReader.DumpObject(obj));
-        }
-        if (g_cliArgs.asm) {
-            fs.writeFileSync(filenameBase + ".pyasm", PycDisassembler.Disassemble(obj));
+
+        if (!g_cliArgs.sendToStdout) {
+            if (!g_cliArgs.skipPath && !fs.existsSync(dirPath)) {
+                fs.mkdirSync(dirPath, {recursive: true});
+            }
+            if (g_cliArgs.raw) {
+                fs.writeFileSync(filenameBase + ".pyc", rdr.Reader);
+            }
+            if (g_cliArgs.dump) {
+                fs.writeFileSync(filenameBase + ".dump", PycReader.DumpObject(obj));
+            }
+            if (g_cliArgs.asm) {
+                fs.writeFileSync(filenameBase + ".pyasm", PycDisassembler.Disassemble(rdr, obj));
+            }
         }
         let genStartTS = process.hrtime.bigint();
-        let pySrc = PycDecompiler.Decompile(obj).toString();
+        let ast = PycDecompiler.Decompile(obj);
+        let pycResult = ast.codeFragment();
+        let pySrc = pycResult.toString();
         let genSecs = parseInt(process.hrtime.bigint() - genStartTS) / 1000000000;
-        fs.writeFileSync(filenameBase + ".py", pySrc);
+        if (g_cliArgs.sendToStdout) {
+            console.log(`\n\n${filenameBase}.${g_cliArgs.fileExt}\n-------\n${pySrc}`);
+        } else {
+            fs.writeFileSync(filenameBase + "." + g_cliArgs.fileExt, pySrc);
+        }
         let secs = parseInt(process.hrtime.bigint() - startTS) / 1000000000;
         g_totalExecTime += secs;
         let inThroughput = data.length / genSecs;
@@ -134,7 +156,7 @@ function DecompileModule(filenames)
 }
 
 parseCLIParams()
-g_baseDir = (g_cliArgs.baseDir ? g_cliArgs.baseDir : path.dirname(g_cliArgs.filename)) + '/decompiled/';
+g_baseDir = (g_cliArgs.baseDir ? g_cliArgs.baseDir : Path.dirname(g_cliArgs.filenames[0])) + '/decompiled/';
 
-DecompileModule(g_cliArgs.filename);
+DecompileModule(g_cliArgs.filenames);
 console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime} secs. In: ${g_totalInThroughput} bytes. In Throughput: ${g_totalInThroughput/g_totalExecTime} bytes/second.  Out ${g_totalOutThroughput} bytes. Out Throughput: ${g_totalOutThroughput/g_totalExecTime} bytes/second.`);
