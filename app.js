@@ -86,7 +86,10 @@ function decompilePycObject(data) {
             console.log(`Error: ${ex.message}\nStack:\n${ex.stacktrace}`);
             return;
         }
-        console.log(`Processing ${filename}...`);
+
+        if (!g_cliArgs.sendToStdout) {
+            console.log(`Processing ${filename}...`);
+        }
         let dirPath =  Path.dirname(filename);
         let filenameBase = filename.substring(0, filename.lastIndexOf('.'));
         if (g_cliArgs.skipPath) {
@@ -113,7 +116,8 @@ function decompilePycObject(data) {
         let pySrc = pycResult.toString();
         let genSecs = parseInt(process.hrtime.bigint() - genStartTS) / 1000000000;
         if (g_cliArgs.sendToStdout) {
-            console.log(`\n\n${filenameBase}.${g_cliArgs.fileExt}\n-------\n${pySrc}`);
+//            console.log(`\n\n${filenameBase}.${g_cliArgs.fileExt}\n-------\n${pySrc}`);
+            console.log(pySrc);
         } else {
             fs.writeFileSync(filenameBase + "." + g_cliArgs.fileExt, pySrc);
         }
@@ -159,4 +163,7 @@ parseCLIParams()
 g_baseDir = (g_cliArgs.baseDir ? g_cliArgs.baseDir : Path.dirname(g_cliArgs.filenames[0])) + '/decompiled/';
 
 DecompileModule(g_cliArgs.filenames);
-console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime} secs. In: ${g_totalInThroughput} bytes. In Throughput: ${g_totalInThroughput/g_totalExecTime} bytes/second.  Out ${g_totalOutThroughput} bytes. Out Throughput: ${g_totalOutThroughput/g_totalExecTime} bytes/second.`);
+
+if (!g_cliArgs.sendToStdout) {
+    console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime} secs. In: ${g_totalInThroughput} bytes. In Throughput: ${g_totalInThroughput/g_totalExecTime} bytes/second.  Out ${g_totalOutThroughput} bytes. Out Throughput: ${g_totalOutThroughput/g_totalExecTime} bytes/second.`);
+}
