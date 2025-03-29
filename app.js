@@ -111,7 +111,8 @@ function decompilePycObject(data) {
             }
         }
         let genStartTS = process.hrtime.bigint();
-        let ast = PycDecompiler.Decompile(obj);
+        let decompiler = new PycDecompiler(obj);
+        let ast = decompiler.decompile();
         let pycResult = ast.codeFragment();
         let pySrc = pycResult.toString();
         let genSecs = parseInt(process.hrtime.bigint() - genStartTS) / 1000000000;
