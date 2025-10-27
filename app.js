@@ -136,6 +136,9 @@ function decompilePycObject(data) {
     catch (ex)
     {
         console.log(`EXCEPTION: ${ex}`);
+        if (g_cliArgs.debug) {
+            console.log(ex.stack);
+        }
     }
 }
 
