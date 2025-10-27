@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__agents-assembly-v3__knowledge",
+      "mcp__agents-assembly-v3__scan_repository",
+      "mcp__agents-assembly-v3__search_codebase",
+      "Bash(node app.js:*)",
+      "Bash(while read f)",
+      "Bash(do echo \"=== $f ===\")",
+      "Bash(cat:*)",
+      "Bash(done)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,39 @@
+--- 05_while_true_break.py1	2024-06-15 11:08:36
++++ 05_while_true_break.py_debug	2024-06-15 11:20:44
+@@ -1,26 +1,21 @@
+-# uncompyle6 version 3.9.1
+-# Python bytecode version base 3.2 (3180)
+-# Decompiled from: Python 3.9.19 (main, Mar 19 2024, 16:08:27) 
+-# [Clang 15.0.0 (clang-1500.3.9.4)]
+-# Embedded file name: simple_source/bug32/05_while_true_break.py
+-# Compiled at: 2017-11-26 07:44:48
+-
+-
+ def _generate_toc(line):
+-    while 1:
+-        if line.startswith("2"):
++    while True:
++        if line.startswith('2'):
+             line = 5
+             while True:
+                 if line:
+                     line = 6
+                     break
+-                elif not line:
++                    continue
++                if not line:
+                     line = 7
+                     break
+-
+-        elif not line:
++                    continue
++                    continue
++                    continue
++                    if not line:
+                         break
++                        continue
++                        continue
+ 
+     return 1
+-
+-# okay decompiling 05_while_true_break.pyc
