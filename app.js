@@ -71,6 +71,9 @@ function decompilePycObject(data) {
             if (ex instanceof PycReader.LoadError) {
                 // Save the binary file if it not already exists for future manual analysis.
                 if (!ex.FileName) {
+                    if (global.g_cliArgs?.debug) {
+                        console.log(`LoadError: ${ex.message} at position ${ex.position}`);
+                    }
                     return;
                 }
                 filename = g_baseDir + ex.FileName;
