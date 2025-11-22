@@ -29,6 +29,23 @@ let g_totalOutThroughput = 0;
 let g_totalExecTime = 0;
 let g_totalFiles = 0;
 
+function printUsage() {
+    console.log(`Usage: node app.js [options] <file.pyc|archive.zip> [...]
+
+Options:
+  --asm              Write disassembly alongside source
+  --debug            Verbose logging
+  --raw              Dump raw .pyc next to output
+  --dump             Dump marshalled object tree
+  --stats            Print throughput stats
+  --skip-source-gen  Do not emit .py source
+  --skip-path        Flatten output paths
+  --out              Send decompiled source to stdout
+  --basedir <path>   Output base directory (default: alongside input)
+  --file-ext <ext>   Extension for generated source (default: py)
+`);
+}
+
 function parseCLIParams() {
     for (let idx = 2; idx < process.argv.length; idx++ ) {
         let cliParam = process.argv[idx];
@@ -52,8 +69,13 @@ function parseCLIParams() {
             g_cliArgs.baseDir = process.argv[++idx];
         } else if (cliParam.toLowerCase() == "--file-ext") {
             g_cliArgs.fileExt = process.argv[++idx];
+        } else if (cliParam.toLowerCase() == "--help" || cliParam.toLowerCase() == "-h") {
+            printUsage();
+            process.exit(0);
         } else {
-            g_cliArgs.filenames.push(cliParam);
+            if (cliParam && cliParam.trim().length > 0) {
+                g_cliArgs.filenames.push(cliParam);
+            }
         }
     }
 }
@@ -167,7 +189,13 @@ function DecompileModule(filenames)
 }
 
 parseCLIParams()
-g_baseDir = (g_cliArgs.baseDir ? g_cliArgs.baseDir : Path.dirname(g_cliArgs.filenames[0])) + '/decompiled/';
+if (g_cliArgs.filenames.length === 0) {
+    printUsage();
+    process.exit(1);
+}
+
+const baseInputDir = g_cliArgs.baseDir ? g_cliArgs.baseDir : Path.dirname(g_cliArgs.filenames[0] || '.');
+g_baseDir = Path.resolve(baseInputDir, 'decompiled') + '/';
 
 DecompileModule(g_cliArgs.filenames);
 

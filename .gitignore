@@ -3,3 +3,5 @@
 *.dump
 sss*
 *.*asm
+temp_*/
+decompiled/
