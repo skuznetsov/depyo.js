@@ -13,6 +13,7 @@ let g_baseDir = './decompiled/';
 global.g_cliArgs = {
     debug: false,
     raw: false,
+    rawSpacing: false,
     dump: false,
     asm: false,
     stats: false,
@@ -36,6 +37,7 @@ Options:
   --asm              Write disassembly alongside source
   --debug            Verbose logging
   --raw              Dump raw .pyc next to output
+  --raw-spacing      Preserve raw blank lines (show potential comment gaps)
   --dump             Dump marshalled object tree
   --stats            Print throughput stats
   --skip-source-gen  Do not emit .py source
@@ -55,6 +57,8 @@ function parseCLIParams() {
             g_cliArgs.debug = true;
         } else if (cliParam.toLowerCase() == "--raw") {
             g_cliArgs.raw = true;
+        } else if (cliParam.toLowerCase() == "--raw-spacing") {
+            g_cliArgs.rawSpacing = true;
         } else if (cliParam.toLowerCase() == "--dump") {
             g_cliArgs.dump = true;
         } else if (cliParam.toLowerCase() == "--stats") {
