@@ -2,148 +2,29 @@
 
 ## Executive Summary
 
-**Current Status:** Decompiler supports Python 1.0-3.8 fully (100% error-free).
-**Gap:** Python 3.9-3.14 have **CRITICAL missing features**.
+**Current Status:** Decompiler supports Python 1.0-3.14 with broad feature coverage.
+**Gap:** Python 3.9-3.14 have residual gaps in formatting controls and matrix coverage, but core features (walrus, f-strings, pattern matching, exception groups, PEP 695 type params/aliases) are implemented.
 
-**Test Results:** Generated 48 new test files for Python 3.9-3.13.
+**Test Results:** Fixtures green for exception groups/notes (3.11–3.13). Matrix runner available (`scripts/run-matrix.js`) and bench runner (`scripts/bench-fixtures.js`).
 
 ---
 
 ## Critical Missing Features (Priority 1)
 
-### 1. ❌ Walrus Operator `:=` (Python 3.8 - PEP 572)
+### 1. ✅ Walrus Operator `:=` (Python 3.8 - PEP 572)
+Implemented: `NAMED_EXPR` handler, `ASTNamedExpr` across statements/comprehensions/args.
 
-**Status:** NOT SUPPORTED
-**Severity:** CRITICAL
-**Evidence:**
-```python
-# Source
-if (n := 10) > 5:
-    print(f"n is {n}")
+### 2. ✅ f-strings (Python 3.6+)
+Implemented: `ASTJoinedStr`/`ASTFormattedValue` with format specs, nesting, `{x=}`.
 
-# Decompiled (BROKEN)
-if n = 10 > 5:  # Wrong! Should be (n := 10)
-    print(...)
-```
+### 3. ✅ match/case Statements (Python 3.10 - PEP 634)
+Implemented: `ASTMatch`/`ASTCase`, OR/mapping/class patterns, guards.
 
-**Opcodes Needed:**
-- `NAMED_EXPR` (opcode 132 in Python 3.8)
+### 4. ✅ Exception Groups (Python 3.11 - PEP 654)
+Implemented: `except*`, `PREP_RERAISE_STAR`, `PUSH_EXC_INFO`, `CHECK_EG_MATCH`; fixtures 3.11–3.13 green.
 
-**Implementation Needed:**
-- Add handler for `NAMED_EXPR` opcode
-- Create `ASTNamedExpr` node type
-- Handle walrus operator in:
-  - if conditions
-  - while loops
-  - list/dict/set comprehensions
-  - function arguments
-
----
-
-### 2. ❌ f-strings (Python 3.6+)
-
-**Status:** PARTIALLY BROKEN
-**Severity:** CRITICAL
-**Evidence:**
-```python
-# Source
-name = "Alice"
-greeting = f"Hello, {name}!"
-
-# Decompiled (BROKEN)
-greeting = #TODO ASTJoinedStr  # Not implemented!
-```
-
-**Opcodes Involved:**
-- `FORMAT_VALUE` (opcode 155 in Python 3.6+)
-- `BUILD_STRING` (opcode 157 in Python 3.6+)
-
-**Current Implementation:**
-- `ASTJoinedStr` class exists but outputs `#TODO ASTJoinedStr`
-- Need to properly reconstruct f-string from bytecode
-
-**Implementation Needed:**
-- Complete `ASTJoinedStr.codeFragment()` implementation
-- Handle format specifications (:.2f, :x, etc.)
-- Handle nested expressions
-- Handle conversion flags (!r, !s, !a)
-
----
-
-### 3. ❌ match/case Statements (Python 3.10 - PEP 634)
-
-**Status:** NOT SUPPORTED
-**Severity:** CRITICAL
-**Evidence:**
-```python
-# Source
-match n:
-    case 0:
-        return "zero"
-    case _:
-        return "many"
-
-# Decompiled (BROKEN)
-if ###FIXME### == 0:  # Wrong! Lost match/case structure
-    return 'zero'
-return 'many'
-```
-
-**Opcodes Needed:**
-- `MATCH_SEQUENCE` (opcode 161 in Python 3.10)
-- `MATCH_MAPPING` (opcode 162 in Python 3.10)
-- `MATCH_KEYS` (opcode 163 in Python 3.10)
-- `MATCH_CLASS` (opcode 152 in Python 3.10)
-- `GET_LEN` (opcode 164 in Python 3.10)
-- `COPY_DICT_WITHOUT_KEYS` (opcode 165 in Python 3.10)
-
-**Implementation Needed:**
-- Create `ASTMatch` node type
-- Create `ASTCase` node type for case clauses
-- Handle pattern types:
-  - Literal patterns (case 0:)
-  - Capture patterns (case x:)
-  - Wildcard pattern (case _:)
-  - Sequence patterns (case (x, y):)
-  - Mapping patterns (case {"key": value}:)
-  - Class patterns (case Point(x=0, y=0):)
-  - OR patterns (case 0 | 1:)
-- Handle guards (case x if x > 0:)
-
----
-
-### 4. ❌ Exception Groups (Python 3.11 - PEP 654)
-
-**Status:** NOT SUPPORTED
-**Severity:** HIGH
-**Opcodes Needed:**
-- `PREP_RERAISE_STAR` (opcode 88 in Python 3.11)
-- `PUSH_EXC_INFO` (opcode 35 in Python 3.11)
-- `CHECK_EG_MATCH` (opcode 36 in Python 3.11)
-
-**Implementation Needed:**
-- Handle `except*` syntax
-- Create `ASTExceptStar` node type
-- Handle `ExceptionGroup` construction
-
----
-
-### 5. ❌ Type Parameters (Python 3.12 - PEP 695)
-
-**Status:** NOT SUPPORTED
-**Severity:** HIGH
-**Evidence:**
-```python
-# Source
-def first[T](items: list[T]) -> T:
-    return items[0]
-
-# Decompiled: Unknown (needs testing)
-```
-
-**Opcodes Needed:**
-- `LOAD_LOCALS` (new semantics in 3.12)
-- Type parameter bytecode instructions
+### 5. ✅ Type Parameters / Type Statements (Python 3.12 - PEP 695)
+Implemented: extraction of `__type_params__`, CALL_INTRINSIC handling, type aliases/parameters, generics cleanup.
 
 ---
 
