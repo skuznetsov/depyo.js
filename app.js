@@ -140,6 +140,9 @@ function decompilePycObject(data) {
         let ast = decompiler.decompile();
         let pycResult = ast.codeFragment();
         let pySrc = pycResult.toString();
+        if (!pySrc.endsWith("\n")) {
+            pySrc += "\n";
+        }
         let genSecs = parseInt(process.hrtime.bigint() - genStartTS) / 1000000000;
         if (g_cliArgs.sendToStdout) {
 //            console.log(`\n\n${filenameBase}.${g_cliArgs.fileExt}\n-------\n${pySrc}`);
