@@ -19,3 +19,5 @@ jobs:
         run: npm install --ignore-scripts || true
       - name: Run fixtures matrix (smoke)
         run: node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
+      - name: Run fixtures matrix (exception notes)
+        run: node scripts/run-matrix.js --pattern py311_exception_notes --fail-fast
