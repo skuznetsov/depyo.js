@@ -21,3 +21,9 @@ jobs:
         run: node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
       - name: Run fixtures matrix (exception notes)
         run: node scripts/run-matrix.js --pattern py311_exception_notes --fail-fast
+      - name: Run fixtures matrix (3.14 formatting)
+        run: node scripts/run-matrix.js --pattern py314_formatting --fail-fast
+      - name: Run fixtures matrix (3.14 exception groups)
+        run: node scripts/run-matrix.js --pattern py314_exception_groups --fail-fast
+      - name: Run fixtures matrix (3.14 exception notes)
+        run: node scripts/run-matrix.js --pattern py314_exception_notes --fail-fast
