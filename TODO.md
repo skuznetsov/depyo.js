@@ -2,7 +2,7 @@
 
 - Exception fixtures (3.13–3.14): targeted PREP_RERAISE_STAR/exception-group reraises and SETUP_WITH_A/WITH_EXCEPT_START_A edges; broaden instrumentation coverage on new 3.14 opcodes.
 - **BUG:** Single `except*` handler fails to decompile (block size=0); two or more handlers work correctly. Root cause in control flow / block boundary calculation.
-- Tests/CI: broaden matrix (1.x, 2.x, 3.4, 3.6, 3.8, 3.10, 3.11–3.14) with f-string/walrus/match/EG coverage + diff-normalization harness; integrate matrix runner beyond current smoke jobs.
+- Tests/CI: continue expanding matrix coverage for older Python versions (1.x, 2.x, 3.4, 3.6); regenerate expected files for 3.10/3.11 match patterns.
 
 ## Done
 
@@ -16,3 +16,4 @@
 - Pattern matching: literal and sequence patterns with capture variables fixed; RETURN handlers properly flush case bodies before new patterns.
 - Exception plumbing: WITH_EXCEPT_START implemented, PREP_RERAISE_STAR represented via helper call, SETUP_WITH_A handling aligned with context-manager detection.
 - Context managers (3.11+): BEFORE_WITH opcode handler for Python 3.11-3.13; exception table filtering to skip WITH_EXCEPT_START handler regions; proper block closing before cleanup code; nested and multiple context managers (`with A, B:`) supported.
+- Tests/CI: broadened CI matrix to cover f-strings (3.6), walrus (3.8), match patterns (3.12+), exception groups (3.11+); added diff-normalization harness with `--strict` and `--show-diff` flags; modern features smoke test on 3.12.

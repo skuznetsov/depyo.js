@@ -17,13 +17,48 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install --ignore-scripts || true
-      - name: Run fixtures matrix (smoke)
+
+      # Exception groups & notes (3.11+)
+      - name: Test exception groups (3.11)
         run: node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
-      - name: Run fixtures matrix (exception notes)
+      - name: Test exception notes (3.11)
         run: node scripts/run-matrix.js --pattern py311_exception_notes --fail-fast
-      - name: Run fixtures matrix (3.14 formatting)
+
+      # F-strings (3.6+)
+      - name: Test f-strings (3.6)
+        run: node scripts/run-matrix.js --pattern py36_fstrings --fail-fast
+      - name: Test f-string equals (3.8)
+        run: node scripts/run-matrix.js --pattern py38_fstring_equals --fail-fast
+
+      # Walrus operator (3.8+)
+      - name: Test walrus operator (3.8)
+        run: node scripts/run-matrix.js --pattern py38_walrus --fail-fast
+
+      # Match patterns (3.12+ have updated expected files)
+      - name: Test match patterns (3.12)
+        run: node scripts/run-fixtures.js --root test/bytecode_3.12 --pattern py310_match --fail-fast
+      - name: Test match patterns (3.13)
+        run: node scripts/run-fixtures.js --root test/bytecode_3.13 --pattern py310_match --fail-fast
+
+      # 3.14 specific
+      - name: Test 3.14 formatting
         run: node scripts/run-matrix.js --pattern py314_formatting --fail-fast
-      - name: Run fixtures matrix (3.14 exception groups)
-        run: node scripts/run-matrix.js --pattern py314_exception_groups --fail-fast
-      - name: Run fixtures matrix (3.14 exception notes)
-        run: node scripts/run-matrix.js --pattern py314_exception_notes --fail-fast
+
+      # Modern features smoke test (runs all modern_features tests)
+      - name: Smoke test modern features
+        run: node scripts/run-fixtures.js --root test/bytecode_3.12 --pattern modern_features --fail-fast
+
+  # Weekly full matrix run to catch regressions across all Python versions
+  full-matrix:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install --ignore-scripts || true
+      - name: Run full fixture matrix
+        run: node scripts/run-matrix.js

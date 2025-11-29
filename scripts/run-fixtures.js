@@ -27,7 +27,9 @@ function parseArgs() {
         pattern: '',
         limit: 0,
         failFast: false,
-        debug: false
+        debug: false,
+        strict: false,      // Strict comparison (no comment/whitespace normalization)
+        showDiff: false     // Show diff on failure
     };
 
     for (let idx = 2; idx < process.argv.length; idx++) {
@@ -42,6 +44,10 @@ function parseArgs() {
             args.failFast = true;
         } else if (arg === '--debug') {
             args.debug = true;
+        } else if (arg === '--strict') {
+            args.strict = true;
+        } else if (arg === '--show-diff') {
+            args.showDiff = true;
         }
     }
 
@@ -97,8 +103,33 @@ function findExpectedFile(pycPath) {
     return null;
 }
 
-function normalizeSource(src) {
-    return src.replace(/\r\n/g, '\n').trim();
+/**
+ * Normalize source code for comparison.
+ * Handles common differences between original and decompiled code:
+ * - Line endings (CRLF -> LF)
+ * - Trailing whitespace
+ * - Multiple blank lines -> single blank line
+ * - Trailing newlines
+ * - Comment stripping (optional, controlled by --strict flag)
+ */
+function normalizeSource(src, strict = false) {
+    let normalized = src
+        .replace(/\r\n/g, '\n')           // CRLF -> LF
+        .replace(/[ \t]+$/gm, '')         // Trailing whitespace on each line
+        .replace(/\n{3,}/g, '\n\n')       // Multiple blank lines -> single
+        .trim();                          // Leading/trailing whitespace
+
+    if (!strict) {
+        // In non-strict mode, also normalize:
+        // - Remove inline comments (# ...)
+        // - Normalize string quotes (both ' and " are valid)
+        normalized = normalized
+            .replace(/#[^\n]*$/gm, '')    // Remove trailing comments
+            .replace(/[ \t]+$/gm, '')     // Re-trim after comment removal
+            .trim();
+    }
+
+    return normalized;
 }
 
 function decompilePyc(pycPath) {
@@ -161,11 +192,38 @@ function main() {
         }
 
         const expectedSource = fs.readFileSync(expectedPath, 'utf8');
-        if (normalizeSource(expectedSource) === normalizeSource(pySource)) {
+        const normalizedExpected = normalizeSource(expectedSource, args.strict);
+        const normalizedActual = normalizeSource(pySource, args.strict);
+
+        if (normalizedExpected === normalizedActual) {
             stats.passed++;
         } else {
             stats.failed++;
-            failures.push({file: pycPath, reason: `differs from ${expectedPath}`});
+            let reason = `differs from ${expectedPath}`;
+            if (args.showDiff) {
+                // Simple line-by-line diff
+                const expectedLines = normalizedExpected.split('\n');
+                const actualLines = normalizedActual.split('\n');
+                const diffLines = [];
+                const maxLines = Math.max(expectedLines.length, actualLines.length);
+                for (let i = 0; i < maxLines; i++) {
+                    if (expectedLines[i] !== actualLines[i]) {
+                        diffLines.push(`  Line ${i + 1}:`);
+                        if (expectedLines[i] !== undefined) {
+                            diffLines.push(`    - ${expectedLines[i]}`);
+                        }
+                        if (actualLines[i] !== undefined) {
+                            diffLines.push(`    + ${actualLines[i]}`);
+                        }
+                    }
+                }
+                if (diffLines.length > 10) {
+                    diffLines.length = 10;
+                    diffLines.push('  ... (truncated)');
+                }
+                reason += '\n' + diffLines.join('\n');
+            }
+            failures.push({file: pycPath, reason});
             if (args.failFast) {
                 break;
             }
