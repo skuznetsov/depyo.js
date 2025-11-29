@@ -15,3 +15,4 @@
 - Pattern matching: OR-patterns and mapping patterns (MATCH_KEYS/MATCH_MAPPING) reconstructed with preserved key ASTs and guard combination from COMPARE chains.
 - Pattern matching: literal and sequence patterns with capture variables fixed; RETURN handlers properly flush case bodies before new patterns.
 - Exception plumbing: WITH_EXCEPT_START implemented, PREP_RERAISE_STAR represented via helper call, SETUP_WITH_A handling aligned with context-manager detection.
+- Context managers (3.11+): BEFORE_WITH opcode handler for Python 3.11-3.13; exception table filtering to skip WITH_EXCEPT_START handler regions; proper block closing before cleanup code; nested and multiple context managers (`with A, B:`) supported.
