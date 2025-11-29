@@ -1,6 +1,7 @@
 ## Backlog (1.0–4.0 support)
 
 - Exception fixtures (3.13–3.14): targeted PREP_RERAISE_STAR/exception-group reraises and SETUP_WITH_A/WITH_EXCEPT_START_A edges; broaden instrumentation coverage on new 3.14 opcodes.
+- **BUG:** Single `except*` handler fails to decompile (block size=0); two or more handlers work correctly. Root cause in control flow / block boundary calculation.
 - Tests/CI: broaden matrix (1.x, 2.x, 3.4, 3.6, 3.8, 3.10, 3.11–3.14) with f-string/walrus/match/EG coverage + diff-normalization harness; integrate matrix runner beyond current smoke jobs.
 
 ## Done
