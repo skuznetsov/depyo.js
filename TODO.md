@@ -16,4 +16,5 @@
 - Pattern matching: literal and sequence patterns with capture variables fixed; RETURN handlers properly flush case bodies before new patterns.
 - Exception plumbing: WITH_EXCEPT_START implemented, PREP_RERAISE_STAR represented via helper call, SETUP_WITH_A handling aligned with context-manager detection.
 - Context managers (3.11+): BEFORE_WITH opcode handler for Python 3.11-3.13; exception table filtering to skip WITH_EXCEPT_START handler regions; proper block closing before cleanup code; nested and multiple context managers (`with A, B:`) supported.
+- Context managers (3.14): LOAD_SPECIAL opcode handler with oparg-to-method mapping (__enter__/__exit__/__aenter__/__aexit__); proper with-block creation and return statement preservation.
 - Tests/CI: broadened CI matrix to cover f-strings (3.6), walrus (3.8), match patterns (3.12+), exception groups (3.11+); added diff-normalization harness with `--strict` and `--show-diff` flags; modern features smoke test on 3.12.
