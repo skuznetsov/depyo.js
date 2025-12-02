@@ -1,10 +1,11 @@
 def test_literal(x):
-    if x == 1:
-        return "one"
-    elif x == 2:
-        return "two"
-    
-    return "other"
+    match x:
+        case 1:
+            return "one"
+        case 2:
+            return "two"
+        case _:
+            return "other"
 
 def test_capture(x):
     value = x
@@ -12,5 +13,7 @@ def test_capture(x):
 
 def test_sequence(point):
     match point:
-        case (x, y) if len(point) == 2:
+        case (x, y):
+            return x + y
+        case _:
             return 0
