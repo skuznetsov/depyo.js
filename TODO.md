@@ -1,6 +1,6 @@
 ## Backlog (1.0–4.0 support)
 
-- Exception fixtures (3.13–3.14): targeted PREP_RERAISE_STAR/exception-group reraises and SETUP_WITH_A/WITH_EXCEPT_START_A edges; broaden instrumentation coverage on new 3.14 opcodes; add with+except* coverage (currently only simple with).
+- Exception fixtures (3.13–3.14): targeted PREP_RERAISE_STAR/exception-group reraises and SETUP_WITH_A/WITH_EXCEPT_START_A edges; broaden instrumentation coverage on new 3.14 opcodes.
 - **Cosmetic:** Single `except*` handler shows cleanup code (`e = None; del e; __exception__[[]]`) after handler body. Core decompilation works; cleanup suppression would improve readability.
 - Tests/CI: continue expanding matrix coverage for older Python versions (1.x, 2.x, 3.4, 3.6); regenerate expected files for 3.10/3.11 match patterns; add py314_with smoke.
 

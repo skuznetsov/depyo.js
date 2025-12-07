@@ -45,6 +45,8 @@ jobs:
         run: node scripts/run-matrix.js --pattern py314_formatting --fail-fast
       - name: Test 3.14 with
         run: node scripts/run-matrix.js --pattern py314_with --fail-fast
+      - name: Test 3.14 with except*
+        run: node scripts/run-matrix.js --pattern py314_with_except_star --fail-fast
 
       # Modern features smoke test (runs all modern_features tests)
       - name: Smoke test modern features
