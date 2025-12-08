@@ -18,11 +18,23 @@ jobs:
       - name: Install dependencies
         run: npm install --ignore-scripts || true
 
+      # Legacy coverage (keep fast)
+      - name: Test legacy bytecode 1.x
+        run: node scripts/run-fixtures.js --root test/bytecode_1.0 --fail-fast
+      - name: Test legacy bytecode 2.7 (smoke 30)
+        run: node scripts/run-fixtures.js --root test/bytecode_2.7 --limit 30 --fail-fast
+      - name: Test legacy bytecode 3.4 (smoke 30)
+        run: node scripts/run-fixtures.js --root test/bytecode_3.4 --limit 30 --fail-fast
+      - name: Test legacy bytecode 3.6 (f-strings)
+        run: node scripts/run-fixtures.js --root test/bytecode_3.6 --pattern py36_fstrings --fail-fast
+
       # Exception groups & notes (3.11+)
       - name: Test exception groups (3.11)
         run: node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
       - name: Test exception notes (3.11)
         run: node scripts/run-matrix.js --pattern py311_exception_notes --fail-fast
+      - name: Test match patterns (3.11)
+        run: node scripts/run-fixtures.js --root test/bytecode_3.11 --pattern py310_match --fail-fast
 
       # F-strings (3.6+)
       - name: Test f-strings (3.6)
@@ -47,6 +59,10 @@ jobs:
         run: node scripts/run-matrix.js --pattern py314_with --fail-fast
       - name: Test 3.14 with except*
         run: node scripts/run-matrix.js --pattern py314_with_except_star --fail-fast
+      - name: Test exception prep_reraise (3.13+)
+        run: node scripts/run-matrix.js --pattern prep_reraise --fail-fast
+      - name: Test with prep_reraise (3.13+)
+        run: node scripts/run-matrix.js --pattern with_prep_reraise --fail-fast
 
       # Modern features smoke test (runs all modern_features tests)
       - name: Smoke test modern features

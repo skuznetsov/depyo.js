@@ -1,7 +1,6 @@
 ## Backlog (1.0–4.0 support)
 
-- Exception fixtures (3.13–3.14): targeted PREP_RERAISE_STAR/exception-group reraises and SETUP_WITH_A/WITH_EXCEPT_START_A edges; broaden instrumentation coverage on new 3.14 opcodes.
-- Tests/CI: continue expanding matrix coverage for older Python versions (1.x, 2.x, 3.4, 3.6); regenerate expected files for 3.10/3.11 match patterns.
+_No open items (add next goals here)._
 
 ## Done
 
@@ -21,3 +20,5 @@
 - Cosmetic: Single `except*` handler cleanup (`e = None; del e; __exception__[[]]`) suppressed after handler body to keep output minimal.
 - Tests/CI: py314_with and py314_with_except_star smoke coverage in CI.
 - Tests/CI: broadened CI matrix to cover f-strings (3.6), walrus (3.8), match patterns (3.12+), exception groups (3.11+); added diff-normalization harness with `--strict` and `--show-diff` flags; modern features smoke test on 3.12.
+- Exception fixtures: PREP_RERAISE_STAR and with/except* reraises added for 3.13–3.14; expected outputs captured.
+- Tests/CI: regenerated 3.11 match expected files; expanded CI matrix to include 1.x/2.x/3.4/3.6 smoke runs and new prep_reraise fixtures.
