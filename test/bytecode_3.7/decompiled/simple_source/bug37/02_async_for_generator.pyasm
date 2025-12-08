@@ -1,0 +1,133 @@
+Method name: <module>:
+	     O:0, L:3          LOAD_CONST    0    
+	     O:2, L:3          LOAD_CONST    1    // Value: "make_arange"
+	     O:4, L:3       MAKE_FUNCTION    0    
+	     O:6, L:3          STORE_NAME    0    // Value: make_arange
+	     O:8, L:7          LOAD_CONST    2    // Value: 2
+	    O:10, L:7          LOAD_CONST    3    // Value: "run"
+	    O:12, L:7       MAKE_FUNCTION    0    
+	    O:14, L:7          STORE_NAME    1    // Value: run
+	   O:16, L:11          LOAD_CONST    4    // Value: 4
+	   O:18, L:11          LOAD_CONST    5    // Value: "run_list"
+	   O:20, L:11       MAKE_FUNCTION    0    
+	   O:22, L:11          STORE_NAME    2    // Value: run_list
+	   O:24, L:11          LOAD_CONST    6    // Value: None
+	   O:26, L:11        RETURN_VALUE         
+
+Method name: <module>.make_arange:
+	     O:0, L:5          LOAD_CONST    1    // Value: 1
+	     O:2, L:5          LOAD_CONST    2    // Value: "make_arange.<locals>.<genexpr>"
+	     O:4, L:5       MAKE_FUNCTION    0    
+	     O:6, L:5           LOAD_FAST    0    // Value: n
+	     O:8, L:5           GET_AITER         
+	    O:10, L:5       CALL_FUNCTION    1    
+	    O:12, L:5        RETURN_VALUE         
+
+Method name: <module>.make_arange.<genexpr>:
+	     O:0, L:5           LOAD_FAST    0    // Value: .0
+	     O:2, L:5        SETUP_EXCEPT   17    // Value: 12
+	     O:4, L:5           GET_ANEXT         
+	     O:6, L:5          LOAD_CONST    0    // Value: None
+	     O:8, L:5          YIELD_FROM         
+	    O:10, L:5          STORE_FAST    1    // Value: i
+	    O:12, L:5           POP_BLOCK         
+	    O:14, L:5        JUMP_FORWARD   27    // Value: 10
+	    O:16, L:5             DUP_TOP         
+	    O:18, L:5         LOAD_GLOBAL    0    // Value: StopAsyncIteration
+	    O:20, L:5          COMPARE_OP   10    // Value: exception match
+	    O:22, L:5    POP_JUMP_IF_TRUE   38    
+	    O:24, L:5         END_FINALLY         
+	    O:26, L:5           LOAD_FAST    1    // Value: i
+	    O:28, L:5          LOAD_CONST    1    // Value: 2
+	    O:30, L:5     BINARY_MULTIPLY         
+	    O:32, L:5         YIELD_VALUE         
+	    O:34, L:5             POP_TOP         
+	    O:36, L:5       JUMP_ABSOLUTE    2    
+	    O:38, L:5             POP_TOP         
+	    O:40, L:5             POP_TOP         
+	    O:42, L:5             POP_TOP         
+	    O:44, L:5          POP_EXCEPT         
+	    O:46, L:5             POP_TOP         
+	    O:48, L:5          LOAD_CONST    0    // Value: None
+	    O:50, L:5        RETURN_VALUE         
+
+Method name: <module>.run:
+	     O:0, L:8          LOAD_CONST    1    // Value: 1
+	     O:2, L:8          LOAD_CONST    2    // Value: "run.<locals>.<listcomp>"
+	     O:4, L:8       MAKE_FUNCTION    0    
+	     O:6, L:8           LOAD_FAST    0    // Value: m
+	     O:8, L:8           GET_AITER         
+	    O:10, L:8       CALL_FUNCTION    1    
+	    O:12, L:8       GET_AWAITABLE         
+	    O:14, L:8          LOAD_CONST    0    // Value: None
+	    O:16, L:8          YIELD_FROM         
+	    O:18, L:8        RETURN_VALUE         
+
+Method name: <module>.run.<listcomp>:
+	     O:0, L:8          BUILD_LIST    0    
+	     O:2, L:8           LOAD_FAST    0    // Value: .0
+	     O:4, L:8        SETUP_EXCEPT   19    // Value: 12
+	     O:6, L:8           GET_ANEXT         
+	     O:8, L:8          LOAD_CONST    0    // Value: None
+	    O:10, L:8          YIELD_FROM         
+	    O:12, L:8          STORE_FAST    1    // Value: i
+	    O:14, L:8           POP_BLOCK         
+	    O:16, L:8        JUMP_FORWARD   29    // Value: 10
+	    O:18, L:8             DUP_TOP         
+	    O:20, L:8         LOAD_GLOBAL    0    // Value: StopAsyncIteration
+	    O:22, L:8          COMPARE_OP   10    // Value: exception match
+	    O:24, L:8    POP_JUMP_IF_TRUE   34    
+	    O:26, L:8         END_FINALLY         
+	    O:28, L:8           LOAD_FAST    1    // Value: i
+	    O:30, L:8         LIST_APPEND    2    
+	    O:32, L:8       JUMP_ABSOLUTE    4    
+	    O:34, L:8             POP_TOP         
+	    O:36, L:8             POP_TOP         
+	    O:38, L:8             POP_TOP         
+	    O:40, L:8          POP_EXCEPT         
+	    O:42, L:8             POP_TOP         
+	    O:44, L:8        RETURN_VALUE         
+
+Method name: <module>.run_list:
+	    O:0, L:12        LOAD_CLOSURE    0    // Value: null
+	    O:2, L:12         BUILD_TUPLE    1    
+	    O:4, L:12          LOAD_CONST    1    // Value: 1
+	    O:6, L:12          LOAD_CONST    2    // Value: "run_list.<locals>.<listcomp>"
+	    O:8, L:12       MAKE_FUNCTION    8    
+	   O:10, L:12         LOAD_GLOBAL    0    // Value: p
+	   O:12, L:12            GET_ITER         
+	   O:14, L:12       CALL_FUNCTION    1    
+	   O:16, L:12       GET_AWAITABLE         
+	   O:18, L:12          LOAD_CONST    0    // Value: None
+	   O:20, L:12          YIELD_FROM         
+	   O:22, L:12        RETURN_VALUE         
+
+Method name: <module>.run_list.<listcomp>:
+	    O:0, L:12          BUILD_LIST    0    
+	    O:2, L:12           LOAD_FAST    0    // Value: .0
+	    O:4, L:12            FOR_ITER   55    // Value: 48
+	    O:6, L:12          STORE_FAST    1    // Value: pair
+	    O:8, L:12          LOAD_DEREF    0    // Value: null
+	   O:10, L:12           GET_AITER         
+	   O:12, L:12        SETUP_EXCEPT   27    // Value: 12
+	   O:14, L:12           GET_ANEXT         
+	   O:16, L:12          LOAD_CONST    0    // Value: None
+	   O:18, L:12          YIELD_FROM         
+	   O:20, L:12          STORE_FAST    2    // Value: i
+	   O:22, L:12           POP_BLOCK         
+	   O:24, L:12        JUMP_FORWARD   37    // Value: 10
+	   O:26, L:12             DUP_TOP         
+	   O:28, L:12         LOAD_GLOBAL    0    // Value: StopAsyncIteration
+	   O:30, L:12          COMPARE_OP   10    // Value: exception match
+	   O:32, L:12    POP_JUMP_IF_TRUE   42    
+	   O:34, L:12         END_FINALLY         
+	   O:36, L:12           LOAD_FAST    2    // Value: i
+	   O:38, L:12         LIST_APPEND    3    
+	   O:40, L:12       JUMP_ABSOLUTE   12    
+	   O:42, L:12             POP_TOP         
+	   O:44, L:12             POP_TOP         
+	   O:46, L:12             POP_TOP         
+	   O:48, L:12          POP_EXCEPT         
+	   O:50, L:12             POP_TOP         
+	   O:52, L:12       JUMP_ABSOLUTE    4    
+	   O:54, L:12        RETURN_VALUE         
