@@ -1,0 +1,1 @@
+1 if True else __file__

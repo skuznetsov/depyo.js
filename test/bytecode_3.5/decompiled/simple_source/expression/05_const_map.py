@@ -1,0 +1,3 @@
+opts = 'highlight'
+
+print(opts)
