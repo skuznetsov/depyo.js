@@ -1,0 +1,37 @@
+{
+  "name": "depyo",
+  "version": "0.1.0",
+  "description": "Python bytecode decompiler (Python 1.0–3.14) implemented in Node.js",
+  "bin": {
+    "depyo": "./depyo.js"
+  },
+  "main": "depyo.js",
+  "type": "commonjs",
+  "files": [
+    "depyo.js",
+    "lib/",
+    "scripts/",
+    "test/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skuznetsov/depyo.js.git"
+  },
+  "keywords": [
+    "python",
+    "pyc",
+    "decompiler",
+    "bytecode",
+    "ast",
+    "disassemble"
+  ],
+  "author": "Sergey Kuznetsov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skuznetsov/depyo.js/issues"
+  },
+  "homepage": "https://github.com/skuznetsov/depyo.js#readme",
+  "engines": {
+    "node": ">=18"
+  }
+}

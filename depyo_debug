@@ -1,2 +1,2 @@
 #!/bin/bash
-/Users/sergey/Projects/NodeJS/depyo/app.js --skip-path --file-ext py_debug $*
+/Users/sergey/Projects/NodeJS/depyo/depyo.js --skip-path --file-ext py_debug $*
