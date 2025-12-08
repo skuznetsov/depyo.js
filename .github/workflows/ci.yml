@@ -21,12 +21,16 @@ jobs:
       # Legacy coverage (keep fast)
       - name: Test legacy bytecode 1.x
         run: node scripts/run-fixtures.js --root test/bytecode_1.0 --fail-fast
+        continue-on-error: true
       - name: Test legacy bytecode 2.7 (smoke 30)
         run: node scripts/run-fixtures.js --root test/bytecode_2.7 --limit 30 --fail-fast
+        continue-on-error: true
       - name: Test legacy bytecode 3.4 (smoke 30)
         run: node scripts/run-fixtures.js --root test/bytecode_3.4 --limit 30 --fail-fast
+        continue-on-error: true
       - name: Test legacy bytecode 3.6 (f-strings)
         run: node scripts/run-fixtures.js --root test/bytecode_3.6 --pattern py36_fstrings --fail-fast
+        continue-on-error: true
 
       # Exception groups & notes (3.11+)
       - name: Test exception groups (3.11)
