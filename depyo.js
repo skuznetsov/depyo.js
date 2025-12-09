@@ -34,17 +34,17 @@ function printUsage() {
     console.log(`Usage: node depyo.js [options] <file.pyc|archive.zip> [...]
 
 Options:
-  --asm              Write disassembly alongside source
-  --debug            Verbose logging
-  --raw              Dump raw .pyc next to output
-  --raw-spacing      Preserve raw blank lines (show potential comment gaps)
-  --dump             Dump marshalled object tree
-  --stats            Print throughput stats
-  --skip-source-gen  Do not emit .py source
-  --skip-path        Flatten output paths
-  --out              Send decompiled source to stdout
-  --basedir <path>   Output base directory (default: alongside input)
-  --file-ext <ext>   Extension for generated source (default: py)
+  --asm               Emit .pyasm disassembly alongside source
+  --debug             Verbose logging during decompilation
+  --raw               Save raw .pyc next to output
+  --raw-spacing       Preserve blank lines (show potential comment gaps)
+  --dump              Dump marshalled object tree (.dump)
+  --stats             Print throughput stats
+  --skip-source-gen   Do not emit .py source (useful with --asm/--dump)
+  --skip-path         Flatten output paths (write files next to inputs)
+  --out               Print decompiled source to stdout instead of files
+  --basedir <path>    Output base directory (default: alongside input)
+  --file-ext <ext>    Extension for generated source (default: py)
 `);
 }
 

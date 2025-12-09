@@ -8,8 +8,13 @@ Depyo decodes Python `.pyc` files (and zip archives containing them) into readab
 - CLI flags for raw spacing, disassembly (`--asm`), raw dumps, and flattened output paths.
 - Fixture runners (`scripts/run-fixtures.js`, `scripts/run-matrix.js`) to diff decompiled output against expected baselines.
 
-## Quick start
+## Install
+- Global: `npm i -g depyo`
+- One-off: `npx depyo <file.pyc>`
+
 Node.js 20+ recommended (matches CI).
+
+## Quick start
 
 ```bash
 # Decompile a single .pyc
@@ -30,6 +35,7 @@ Key flags:
 - `--raw` emit raw `.pyc` next to output
 - `--raw-spacing` preserve blank lines/comments spacing hints
 - `--dump` dump marshalled object tree
+- `--stats` print throughput stats
 - `--skip-source-gen` skip writing `.py` (useful with `--asm`/`--dump`)
 - `--basedir <dir>` override output root
 - `--file-ext <ext>` change emitted extension (default `py`)
@@ -48,6 +54,11 @@ node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
 ```
 
 Modern fixtures are generated via `test/generate_modern_tests.py` (Python 3.8+ available on PATH).
+
+## Support matrix
+- Python 1.0–3.14 opcode tables with expected fixtures; legacy CI smokes are non-blocking to surface regressions without breaking builds.
+- Modern features (match, walrus, f-strings, exception groups, type params) covered by targeted fixtures.
+- PyPy bytecode sets are decompiled; expected files are not yet part of CI.
 
 ## Notes
 - CI exercises modern features and legacy smoke runs (1.x, 2.7, 3.0–3.5, 3.4, 3.6); legacy steps are non-blocking to surface regressions without breaking builds.
