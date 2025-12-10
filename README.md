@@ -73,3 +73,22 @@ node depyo.js --out /path/to/file.pyc
 - `--stats` helps when profiling throughput.
 
 Comments and docs are in English; output mirrors the target Python version syntax.
+
+## Comparison snapshot (at a glance)
+
+| Project            | Supported versions          | Modern features (match, walrus, f-strings, exc groups) | Delivery     | Expected fixtures | Notes                                     |
+| ------------------ | --------------------------- | ------------------------------------------------------ | ------------ | ----------------- | ----------------------------------------- |
+| depyo              | 1.0–3.14 (PyPy decompiles)  | Yes                                                    | npm/npx, CLI | Yes (1.0–3.14)    | Node.js CLI, asm/raw-spacing options      |
+| uncompyle6/decompyle3 | 2.x–3.12+ (lag on 3.13/3.14) | Partial (depends on branch)                           | pip          | Partial           | Python-based, slower adoption of new ops  |
+| pycdc (C++)        | Mostly 2.x–3.x (limited new) | Partial                                                | source build | No                | Fast, but modern coverage limited         |
+
+## Quick benchmark (informal)
+- Machine: local Node 25, single-thread.
+- Case: `py314_exception_groups.pyc` decompiled 50× in-process: ~5.3 ms total (≈0.1 ms per decompile).  
+Use `node depyo.js --stats <file.pyc>` for your environment.
+
+## Promotion ideas (OSS)
+- Announce on HN/Reddit (Show HN / r/Python) with npm/npx one-liners.
+- Add to awesome lists (`awesome-python`, `awesome-reverse-engineering`).
+- Provide asciinema/GIF of `npx depyo file.pyc` + `--asm`.
+- Encourage contributions via Issues/Discussions and `help wanted` labels.
