@@ -162,7 +162,7 @@ function decompilePycObject(data) {
         g_totalOutThroughput += pySrc.length;
         g_totalFiles++;
         if (g_cliArgs.stats) {
-            console.log(`Done in ${genSecs} secs. In Throughput: ${inThroughput} bytes/second. Out Throughput: ${outThroughput} bytes/second.`);
+            console.log(`Done in ${genSecs.toFixed(3)}s. In: ${data.length} bytes (${inThroughput.toFixed(2)} B/s). Out: ${pySrc.length} bytes (${outThroughput.toFixed(2)} B/s).`);
         }
     }
     catch (ex)
@@ -207,5 +207,7 @@ g_baseDir = Path.resolve(baseInputDir, 'decompiled') + '/';
 DecompileModule(g_cliArgs.filenames);
 
 if (!g_cliArgs.sendToStdout) {
-    console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime} secs. In: ${g_totalInThroughput} bytes. In Throughput: ${g_totalInThroughput/g_totalExecTime} bytes/second.  Out ${g_totalOutThroughput} bytes. Out Throughput: ${g_totalOutThroughput/g_totalExecTime} bytes/second.`);
+    const inRate = (g_totalInThroughput / g_totalExecTime).toFixed(2);
+    const outRate = (g_totalOutThroughput / g_totalExecTime).toFixed(2);
+    console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime.toFixed(3)}s. In: ${g_totalInThroughput} bytes (${inRate} B/s). Out: ${g_totalOutThroughput} bytes (${outRate} B/s).`);
 }

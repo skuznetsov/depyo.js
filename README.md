@@ -66,6 +66,9 @@ node depyo.js --out /path/to/file.pyc
 - PyPy bytecode sets decompile; expected files are not yet part of CI.
 - Legacy CI smokes (1.x/2.7/3.0–3.6) are informational (`continue-on-error`); modern feature checks are blocking.
 
+## Known limitations
+- **Inline comprehensions (Python 3.12+):** PEP 709 inlines list/dict/set comprehensions into parent code objects. Depyo currently reconstructs these as for-loops rather than comprehension expressions. Functions, classes, match/case, exception handling, and other constructs work correctly.
+
 ## Contributing / DX tips
 - Use `node scripts/run-fixtures.js --pattern <piece>` for fast repros.
 - For full coverage, `node scripts/run-matrix.js --fail-fast` (optionally add `--pattern`).
