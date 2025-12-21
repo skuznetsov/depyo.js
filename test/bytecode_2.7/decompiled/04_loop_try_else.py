@@ -4,3 +4,4 @@ def ensure_fromlist(self, fromlist):
             try:
                 all = 5
         all = 6
+

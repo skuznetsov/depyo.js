@@ -8,3 +8,4 @@ sum(*[args, args, args])
 sum(a, *[args, args])
 sum(a, b, *args)
 sum(a, b, *[args, args])
+

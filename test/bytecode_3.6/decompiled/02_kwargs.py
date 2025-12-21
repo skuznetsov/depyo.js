@@ -8,3 +8,4 @@ import functools
 @functools.lru_cache(256, True, **(maxsize, typed))
 def _compile_pattern(pat):
     pass
+

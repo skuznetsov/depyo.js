@@ -5,3 +5,4 @@ def _formatparam(param, value=None, quote=True):
 
 def system_methodSignature(seflf, method_name):
     return "signatures not supported"
+

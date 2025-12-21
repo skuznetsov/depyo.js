@@ -9,3 +9,4 @@ def _parse(source, state, this, group, char):
             while 1:
                 raise RuntimeError
         raise IndexError
+

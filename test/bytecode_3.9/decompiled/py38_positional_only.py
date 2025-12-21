@@ -3,3 +3,4 @@ def greet(name, /, greeting=(Hello)):
 
 result = greet("Alice")
 result2 = greet("Bob", "Hi", **(greeting))
+

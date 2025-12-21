@@ -18,3 +18,4 @@ def _get_default_tempdir(dirlist, fd):
             
             raise RuntimeError
             return
+

@@ -6,3 +6,4 @@ print(result)
 print(y)
 
 print(z := 42)
+

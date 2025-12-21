@@ -3,3 +3,4 @@ def __init__(self, defaults=None, dict_type=_default_dict, allow_no_value=False,
 
 def deferred(*columns, **kw):
     return ColumnProperty("deferred" = True, *columns, **kw)
+

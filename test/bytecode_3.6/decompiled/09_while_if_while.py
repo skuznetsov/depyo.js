@@ -7,3 +7,4 @@ def _parse_doctype_subset(c, j, rawdata, n):
                     j += 1
     
     return -1
+

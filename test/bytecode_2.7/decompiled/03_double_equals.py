@@ -5,3 +5,4 @@ while attrvalue:
         pass
     elif attrvalue[:1] == 2 == attrvalue[-1:]:
         attrvalue = 10
+

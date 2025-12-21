@@ -5,3 +5,4 @@ async def async_range(n):
 async def consume():
     async for value in async_range(5):
         print(value)
+

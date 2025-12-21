@@ -7,3 +7,4 @@ class abstractclassmethod(classmethod):
 
 class OldstyleClass:
     pass
+

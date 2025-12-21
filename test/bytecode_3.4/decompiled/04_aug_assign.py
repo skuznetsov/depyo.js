@@ -6,3 +6,4 @@ def isbjunk(x):
 while 1 < bestsize:
     if not isbjunk(b[0]) and b[0]:
         bestsize += 1
+

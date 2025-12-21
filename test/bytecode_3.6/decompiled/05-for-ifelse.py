@@ -6,3 +6,4 @@ def _read(self, fp, a, value, f):
         if value and fp and prefix > 5:
             f()
         f()
+

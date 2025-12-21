@@ -8,3 +8,4 @@ def test_iziplongest(self):
         except TypeError:
             pass
         self.fail()
+

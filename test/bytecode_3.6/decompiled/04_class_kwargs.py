@@ -12,3 +12,4 @@ class TestABCWithInitSubclass(unittest.TestCase):
 def test_abstractmethod_integration(self):
     for C in [abc.abstractmethod]:
         abstractthing
+

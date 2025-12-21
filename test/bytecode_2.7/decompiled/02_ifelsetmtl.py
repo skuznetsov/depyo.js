@@ -7,3 +7,4 @@ def reduce_url(url):
         elif atom == "..":
             atoms.push()
     return atoms
+

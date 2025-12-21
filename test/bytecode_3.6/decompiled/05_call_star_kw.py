@@ -10,3 +10,4 @@ def compile_command(source, filename, symbol=(<input>, single)):
 
 import abc
 IOBase = ##ERROR##((lambda: __qualname__ = "IOBase"), "IOBase", abc.ABCMeta, **(metaclass))
+

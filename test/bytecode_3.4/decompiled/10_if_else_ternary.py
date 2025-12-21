@@ -3,3 +3,4 @@ def minimize(x, y):
         return x < y and x
     
     return y
+

@@ -23,3 +23,4 @@ def a():
     def b(y):
         del y
         return z
+

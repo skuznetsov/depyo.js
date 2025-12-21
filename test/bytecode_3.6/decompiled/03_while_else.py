@@ -6,3 +6,4 @@ def acquire(self):
         else:
             rc = True
     return rc
+

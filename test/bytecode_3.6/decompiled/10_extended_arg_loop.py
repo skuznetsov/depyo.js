@@ -21,3 +21,4 @@ def main(dbg=None, sys_argv=list(sys.argv)):
         except SystemExit:
             None if dbg.program_sys_argv else ##ERROR##
             break
+

@@ -11,3 +11,4 @@ def static_method():
     pass)()))
 
 x = MyClass()
+

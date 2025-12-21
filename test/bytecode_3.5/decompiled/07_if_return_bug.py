@@ -10,3 +10,4 @@ def effective(line):
         __exception__
         None if b.ignore else ##ERROR##
         return (b, False)
+

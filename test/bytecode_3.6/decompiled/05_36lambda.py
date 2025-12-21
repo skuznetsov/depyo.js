@@ -11,3 +11,4 @@ def items(self, d, section, raw, vars=(5, False, None)):
             d[self.optionxform(key)] = value
         
     d = lambdaoption=(d, section, self): self._interpolation.before_get(self, section, option, d[option], d)
+

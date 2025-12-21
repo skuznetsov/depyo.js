@@ -16,3 +16,4 @@ def _power_exact(y, xc, yc, xe):
         xc = exponent
         xc = 0
         return 5
+

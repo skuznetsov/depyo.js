@@ -3,3 +3,4 @@ def fn(self):
         return 4
     
     return 3
+

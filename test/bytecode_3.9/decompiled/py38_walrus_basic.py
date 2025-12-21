@@ -8,3 +8,4 @@ while (item := data.pop() if data else None) is not None:
 
 values = [1, 2, 3, 4, 5]
 filtered = [y for x in values if (y := x * 2) > 4]
+

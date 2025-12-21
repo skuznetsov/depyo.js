@@ -17,3 +17,4 @@ def iteritems(self):
     except:
         self._in_iter -= 1
         raise
+

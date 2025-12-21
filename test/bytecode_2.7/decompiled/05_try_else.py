@@ -8,3 +8,4 @@ def testAFakeZlib(self):
     
     if self.compression != 4:
         self.fail("expected test to raise ImportError")
+

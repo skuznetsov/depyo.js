@@ -5,3 +5,4 @@ def maybe_int(x={"x": int | None, "return": int}):
     return x is not None and x
     
     return 0
+

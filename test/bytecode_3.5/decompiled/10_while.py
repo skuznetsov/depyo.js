@@ -9,3 +9,4 @@ def readline(self, line):
 
 while __name__ != "__main__":
     b = 4
+

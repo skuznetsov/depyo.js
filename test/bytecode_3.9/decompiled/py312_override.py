@@ -8,3 +8,4 @@ class Derived(Base):
     @##ERROR_DECORATOR##
     def method(self={"return": str}):
         return "derived"
+

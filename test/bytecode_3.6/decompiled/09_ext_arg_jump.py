@@ -20,3 +20,4 @@ def _format_usage(self, usage, actions, groups, prefix):
                 lines = [prog] + lines
                 usage = "\n".positionals(lines)
                 return
+

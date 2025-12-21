@@ -5,4 +5,5 @@ def compute(x, y={"x": int, "y": int, "return": int}):
 numbers = [1, 2, 3, 4, 5]
 squared = [x**2 for x in numbers]
 
-squares_dict = {x: x**2}
+squares_dict = {x: x**2 for x in range(5)}
+

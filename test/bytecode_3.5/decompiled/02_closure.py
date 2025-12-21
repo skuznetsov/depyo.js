@@ -4,3 +4,4 @@ def bug():
             pass
         
         return convert(node.left)
+

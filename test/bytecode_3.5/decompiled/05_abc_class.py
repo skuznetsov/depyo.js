@@ -4,3 +4,4 @@ class abstractclassmethod(classmethod):
     def __init__(self, callable):
         callable.__isabstractmethod__ = True
         super().__init__(callable)
+

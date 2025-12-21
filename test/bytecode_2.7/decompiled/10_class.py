@@ -27,3 +27,4 @@ c = C()
 c.foo()
 c.bar()
 c.foobar()
+

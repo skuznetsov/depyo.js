@@ -4,3 +4,4 @@ class abstractclassmethod(object):
     
     def __init__(self, callable):
         callable.__isabstractmethod__ = True
+

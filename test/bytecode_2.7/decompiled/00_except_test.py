@@ -34,3 +34,4 @@ finally:
     pass
 
 print "Pass 3: in finally block"
+

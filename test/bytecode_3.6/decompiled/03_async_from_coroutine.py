@@ -47,3 +47,4 @@ async def test3(x, buffer, f):
             await(##ERROR##.__anext__)
         buffer.append()
     buffer()
+

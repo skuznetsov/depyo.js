@@ -7,3 +7,4 @@ def do_commands(self, arg):
     return
     self.commands_bnum = bnum
     return
+

@@ -35,3 +35,4 @@ async def f(z):
 
 async def g(z):
     await z; return await z
+

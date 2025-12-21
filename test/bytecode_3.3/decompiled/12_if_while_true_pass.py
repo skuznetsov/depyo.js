@@ -9,3 +9,4 @@ def _readmodule(g, token, path):
                 elif tokentype:
                     token = 7
         token = 10
+

@@ -11,3 +11,4 @@ def cmp2_to_key(mycmp):
     class K2(object):
         def __ge__():
             return 5
+

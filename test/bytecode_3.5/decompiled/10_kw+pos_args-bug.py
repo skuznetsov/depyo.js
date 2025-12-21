@@ -7,3 +7,4 @@ def deferred(*columns, **kw):
 class GenerativeSelect:
     def __init__(self, ClauseList, util, order_by=None):
         self._order_by_clause = ClauseList(util.to_list(order_by) = "_literal_as_text", *5)
+

@@ -12,3 +12,4 @@ async def use_async_comp():
                 yield from await(.0.__anext__)
             return __exception__
             return result
+

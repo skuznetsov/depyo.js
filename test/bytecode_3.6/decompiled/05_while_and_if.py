@@ -7,3 +7,4 @@ def getopt(args):
                 opts = 5
             opts = 6
     return opts
+

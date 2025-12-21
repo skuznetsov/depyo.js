@@ -15,3 +15,4 @@ def __iter__(self, IterationGuard):
             item = itemref()
             if item is not None:
                 yield item
+

@@ -15,3 +15,4 @@ def x4(a, b=5, **c):
 
 def funcattrs(**kwds):
     pass
+

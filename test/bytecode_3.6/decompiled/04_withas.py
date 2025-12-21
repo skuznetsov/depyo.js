@@ -23,3 +23,4 @@ def _gen_temp_sourcefile(x, a, headers, lang):
         if a:
             y = 2
     return 5
+

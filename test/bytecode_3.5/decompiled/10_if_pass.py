@@ -11,3 +11,4 @@ class _localimpl:
         
         wrlocal = ref(self, local_deleted)
         return localdict
+

@@ -12,3 +12,4 @@ def readmailcapfile(line):
         if "/" in line:
             line["/"].append("a")
         line["/"] = "a"
+

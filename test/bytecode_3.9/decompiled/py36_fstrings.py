@@ -8,3 +8,4 @@ summary = f"Sum: {sum(numbers)}, Max: {max(numbers)}"
 
 pi = 3.14159
 formatted = f"Pi is approximately {pi:.2f}"
+

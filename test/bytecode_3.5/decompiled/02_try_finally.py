@@ -6,3 +6,4 @@ finally:
     if x and __file__:
         try:
             x = 1
+

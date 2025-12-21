@@ -13,3 +13,4 @@ def _generate_toc(line):
             break
     
     return 1
+

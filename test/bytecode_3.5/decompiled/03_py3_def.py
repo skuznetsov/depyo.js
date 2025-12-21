@@ -9,3 +9,4 @@ def x2(a="filex2", *, file="file"):
 
 def x3(a=None, *, file="file", stuff="stuff"):
     pass
+

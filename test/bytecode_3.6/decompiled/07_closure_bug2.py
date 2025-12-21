@@ -9,3 +9,4 @@ class ContextDecorator(object):
                 return args()
         
         return inner
+

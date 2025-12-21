@@ -14,3 +14,4 @@ async def create_connection(self):
     else:
         raise OSError(for exc in .0:
     yield "Multiple exceptions: {}")
+

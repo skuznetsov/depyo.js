@@ -3,3 +3,4 @@ def foo():
         x = 1
     finally:
         return
+

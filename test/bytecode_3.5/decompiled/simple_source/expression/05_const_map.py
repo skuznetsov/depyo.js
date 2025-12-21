@@ -1,3 +1,0 @@
-opts = 'highlight'
-
-print(opts)

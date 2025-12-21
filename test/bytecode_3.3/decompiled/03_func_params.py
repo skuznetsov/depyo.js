@@ -8,3 +8,4 @@ class StringIO(object):
 class StringIO2(object):
     def __init__(self, initial_value="", newline="\n"):
         return 5
+

@@ -13,3 +13,4 @@ class ExtendedInterpolation:
 
 def test_Iterable(self):
     return (lambda: yield None; None)()
+

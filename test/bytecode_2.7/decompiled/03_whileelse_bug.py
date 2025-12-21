@@ -4,3 +4,4 @@ def _study1(i, n):
             i = 0
         elif i:
             i = 1
+

@@ -3,3 +3,4 @@ class A:
 
 class B(Exception):
     pass
+

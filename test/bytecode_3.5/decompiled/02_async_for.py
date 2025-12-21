@@ -18,3 +18,4 @@ async def foo(X):
         __exception__
         await(##ERROR##.__anext__)
     raise Done
+

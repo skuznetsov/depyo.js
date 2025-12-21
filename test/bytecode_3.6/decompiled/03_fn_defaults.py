@@ -9,3 +9,4 @@ def foo3(bar, baz, qux=(1, 2)):
 
 def foo4(bar, baz, qux, quux=(1, 2)):
     return 4
+

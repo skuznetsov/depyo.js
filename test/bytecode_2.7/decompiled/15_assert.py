@@ -8,3 +8,4 @@ def getpreferredencoding(do_setlocale=True):
     assert not do_setlocale
 
 getpreferredencoding(False)
+

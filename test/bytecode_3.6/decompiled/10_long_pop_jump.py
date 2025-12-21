@@ -40,3 +40,4 @@ def parse_declaration(self, i):
                 return j
         else:
             return -1
+

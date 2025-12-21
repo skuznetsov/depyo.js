@@ -32,3 +32,4 @@ def __exit__(self, type, value, traceback):
                 exc = None
                 del exc
                 return
+

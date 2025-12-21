@@ -1,2 +1,0 @@
-names2 = []
-names = []
