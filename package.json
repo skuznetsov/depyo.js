@@ -9,9 +9,7 @@
   "type": "commonjs",
   "files": [
     "depyo.js",
-    "lib/",
-    "scripts/",
-    "test/"
+    "lib/"
   ],
   "repository": {
     "type": "git",
