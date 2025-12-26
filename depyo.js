@@ -20,6 +20,9 @@ global.g_cliArgs = {
     skipSource: false,
     skipPath: false,
     sendToStdout: false,
+    marshal: false,
+    pyVersion: null,
+    silent: false,
     fileExt: 'py',
     baseDir: null,
     filenames: []
@@ -29,6 +32,7 @@ let g_totalInThroughput = 0;
 let g_totalOutThroughput = 0;
 let g_totalExecTime = 0;
 let g_totalFiles = 0;
+let g_pyVersionInfo = null;
 
 function printUsage() {
     console.log(`Usage: node depyo.js [options] <file.pyc|archive.zip> [...]
@@ -43,6 +47,8 @@ Options:
   --skip-source-gen   Do not emit .py source (useful with --asm/--dump)
   --skip-path         Flatten output paths (write files next to inputs)
   --out               Print decompiled source to stdout instead of files
+  --marshal           Treat input as raw marshalled data (no .pyc header)
+  --py-version <x.y>  Python bytecode version hint (auto-scan if omitted)
   --basedir <path>    Output base directory (default: alongside input)
   --file-ext <ext>    Extension for generated source (default: py)
 `);
@@ -69,6 +75,10 @@ function parseCLIParams() {
             g_cliArgs.skipPath = true;
         } else if (cliParam.toLowerCase() == "--out") {
             g_cliArgs.sendToStdout = true;
+        } else if (cliParam.toLowerCase() == "--marshal") {
+            g_cliArgs.marshal = true;
+        } else if (cliParam.toLowerCase() == "--py-version") {
+            g_cliArgs.pyVersion = process.argv[++idx];
         } else if (cliParam.toLowerCase() == "--basedir") {
             g_cliArgs.baseDir = process.argv[++idx];
         } else if (cliParam.toLowerCase() == "--file-ext") {
@@ -84,37 +94,176 @@ function parseCLIParams() {
     }
 }
 
+function normalizeMarshalOutput(src) {
+    return src
+        .replace(/\r\n/g, '\n')
+        .replace(/[ \t]+$/gm, '')
+        .replace(/\n{3,}/g, '\n\n')
+        .replace(/#[^\n]*$/gm, '')
+        .trim();
+}
+
+function attemptMarshalDecompile(buffer, versionInfo, opts = {}) {
+    const prevSilent = g_cliArgs.silent;
+    const prevDebug = g_cliArgs.debug;
+    if (opts.silent) {
+        g_cliArgs.silent = true;
+        g_cliArgs.debug = false;
+    }
+    try {
+        const rdr = new PycReader(buffer, {marshal: true, versionInfo});
+        const obj = rdr.ReadObject();
+        if (!obj || obj.ClassName !== "Py_CodeObject") {
+            return null;
+        }
+        const opcodes = new versionInfo.opcode(obj);
+        const {unknown, total} = PycReader.CountUnknownOpcodes(obj, rdr, opcodes.OpCodeList);
+        const unknownRatio = total > 0 ? unknown / total : 1;
+        const remaining = rdr.m_rdr.Reader.length - rdr.m_rdr.pc;
+
+        const genStartTS = process.hrtime.bigint();
+        const decompiler = new PycDecompiler(obj);
+        const ast = decompiler.decompile();
+        const pycResult = ast.codeFragment();
+        const pySrc = pycResult.toString();
+        const genSecs = Number(process.hrtime.bigint() - genStartTS) / 1000000000;
+
+        return {
+            reader: rdr,
+            obj,
+            pySrc,
+            genSecs,
+            cleanBuild: decompiler.cleanBuild,
+            unknown,
+            total,
+            unknownRatio,
+            remaining,
+            versionInfo
+        };
+    } catch (ex) {
+        if (opts.debug) {
+            console.log(`Marshal decompile failed for ${versionInfo.major}.${versionInfo.minor}: ${ex.message}`);
+        }
+        return null;
+    } finally {
+        g_cliArgs.silent = prevSilent;
+        g_cliArgs.debug = prevDebug;
+    }
+}
+
+function selectMarshalCandidate(buffer) {
+    const candidates = PycReader.ListSupportedVersions(false);
+    const attempts = [];
+    const cleanCandidates = [];
+    let baselineOutput = null;
+    let outputsDiverged = false;
+    for (const candidate of candidates) {
+        const result = attemptMarshalDecompile(buffer, candidate, {silent: true});
+        if (!result) {
+            continue;
+        }
+        attempts.push(result);
+        const isWorking = result.cleanBuild && result.unknown === 0 && result.remaining === 0;
+        if (isWorking) {
+            const normalized = normalizeMarshalOutput(result.pySrc || '');
+            cleanCandidates.push({...result, normalized});
+            if (baselineOutput === null) {
+                baselineOutput = normalized;
+            } else if (baselineOutput !== normalized) {
+                outputsDiverged = true;
+            }
+        }
+    }
+
+    if (!cleanCandidates.length) {
+        return attempts.length ? {best: null, attempts, ambiguous: false} : null;
+    }
+
+    if (outputsDiverged) {
+        return {best: null, attempts, ambiguous: true, cleanCandidates};
+    }
+
+    return {best: cleanCandidates[0], attempts, ambiguous: false};
+}
+
 function decompilePycObject(data) {
     try
     {
         let filename = null, obj = null;
         let startTS = process.hrtime.bigint();
-        let rdr = new PycReader(data);
-        try {
-            obj = rdr.ReadObject();
-            filename = g_baseDir + obj.FileName;
-        } catch (ex) {
-            if (ex instanceof PycReader.LoadError) {
-                // Save the binary file if it not already exists for future manual analysis.
-                if (!ex.FileName) {
-                    if (global.g_cliArgs?.debug) {
-                        console.log(`LoadError: ${ex.message} at position ${ex.position}`);
+        let buffer = data;
+        if (!Buffer.isBuffer(buffer)) {
+            buffer = fs.readFileSync(data);
+        }
+        let rdr = null;
+        let pySrc = null;
+        let genSecs = 0;
+
+        if (g_cliArgs.marshal) {
+            let attemptResult = null;
+            if (g_pyVersionInfo) {
+                attemptResult = attemptMarshalDecompile(buffer, g_pyVersionInfo);
+            } else {
+                const scan = selectMarshalCandidate(buffer);
+                attemptResult = scan ? scan.best : null;
+                if (g_cliArgs.debug && scan?.attempts?.length) {
+                    console.log("Marshal scan results:");
+                    for (const attempt of scan.attempts) {
+                        const info = attempt.versionInfo;
+                        console.log(`  ${info.major}.${info.minor}: clean=${attempt.cleanBuild} unknown=${attempt.unknown}/${attempt.total} remaining=${attempt.remaining}`);
                     }
+                    if (attemptResult) {
+                        const info = attemptResult.versionInfo;
+                        console.log(`Selected marshal version: ${info.major}.${info.minor}`);
+                    }
+                }
+                if (!attemptResult && scan?.ambiguous) {
+                    const versions = scan.cleanCandidates
+                        ? scan.cleanCandidates.map(c => `${c.versionInfo.major}.${c.versionInfo.minor}`).join(', ')
+                        : 'unknown';
+                    throw new Error(`Ambiguous marshal version (${versions}). Provide --py-version X.Y to force.`);
+                }
+            }
+
+            if (!attemptResult) {
+                throw new Error("No clean marshal candidate found. Provide --py-version X.Y to force.");
+            }
+            rdr = attemptResult.reader;
+            obj = attemptResult.obj;
+            pySrc = attemptResult.pySrc;
+            genSecs = attemptResult.genSecs;
+        } else {
+            rdr = new PycReader(buffer);
+            try {
+                obj = rdr.ReadObject();
+            } catch (ex) {
+                if (ex instanceof PycReader.LoadError) {
+                    // Save the binary file if it not already exists for future manual analysis.
+                    if (!ex.FileName) {
+                        if (global.g_cliArgs?.debug) {
+                            console.log(`LoadError: ${ex.message} at position ${ex.position}`);
+                        }
+                        return;
+                    }
+                    filename = g_baseDir + ex.FileName;
+                    let dirPath =  Path.dirname(filename);
+                    if (!g_cliArgs.skipPath && !fs.existsSync(dirPath)) {
+                        fs.mkdirSync(dirPath, {recursive: true});
+                    }
+                    let filenamePyc = filename.substring(0, filename.lastIndexOf('.')) + ".pyc";
+                    fs.writeFileSync(filenamePyc, rdr.Reader);
+                    console.log(`Error: ${ex.message}\nFile: ${filenamePyc}\nPosition: ${ex.position}`);
                     return;
                 }
-                filename = g_baseDir + ex.FileName;
-                let dirPath =  Path.dirname(filename);
-                if (!g_cliArgs.skipPath && !fs.existsSync(dirPath)) {
-                    fs.mkdirSync(dirPath, {recursive: true});
-                }
-                let filenamePyc = filename.substring(0, filename.lastIndexOf('.')) + ".pyc";
-                fs.writeFileSync(filenamePyc, rdr.Reader);
-                console.log(`Error: ${ex.message}\nFile: ${filenamePyc}\nPosition: ${ex.position}`);
+                console.log(`Error: ${ex.message}\nStack:\n${ex.stacktrace}`);
                 return;
             }
-            console.log(`Error: ${ex.message}\nStack:\n${ex.stacktrace}`);
+        }
+
+        if (!obj) {
             return;
         }
+        filename = g_baseDir + obj.FileName;
 
         if (!g_cliArgs.sendToStdout) {
             console.log(`Processing ${filename}...`);
@@ -139,15 +288,18 @@ function decompilePycObject(data) {
                 fs.writeFileSync(filenameBase + ".pyasm", PycDisassembler.Disassemble(rdr, obj));
             }
         }
-        let genStartTS = process.hrtime.bigint();
-        let decompiler = new PycDecompiler(obj);
-        let ast = decompiler.decompile();
-        let pycResult = ast.codeFragment();
-        let pySrc = pycResult.toString();
+        if (!pySrc) {
+            let genStartTS = process.hrtime.bigint();
+            let decompiler = new PycDecompiler(obj);
+            let ast = decompiler.decompile();
+            let pycResult = ast.codeFragment();
+            pySrc = pycResult.toString();
+            genSecs = Number(process.hrtime.bigint() - genStartTS) / 1000000000;
+        }
         if (!pySrc.endsWith("\n")) {
             pySrc += "\n";
         }
-        let genSecs = parseInt(process.hrtime.bigint() - genStartTS) / 1000000000;
+        genSecs = Math.max(genSecs, 0.000000001);
         if (g_cliArgs.sendToStdout) {
 //            console.log(`\n\n${filenameBase}.${g_cliArgs.fileExt}\n-------\n${pySrc}`);
             console.log(pySrc);
@@ -156,9 +308,9 @@ function decompilePycObject(data) {
         }
         let secs = parseInt(process.hrtime.bigint() - startTS) / 1000000000;
         g_totalExecTime += secs;
-        let inThroughput = data.length / genSecs;
+        let inThroughput = buffer.length / genSecs;
         let outThroughput = pySrc.length / genSecs;
-        g_totalInThroughput += data.length;
+        g_totalInThroughput += buffer.length;
         g_totalOutThroughput += pySrc.length;
         g_totalFiles++;
         if (g_cliArgs.stats) {
@@ -196,6 +348,17 @@ function DecompileModule(filenames)
 }
 
 parseCLIParams()
+if (g_cliArgs.pyVersion && !g_cliArgs.marshal) {
+    console.log("Error: --py-version requires --marshal (headerless input).");
+    process.exit(1);
+}
+if (g_cliArgs.pyVersion) {
+    g_pyVersionInfo = PycReader.ResolveVersionTag(g_cliArgs.pyVersion);
+    if (!g_pyVersionInfo) {
+        console.log(`Error: unsupported --py-version "${g_cliArgs.pyVersion}". Use format X.Y (e.g., 3.11).`);
+        process.exit(1);
+    }
+}
 if (g_cliArgs.filenames.length === 0) {
     printUsage();
     process.exit(1);
