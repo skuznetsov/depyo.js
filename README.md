@@ -32,6 +32,9 @@ node depyo.js --out /path/to/file.pyc
 # Marshal-only blob (no .pyc header)
 node depyo.js --marshal --py-version 3.11 /path/to/blob.bin
 node depyo.js --marshal /path/to/blob.bin
+
+# Fast marshal scan (no decompile)
+node depyo.js --marshal-scan /path/to/blob.bin
 ```
 Without `--py-version`, depyo scans supported versions (oldest → newest) and accepts the first clean output when all clean candidates agree. If outputs diverge (ambiguous), it stops and asks for `--py-version`. Use `--debug` to see scan results.
 
@@ -45,6 +48,7 @@ Without `--py-version`, depyo scans supported versions (oldest → newest) and a
 - `--skip-path` flatten output paths (write next to input)
 - `--out` print source to stdout instead of files
 - `--marshal` treat input as raw marshalled data (no .pyc header, auto-scan versions)
+- `--marshal-scan` fast scan marshal blobs and print version candidates
 - `--py-version <x.y>` bytecode version hint (use with `--marshal`)
 - `--basedir <dir>` override output root (default: alongside input)
 - `--file-ext <ext>` change emitted extension (default `py`)

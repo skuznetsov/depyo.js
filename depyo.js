@@ -21,6 +21,7 @@ global.g_cliArgs = {
     skipPath: false,
     sendToStdout: false,
     marshal: false,
+    marshalScan: false,
     pyVersion: null,
     silent: false,
     fileExt: 'py',
@@ -33,6 +34,7 @@ let g_totalOutThroughput = 0;
 let g_totalExecTime = 0;
 let g_totalFiles = 0;
 let g_pyVersionInfo = null;
+let g_marshalScanStats = {ok: 0, ambiguous: 0, failed: 0};
 
 function printUsage() {
     console.log(`Usage: node depyo.js [options] <file.pyc|archive.zip> [...]
@@ -48,6 +50,7 @@ Options:
   --skip-path         Flatten output paths (write files next to inputs)
   --out               Print decompiled source to stdout instead of files
   --marshal           Treat input as raw marshalled data (no .pyc header)
+  --marshal-scan      Fast scan of marshal blobs (no decompile, prints version)
   --py-version <x.y>  Python bytecode version hint (auto-scan if omitted)
   --basedir <path>    Output base directory (default: alongside input)
   --file-ext <ext>    Extension for generated source (default: py)
@@ -77,6 +80,9 @@ function parseCLIParams() {
             g_cliArgs.sendToStdout = true;
         } else if (cliParam.toLowerCase() == "--marshal") {
             g_cliArgs.marshal = true;
+        } else if (cliParam.toLowerCase() == "--marshal-scan" || cliParam.toLowerCase() == "--marshal-smoke") {
+            g_cliArgs.marshalScan = true;
+            g_cliArgs.marshal = true;
         } else if (cliParam.toLowerCase() == "--py-version") {
             g_cliArgs.pyVersion = process.argv[++idx];
         } else if (cliParam.toLowerCase() == "--basedir") {
@@ -101,6 +107,44 @@ function normalizeMarshalOutput(src) {
         .replace(/\n{3,}/g, '\n\n')
         .replace(/#[^\n]*$/gm, '')
         .trim();
+}
+
+function scanMarshalBuffer(buffer, filenameLabel) {
+    if (g_pyVersionInfo) {
+        const trial = PycReader.TryParseMarshal(buffer, g_pyVersionInfo);
+        if (!trial) {
+            g_marshalScanStats.failed++;
+            console.log(`${filenameLabel}: no parse with ${g_pyVersionInfo.major}.${g_pyVersionInfo.minor}`);
+            return;
+        }
+        g_marshalScanStats.ok++;
+        console.log(`${filenameLabel}: forced ${g_pyVersionInfo.major}.${g_pyVersionInfo.minor} unknown=${trial.unknown}/${trial.total} remaining=${trial.remaining}`);
+        return;
+    }
+
+    const results = PycReader.ScanMarshalCandidates(buffer);
+    if (!results.length) {
+        g_marshalScanStats.failed++;
+        console.log(`${filenameLabel}: no candidates`);
+        return;
+    }
+
+    const best = results[0];
+    const ambiguous = results.filter(r =>
+        r.unknown === best.unknown &&
+        r.remaining === best.remaining &&
+        r.unknownRatio === best.unknownRatio
+    );
+
+    if (ambiguous.length > 1) {
+        g_marshalScanStats.ambiguous++;
+        const versions = ambiguous.map(r => `${r.versionInfo.major}.${r.versionInfo.minor}`).join(', ');
+        console.log(`${filenameLabel}: ambiguous candidates (${versions})`);
+        return;
+    }
+
+    g_marshalScanStats.ok++;
+    console.log(`${filenameLabel}: best=${best.versionInfo.major}.${best.versionInfo.minor} unknown=${best.unknown}/${best.total} remaining=${best.remaining}`);
 }
 
 function attemptMarshalDecompile(buffer, versionInfo, opts = {}) {
@@ -194,6 +238,11 @@ function decompilePycObject(data) {
         let buffer = data;
         if (!Buffer.isBuffer(buffer)) {
             buffer = fs.readFileSync(data);
+        }
+        if (g_cliArgs.marshalScan) {
+            const label = typeof data === 'string' ? data : '<buffer>';
+            scanMarshalBuffer(buffer, label);
+            return;
         }
         let rdr = null;
         let pySrc = null;
@@ -368,6 +417,17 @@ const baseInputDir = g_cliArgs.baseDir ? g_cliArgs.baseDir : Path.dirname(g_cliA
 g_baseDir = Path.resolve(baseInputDir, 'decompiled') + '/';
 
 DecompileModule(g_cliArgs.filenames);
+
+if (g_cliArgs.marshalScan) {
+    console.log(`Marshal scan summary: ok=${g_marshalScanStats.ok}, ambiguous=${g_marshalScanStats.ambiguous}, failed=${g_marshalScanStats.failed}`);
+    if (g_marshalScanStats.failed > 0) {
+        process.exit(1);
+    }
+    if (g_marshalScanStats.ambiguous > 0) {
+        process.exit(2);
+    }
+    process.exit(0);
+}
 
 if (!g_cliArgs.sendToStdout) {
     const inRate = (g_totalInThroughput / g_totalExecTime).toFixed(2);
