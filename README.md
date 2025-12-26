@@ -28,7 +28,12 @@ node depyo.js --skip-path /path/to/file.pyc
 
 # Dump to stdout instead of files
 node depyo.js --out /path/to/file.pyc
+
+# Marshal-only blob (no .pyc header)
+node depyo.js --marshal --py-version 3.11 /path/to/blob.bin
+node depyo.js --marshal /path/to/blob.bin
 ```
+Without `--py-version`, depyo scans supported versions (oldest → newest) and accepts the first clean output when all clean candidates agree. If outputs diverge (ambiguous), it stops and asks for `--py-version`. Use `--debug` to see scan results.
 
 ### CLI options
 - `--asm` emit `.pyasm` disassembly alongside source
@@ -39,6 +44,8 @@ node depyo.js --out /path/to/file.pyc
 - `--skip-source-gen` skip writing `.py` (use with `--asm/--dump`)
 - `--skip-path` flatten output paths (write next to input)
 - `--out` print source to stdout instead of files
+- `--marshal` treat input as raw marshalled data (no .pyc header, auto-scan versions)
+- `--py-version <x.y>` bytecode version hint (use with `--marshal`)
 - `--basedir <dir>` override output root (default: alongside input)
 - `--file-ext <ext>` change emitted extension (default `py`)
 
@@ -57,6 +64,14 @@ node depyo.js --out /path/to/file.pyc
   ```bash
   node scripts/run-matrix.js                  # full sweep
   node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
+  ```
+- Marshal fixtures (headerless marshal blobs):
+  ```bash
+  node scripts/run-marshal-fixtures.js
+  ```
+- Regenerate marshal fixtures:
+  ```bash
+  node scripts/generate-marshal-fixtures.js --clean
   ```
 - Modern fixtures are generated via `test/generate_modern_tests.py` (Python 3.8+ on PATH).
 

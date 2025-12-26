@@ -23,6 +23,10 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install --ignore-scripts || true
+      - name: Test marshal fixtures
+        run: node scripts/run-marshal-fixtures.js
+      - name: Test marshal ambiguity guard
+        run: node scripts/run-marshal-ambiguity.js
 
       # Core modern features tests (blocking)
       - name: Test exception groups (3.11+)

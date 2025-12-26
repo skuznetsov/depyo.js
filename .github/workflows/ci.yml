@@ -18,6 +18,11 @@ jobs:
       - name: Install dependencies
         run: npm install --ignore-scripts || true
 
+      - name: Test marshal fixtures
+        run: node scripts/run-marshal-fixtures.js
+      - name: Test marshal ambiguity guard
+        run: node scripts/run-marshal-ambiguity.js
+
       # Legacy coverage (keep fast)
       - name: Test legacy bytecode 1.x
         run: node scripts/run-fixtures.js --root test/bytecode_1.0 --fail-fast
