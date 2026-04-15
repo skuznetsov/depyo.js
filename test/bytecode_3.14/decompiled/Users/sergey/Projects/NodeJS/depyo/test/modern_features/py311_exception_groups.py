@@ -5,7 +5,5 @@ try:
     raise_multiple()
 except* ValueError as e:
     print(f"Caught ValueError group: {e}")
-except Exception as e:
-    pass
 except* TypeError as e:
     print(f"Caught TypeError group: {e}")
