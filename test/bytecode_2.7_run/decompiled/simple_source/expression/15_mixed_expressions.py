@@ -3,9 +3,9 @@ from __future__ import division
 import sys
 PYTHON_VERSION = sys.version_info[0] + sys.version_info[1] / 10.0
 
-x = 1e+300.0
+x = 1e+300
 assert 0.0 == x * 0
-assert x * 1e+300.0 == float("inf")
+assert x * 1e+300 == float("inf")
 
 assert str(float("inf") * 0.0) == "nan"
 
