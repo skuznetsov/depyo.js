@@ -84,6 +84,8 @@ def test_pow(self, m, a, b, c, f):
 def testAttributes(exceptionList):
     try:
         x = 0
+    except:
+        pass
     else:
         for exc in exceptionList:
             x = 0

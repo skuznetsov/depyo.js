@@ -1,22 +1,15 @@
 try:
     x = 1
-
+except:
+    pass
 try:
     x = 1
-
+except ImportError:
+    pass
 try:
     x = 2
-except:
+except ImportError:
     x = 3
 finally:
-    x = 4
-
-try:
-    x = 1
-except:
-    try:
-        x = 2
-    finally:
-        pass
-    e = None
-    del e
+    pass
+x = 4

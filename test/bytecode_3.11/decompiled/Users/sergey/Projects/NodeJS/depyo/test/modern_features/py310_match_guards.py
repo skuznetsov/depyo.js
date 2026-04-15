@@ -1,10 +1,15 @@
 def categorize(x):
     match x:
-        case int(n) if n < 0:
+        case int():
+            n = x
+        case 0:
             return "negative"
-        case int(n) if n == 0:
+        case int():
+            n = x
+        case 0:
             return "zero"
-        case int(n) if n > 0:
+        case int():
+            n = x
             return "positive"
-        case _:
+        case 0:
             return "not an int"

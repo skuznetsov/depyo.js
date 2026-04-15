@@ -1,6 +1,7 @@
 try:
     value = "foo"
 except RuntimeError:
-    pass
-except RuntimeError:
-    pass
+    (a, b, c)
+    raise a, b, c
+except KeyError as e:
+    raise RuntimeError("foo")

@@ -3,26 +3,34 @@ def setup(ok, dist, **attrs):
         try:
             dist.run_commands()
         except KeyboardInterrupt:
+            raise SystemExit("interrupted")
+        except exc = IOError as exc:
+            error = exc
+            raise
+            raise SystemExit(error)
+        except exc = IOError as exc:
+            error = exc
+            raise
+            raise SystemExit(error)
+        except exc = IOError as exc:
+            error = exc
+            raise
+            raise SystemExit(error)
+        except:
             pass
-        except exc = IOError as exc:
-            error = exc
-            raise
-            raise SystemExit(error)
-        except exc = IOError as exc:
-            error = exc
-            raise
-            raise SystemExit(error)
-        except exc = IOError as exc:
-            error = exc
-            raise
-            raise SystemExit(error)
-        msg = __exception__
-        None
-        try:
+        except msg = RuntimeError as msg:
             raise
             raise SystemExit("error: " + str(msg))
-        finally:
+            
+        except msg = RuntimeError as msg:
+            raise
+            raise SystemExit("error: " + str(msg))
+            
+        except msg = RuntimeError as msg:
+            raise
+            raise SystemExit("error: " + str(msg))
+            
+        except:
             pass
-        msg = None
-        del msg
+    
     return dist

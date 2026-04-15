@@ -3,7 +3,7 @@ def distb(tb=None):
         try:
             tb = sys.last_traceback
         except AttributeError:
-            pass
+            raise RuntimeError, "no last traceback to disassemble"
         while 1:
             if tb.tb_next:
                 tb = tb.tb_next

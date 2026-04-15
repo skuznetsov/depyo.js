@@ -2,9 +2,10 @@ def readline(self, line):
     while 1:
         if self.join_lines:
             if line:
-                pass
+                continue
             elif self:
-                pass
+                continue
+            
         return line
 
 while __name__ != "__main__":

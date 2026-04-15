@@ -10,40 +10,28 @@ async def run_list(f):
 async def iterate(gen):
     res = []
     async for i in gen:
-        try:
-            yield from await(##ERROR##.__anext__)
-        except StopAsyncIteration:
-            pass
-        __exception__
-        await(##ERROR##.__anext__)
+        pass
     
     return res
 
 def test_comp_5(f):
     async def run_list():
-        await [##ERROR##.__anext__ for pair in (10, 20)]; return await [##ERROR##.__anext__ for pair in (10, 20)]
+        await for pair in .0:
+            async for i in f:
+                pass; return await for pair in .0:
+    async for i in f:
+        pass
 
 async def test2(x, buffer, f):
     with x:
         x
         async for i in f:
-            try:
-                yield from await(##ERROR##.__anext__)
-            except StopAsyncIteration:
-                pass
-            await(##ERROR##.__anext__)
-        buffer()
+            pass
     buffer()
 
 async def test3(x, buffer, f):
     with x:
         x
         async for i in f:
-            try:
-                yield from await(##ERROR##.__anext__)
-            except StopAsyncIteration:
-                pass
-            __exception__
-            await(##ERROR##.__anext__)
-        buffer.append()
+            pass
     buffer()

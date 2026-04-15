@@ -1,20 +1,11 @@
 async def a(b, c):
     async for b in c:
-        try:
-            yield from await(##ERROR##.__anext__)
-        __exception__
-        await(##ERROR##.__anext__)
+        pass
 
 async def foo(X):
     async for i in X:
-        try:
-            yield from await(##ERROR##.__anext__)
-        __exception__
-        await(##ERROR##.__anext__)
+        pass
     
     async for i in X:
-        try:
-            yield from await(##ERROR##.__anext__)
-        __exception__
-        await(##ERROR##.__anext__)
+        pass
     raise Done

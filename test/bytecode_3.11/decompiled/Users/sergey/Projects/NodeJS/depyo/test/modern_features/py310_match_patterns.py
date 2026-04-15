@@ -4,7 +4,7 @@ def analyze_point(point):
             return "origin"
         case (0, y):
             return f"on y-axis at {y}"
-        case (x, 0):
+        case (0, x):
             return f"on x-axis at {x}"
         case (x, y):
             return f"point at ({x}, {y})"

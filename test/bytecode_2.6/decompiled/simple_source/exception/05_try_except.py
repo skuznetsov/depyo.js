@@ -1,23 +1,23 @@
 def handle(module):
     try:
         module = 1
-    except ImportError:
-        pass
-    
+    except ImportError as exc:
+        module = exc
     return module
 
 def handle2(module):
     if module == "foo":
         try:
             module = 1
-        except ImportError:
-            
-        return module
+        except ImportError as exc:
+            module = exc
+        
+    
+    return module
 
 try:
     pass
-except ImportError:
+except ImportError as exc:
     pass
 finally:
-    pass
-y = 1
+    y = 1

@@ -1,4 +1,5 @@
-max(5, 2)
+[x for x in range(10) if x % 3]
+list((x for x in range(10) if x % 3))
 if not 0:
     pass
 

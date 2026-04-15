@@ -9,7 +9,6 @@ decompyle is a Python byte-code decompiler
 See http://www.crazy-compilers.com/decompyle/ for
 for further information
 """
-
 raise RuntimeError("This program can't be run")
 
 a = 1

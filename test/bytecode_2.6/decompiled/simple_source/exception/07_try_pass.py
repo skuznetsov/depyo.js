@@ -3,5 +3,11 @@ def __getitem__(v):
         try:
             return v
         except ValueError:
-            pass
-        return v
+            try:
+                return v
+            except ValueError:
+                pass
+            
+        
+    
+    return v

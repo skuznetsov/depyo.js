@@ -11,5 +11,6 @@ def __exit__(self, type, value, traceback):
     try:
         raise RuntimeError
     except StopIteration:
-        else:
-            raise
+        return exc
+    except:
+        raise

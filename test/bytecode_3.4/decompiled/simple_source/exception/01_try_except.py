@@ -1,12 +1,15 @@
 try:
     x = 1
-
+except:
+    pass
 try:
     x = 1
-
+except ImportError:
+    pass
 try:
     x = 2
-except:
+except ImportError:
     x = 3
 finally:
-    x = 4
+    pass
+x = 4
