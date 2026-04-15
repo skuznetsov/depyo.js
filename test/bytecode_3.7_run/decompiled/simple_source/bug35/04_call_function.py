@@ -55,4 +55,4 @@ class ResultMixin(object):
 
 SplitResult = ##ERROR##(##ERROR##, ##ERROR##, ##ERROR##("SplitResult"), ResultMixin)
 
-assert 0.bit_length() == 0
+assert (0).bit_length() == 0

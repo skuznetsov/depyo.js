@@ -9,7 +9,7 @@ class MyInt(int):
         __slots__ = ()
     
     try:
-        1.__class__ = MyInt
+        (1).__class__ = MyInt
         assert False, "builtin types don't support __class__ assignment."
     finally:
         pass
