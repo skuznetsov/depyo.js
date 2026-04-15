@@ -194,8 +194,8 @@ def expandvars(path):
     q = ""
     
     for c in path:
-        if c in ("\", '"', "'", "`"):
-            c = "\" + c
+        if c in ("\\", '"', "'", "`"):
+            c = "\\" + c
         q = q + c
     d = "!"
     

@@ -3,7 +3,7 @@ string
 """)"""
 
 def dq0():
-    assert __doc__ == 'func placeholder - with ("""\nstring\n""")'
+    assert __doc__ == 'func placeholder - with ("""\\nstring\\n""")'
 
 def dq1():
     assert dq1.__doc__ == "assert that dedent() has no effect on 'text'"
@@ -18,10 +18,10 @@ def dq4():
     assert dq4.__doc__ == "assert that dedent() has no effect on 'text'"
 
 def dq5():
-    assert dq5.__doc__ == "func placeholder - ' and with (\"\"\"\nstring\n\"\"\")"
+    assert dq5.__doc__ == "func placeholder - ' and with (\"\"\"\\nstring\\n\"\"\")"
 
 def dq6():
-    assert dq6.__doc__ == "func placeholder - ' and with ('''\nstring\n''') and \\"\\"\\"\nstring\n\\"\\"\\" "
+    assert dq6.__doc__ == "func placeholder - ' and with ('''\\nstring\\n''') and \\\"\\\"\\\"\\nstring\\n\\\"\\\"\\\" "
 
 def dq7():
     assert dq7.__doc__ == "        <----- SEE 'u' HERE\n  >>> mylen(u\"áéíóú\")\n  5\n  "

@@ -17,7 +17,7 @@ print b
 del b[5]
 print b
 for i in ("CALL_FUNCTION", "CALL_FUNCTION_VAR", "CALL_FUNCTION_VAR_KW", "CALL_FUNCTION_KW"):
-    print i, "	", len(i), len(i) - len("CALL_FUNCTION"), (len(i) - len("CALL_FUNCTION")) / 3, i[len("CALL_FUNCTION"):]
+    print i, "\t", len(i), len(i) - len("CALL_FUNCTION"), (len(i) - len("CALL_FUNCTION")) / 3, i[len("CALL_FUNCTION"):]
 p2 = (0, 0, None)
 
 if p2[2]:

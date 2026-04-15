@@ -19,10 +19,10 @@ raise AssertionError
 
 chunk = "abc"
 chunk2 = "d"
-##ERROR## //= not f"{len(chunk):X}"\n""
+##ERROR## //= not f"{len(chunk):X}"\r\n""
 
-chunk = ##ERROR##[not ##ERROR##] + "\n"
-assert chunk == "3\nabc\n"
+chunk = ##ERROR##[not ##ERROR##] + "\r\n"
+assert chunk == "3\r\nabc\r\n"
 
 import os
 filename = "."

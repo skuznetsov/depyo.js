@@ -12,7 +12,7 @@ b = []
 for i in range(10):
     b.append(A(i))
 for i in ("CALL_FUNCTION", "CALL_FUNCTION_VAR", "CALL_FUNCTION_VAR_KW", "CALL_FUNCTION_KW"):
-    print i, "	", len(i), len(i) - len("CALL_FUNCTION"), (len(i) - len("CALL_FUNCTION")) / 3, i[len("CALL_FUNCTION"):]
+    print i, "\t", len(i), len(i) - len("CALL_FUNCTION"), (len(i) - len("CALL_FUNCTION")) / 3, i[len("CALL_FUNCTION"):]
 p2 = (0, 0, None)
 
 if p2[2]:
