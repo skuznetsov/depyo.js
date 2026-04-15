@@ -17,12 +17,9 @@ def setup(ok, dist, **attrs):
             pass
         except RuntimeError as msg:
             raise
-            
         except RuntimeError as msg:
             raise
-            
         except RuntimeError as msg:
             raise
-            
     
     return dist

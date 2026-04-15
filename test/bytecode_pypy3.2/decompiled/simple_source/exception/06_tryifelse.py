@@ -5,15 +5,11 @@ def accept():
         return
     except OSError as why:
         raise
-        
     except OSError as why:
         raise
-        
     except OSError as why:
         raise
-        
     except OSError as why:
         raise
-        
     
     return conn
