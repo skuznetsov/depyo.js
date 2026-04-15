@@ -42,7 +42,10 @@ for _name in _names:
         exec "import %s; _mod = %s" % (_name, _name) in None
     except ImportError:
         pass
-raise ImportError, "no dbm clone found; tried %s" % _names
+    else:
+        break
+else:
+    raise ImportError, "no dbm clone found; tried %s" % _names
 
 error = _mod.error
 
