@@ -1,1 +1,1 @@
-(lambda: return True and 2; 3)
+(lambda: 2 if True else 3)
