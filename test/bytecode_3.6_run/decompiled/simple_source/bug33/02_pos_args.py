@@ -1,4 +1,4 @@
-digest_cons = lambdad="": 5
+digest_cons = lambda d="": 5
 
 x = lambda: d
 

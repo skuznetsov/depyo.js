@@ -51,7 +51,7 @@ pprint.pprint(dict0)
 print 
 pprint.pprint(dict)
 print 
-pprint = pprint.PrettyPrinter("indent" = 2)
+pprint = pprint.PrettyPrinter(indent=2)
 pprint.pprint(dict0)
 print 
 pprint.pprint(dict)

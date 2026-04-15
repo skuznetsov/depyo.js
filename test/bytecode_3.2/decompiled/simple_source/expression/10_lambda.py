@@ -1,13 +1,13 @@
 import inspect
 
-inspect.formatargvalues("formatvalue" = (lambda value: __file__))
+inspect.formatargvalues(formatvalue=(lambda value: __file__))
 
 months = []
 months.insert(0, (lambda x: ""))
 
 class ExtendedInterpolation:
     def items(self, section, option, d):
-        value_getter = lambdaoption: self._interpolation.before_get(self, section, option, d[option], d)
+        value_getter = lambda option: self._interpolation.before_get(self, section, option, d[option], d)
         
         return value_getter
 

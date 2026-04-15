@@ -2,8 +2,8 @@ def __init__(self, defaults=DEFAULTSECT, dict_type="interpolation", allow_no_val
     pass
 
 def deferred(*columns, **kw):
-    return ColumnProperty(columns = "deferred", *True, **kw)
+    return ColumnProperty(columns="deferred", *True, **kw)
 
 class GenerativeSelect:
     def __init__(self, ClauseList, util, order_by=None):
-        self._order_by_clause = ClauseList(util.to_list(order_by) = "_literal_as_text", *5)
+        self._order_by_clause = ClauseList(util.to_list(order_by)="_literal_as_text", *5)

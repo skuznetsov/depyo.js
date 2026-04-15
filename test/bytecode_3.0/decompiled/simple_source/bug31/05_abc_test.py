@@ -9,7 +9,7 @@ def test_abstractmethod_integration(self):
         #TODO ASTClass (lambda __locals__: @abstractthing
 def foo(self):
     pass; def bar(self):
-    pass)("metaclass" = abc.ABCMeta)
+    pass)(metaclass=abc.ABCMeta)
         assert isabstract(C)
 
 test_abstractmethod_integration(None)

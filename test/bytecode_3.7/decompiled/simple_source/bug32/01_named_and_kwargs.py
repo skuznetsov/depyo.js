@@ -5,4 +5,4 @@ def fn(a, b, d):
     return (a, b, d)
 
 b = {"b": 1, "d": 2}
-()("a" = 0)
+()(a=0)

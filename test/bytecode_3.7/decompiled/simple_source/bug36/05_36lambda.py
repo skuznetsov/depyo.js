@@ -1,5 +1,5 @@
 def __init__(self, msg=None, digestmod=None):
-    self.digest_cons = lambdad="": digestmod.new(d)
+    self.digest_cons = lambda d="": digestmod.new(d)
 
 def bug():
     def register(cls, func=None):
@@ -10,4 +10,4 @@ def items(self, d, section=5, raw=False, vars=None):
         for key, value in vars.items():
             d[self.optionxform(key)] = value
         
-    d = lambdaoption: self._interpolation.before_get(self, section, option, d[option], d)
+    d = lambda option: self._interpolation.before_get(self, section, option, d[option], d)

@@ -54,7 +54,7 @@ def o(f, mode="r", buffering=None) -> "IOBase":
 def foo1(x: "an argument that defaults to 5"=5):
     print(x)
 
-def div(a: dict("type" = float, "help" = "the dividend"), b: dict("type" = float, "help" = "the divisor (must be different than 0)")) -> dict("type" = float, "help" = "the result of dividing a by b"):
+def div(a: dict(type=float, help="the dividend"), b: dict(type=float, help="the divisor (must be different than 0)")) -> dict(type=float, help="the result of dividing a by b"):
     return a / b
 
 def f(a: "This is a new annotation"):
@@ -132,10 +132,10 @@ assert test1(1, 5) == (1, 5, 4, {})
 assert 5 == (6, {},
     "bar", "foo")
 assert test2(2, 3, 4) == (2, 3, 4, 4, (), {})
-test1(1, 5, 6, "foo" = "bar")
+test1(1, 5, 6, foo="bar")
 
-assert test3(10, "foo" = "bar") == 5.4
-assert test4(9.5, 7, 6, 4, "bar" = "baz") == 5.4
+assert test3(10, foo="bar") == 5.4
+assert test4(9.5, 7, 6, 4, bar="baz") == 5.4
 
 assert test6(1.2, 3) == (1.2, 3, None)
 assert test6(2.3, 4, 5) == (2.3, 4, 5)
@@ -143,8 +143,8 @@ assert test6(2.3, 4, 5) == (2.3, 4, 5)
 ann1(1, "test", 5)
 ann2(1)
 
-assert test12(1, 2, 3, "name" = "hi") == (1, (2, 3)), "a, *args, name"
-assert test13(1, 2, 3, "name" = "hi") == ((1, 2, 3), hi), "*args, name"
+assert test12(1, 2, 3, name="hi") == (1, (2, 3)), "a, *args, name"
+assert test13(1, 2, 3, name="hi") == ((1, 2, 3), hi), "*args, name"
 assert None == (2, 3, {},
     "b", "a")
 

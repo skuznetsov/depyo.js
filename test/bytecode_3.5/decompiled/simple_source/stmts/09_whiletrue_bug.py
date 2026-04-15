@@ -1,6 +1,6 @@
 while 1:
     try:
-        compile(__file__, "doraise" = True)
+        compile(__file__, doraise=True)
     except RuntimeError:
         rv = 1
 

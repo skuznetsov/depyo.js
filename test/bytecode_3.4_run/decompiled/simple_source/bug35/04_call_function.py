@@ -1,5 +1,5 @@
 def tometadata(self, metadata, schema, Table, args, name=None):
-    table = Table(name, metadata, "schema" = schema, *args, **self.kwargs)
+    table = Table(name, metadata, schema=schema, *args, **self.kwargs)
     return table
 
 def _strptime_datetime(cls, args):
@@ -9,8 +9,8 @@ from datetime import datetime, timezone, timedelta
 import time
 
 def Time2Internaldate(date_time):
-    delta = timedelta("seconds" = 0)
-    return datetime("tzinfo" = timezone(delta), *date_time[:6])
+    delta = timedelta(seconds=0)
+    return datetime(tzinfo=timezone(delta), *date_time[:6])
 
 assert Time2Internaldate(time.localtime())
 
@@ -24,7 +24,7 @@ def __init__(self, cnf={}):
     self.num = self.tk.call("tk_dialog", self._w, cnf["title"], cnf["text"], cnf["bitmap"], cnf["default"], *cnf["strings"])
 
 def Value(self, fn, typecode_or_type, *args, lock=True):
-    return fn(typecode_or_type, "lock" = lock, "ctx" = self.get_context(), *args)
+    return fn(typecode_or_type, lock=lock, ctx=self.get_context(), *args)
 
 def merge(*key):
     pass

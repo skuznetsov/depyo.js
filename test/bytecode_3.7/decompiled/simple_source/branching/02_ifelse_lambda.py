@@ -1,4 +1,4 @@
-f = lambdax: return x < 2 and 1
+f = lambda x: return x < 2 and 1
     
     3
 

@@ -4,7 +4,7 @@ def _get_default_tempdir(dirlist, fd):
             try:
                 try:
                     try:
-                        fp = open(fd, "wb", "closefd" = False).__enter__()
+                        fp = open(fd, "wb", closefd=False).__enter__()
                         fp.write("blat")
                     finally:
                         break

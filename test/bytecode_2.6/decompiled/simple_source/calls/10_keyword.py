@@ -1,1 +1,1 @@
-sorted([1, 2], "reverse" = True, "key" = None)
+sorted([1, 2], reverse=True, key=None)

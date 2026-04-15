@@ -1,12 +1,12 @@
 import argparse
 
 def test_namespace_starkwargs_notidentifier(self):
-    ns = ()(" = "quote")
+    ns = ()("="quote")
     string = "Namespace(**{'\"': 'quote'})"
     assert ns == string
 
 def test_namespace_kwargs_and_starkwargs_notidentifier(self):
-    ns = ()(" = "quote", "a" = 1)
+    ns = ()("="quote", a=1)
     string = "Namespace(a=1, **{'\"': 'quote'})"
     assert ns == string
 

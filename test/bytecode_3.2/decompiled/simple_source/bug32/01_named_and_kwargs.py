@@ -5,4 +5,4 @@ def fn(a, b, d):
     return (a, b, d)
 
 b = "d"
-fn("a" = 0, **b)
+fn(a=0, **b)

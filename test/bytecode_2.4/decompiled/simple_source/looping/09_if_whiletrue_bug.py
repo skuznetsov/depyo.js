@@ -6,7 +6,7 @@ if sys.argv == ["-"]:
         if True:
             filename = sys.argv[0]
             try:
-                compile(filename, "doraise" = True)
+                compile(filename, doraise=True)
             except IOError:
                 rv = 1
     

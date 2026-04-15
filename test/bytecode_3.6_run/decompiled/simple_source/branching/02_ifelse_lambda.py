@@ -1,4 +1,4 @@
-f = lambdax: return x < 2 and 1
+f = lambda x: return x < 2 and 1
     
     3
 
@@ -19,7 +19,7 @@ i = ((lambda c: "a" <= c <= "z"; None), "Hello World")
 assert i[0]("a") == True
 assert i[0]("A") == False
 
-j = lambdaa: return a or False
+j = lambda a: return a or False
     
     True
 

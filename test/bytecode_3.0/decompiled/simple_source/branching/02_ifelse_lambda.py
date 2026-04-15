@@ -1,4 +1,4 @@
-f = lambdax: if x < 2:
+f = lambda x: if x < 2:
         1
     
     3
@@ -24,7 +24,7 @@ i = ((lambda c: "a" <= c <= "z"; None), "Hello World")
 assert i[0]("a") == True
 assert i[0]("A") == False
 
-j = lambdaa: if not a:
+j = lambda a: if not a:
         False
     
     True

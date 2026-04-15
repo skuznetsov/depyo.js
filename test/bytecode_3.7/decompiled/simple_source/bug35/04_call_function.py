@@ -1,6 +1,6 @@
 def tometadata(self, metadata, schema, Table, args, name=None):
     table = [(name, metadata),
-    args]("schema" = schema)
+    args](schema=schema)
     return table
 
 def _strptime_datetime(cls, args):
@@ -11,7 +11,7 @@ import time
 
 def Time2Internaldate(date_time):
     delta = timedelta(0, **(seconds))
-    return date_time[:6]("tzinfo" = timezone(delta))
+    return date_time[:6](tzinfo=timezone(delta))
 
 assert Time2Internaldate(time.localtime())
 
