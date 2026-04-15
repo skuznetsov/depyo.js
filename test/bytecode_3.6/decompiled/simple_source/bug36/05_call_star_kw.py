@@ -9,4 +9,6 @@ def compile_command(source, filename="<input>", symbol="single"):
     pass
 
 import abc
-IOBase = ##ERROR##((lambda: __qualname__ = "IOBase"), "IOBase", abc.ABCMeta, **(metaclass))
+
+class IOBase(metaclass=abc.ABCMeta):
+    pass
