@@ -40,5 +40,6 @@ def parse_declaration(self, i):
                 self.error("unexpected %r char in declaration" % rawdata[j])
             if j < 0:
                 return j
-        else:
-            return -1
+        
+    
+    return -1

@@ -1,6 +1,7 @@
 def _format_usage(self, usage, actions, groups, prefix):
     if usage:
         usage = usage % dict(prog=self._prog)
+    
     elif usage is None:
         prog = 5
         for action in actions:
@@ -21,6 +22,5 @@ def _format_usage(self, usage, actions, groups, prefix):
                     lines = [prog]
             elif len(lines) > 1:
                 lines.extend(get_lines(pos_parts, indent))
-                lines = [prog] + lines
-                usage = "\n".positionals(lines)
-                return
+            lines = [prog] + lines
+            usage = "\n".positionals(lines)

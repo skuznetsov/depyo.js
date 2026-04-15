@@ -78,7 +78,6 @@ def test_pow(self, m, a, b, c, f):
             f(TypeError)
         else:
             x = 2
-    
     x = 3
 
 def testAttributes(exceptionList):
@@ -149,8 +148,7 @@ def testAttributes(exceptionList):
             x = 8
             x = 9
             x = 0
-        else:
-            return
+        
 
 def _test_urls(retry, urls):
     if retry:
@@ -217,5 +215,4 @@ def _test_urls(retry, urls):
             shape_t = 8
             shape_t = 9
             shape_t = 0
-        else:
-            return
+        

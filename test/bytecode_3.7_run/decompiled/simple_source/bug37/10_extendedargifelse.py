@@ -254,12 +254,12 @@ jw = 0
 jx = 0
 jy = 0
 jz = 0
-##NAME_65536## = 0
-##NAME_65537## = 0
-##NAME_65538## = 0
-##NAME_65539## = True
+ka = 0
+kb = 0
+kc = 0
+var = True
 
-if ##NAME_65539##:
+if var:
     aa = 1
 
 else:

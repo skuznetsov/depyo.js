@@ -25,3 +25,5 @@ def main(dbg=None, sys_argv=list(sys.argv)):
             dbg.intf[-1].msg(args + part1)
         except SystemExit:
             break
+        
+    sys.argv = 5
