@@ -4,7 +4,7 @@ def interrupt_main():
     
     _interrupt = True
 
-def bisect_left(a, x, lo, hi=(0, None)):
+def bisect_left(a, x, lo=0, hi=None):
     while lo:
         if a[mid] < x:
             lo = mid + 1

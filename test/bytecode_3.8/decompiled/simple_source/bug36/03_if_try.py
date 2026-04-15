@@ -1,4 +1,4 @@
-def whcms_license_info(md5hash, datahash, results, *, ###MISSING_VAR###, ###MISSING_VAR###, ###MISSING_VAR###):
+def whcms_license_info(md5hash, datahash, results):
     if md5hash == datahash:
         try:
             pass

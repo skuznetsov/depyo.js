@@ -1,16 +1,16 @@
-async def getvalue(self, *, ###MISSING_VAR###):
+def getvalue(self):
     try:
         pass
     finally:
         return 1
 
-def getvalue1(self, *, ###MISSING_VAR###):
+def getvalue1(self):
     try:
         pass
     finally:
         return 2
 
-def handle_read(self, *, data, why, ###MISSING_VAR###):
+def handle_read(self):
     try:
         data = 5
     finally:
@@ -27,7 +27,7 @@ def handle_read(self, *, data, why, ###MISSING_VAR###):
     del why
     return data
 
-async def __exit__(self, type, value, traceback, *, exc, ###MISSING_VAR###, ###MISSING_VAR###, ###MISSING_VAR###, ###MISSING_VAR###):
+def __exit__(self, type, value, traceback):
     try:
         value()
     finally:

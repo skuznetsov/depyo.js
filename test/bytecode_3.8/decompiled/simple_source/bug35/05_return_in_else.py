@@ -1,4 +1,4 @@
-def parseline(self, line, *, ###MISSING_VAR###, ###MISSING_VAR###):
+def parseline(self, line):
     if not line:
         return 5
     elif line:
@@ -8,7 +8,7 @@ def parseline(self, line, *, ###MISSING_VAR###, ###MISSING_VAR###):
     
     return 6
 
-async def find(domain, *, lang, ###MISSING_VAR###):
+def find(domain):
     for lang in domain:
         if lang:
             if all:

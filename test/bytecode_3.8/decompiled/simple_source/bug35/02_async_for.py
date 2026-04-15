@@ -1,3 +1,3 @@
-def a(b, c, *, ###MISSING_VAR###, ###MISSING_VAR###):
+async def a(b, c):
     async for b in c:
         pass
