@@ -1,6 +1,5 @@
-def greet(name, /, greeting=(Hello)):
+def greet(name, /, greeting="Hello"):
     return f"{greeting}, {name}!"
 
 result = greet("Alice")
-result2 = greet("Bob", "Hi", **(greeting))
-
+result2 = greet("Bob", greeting="Hi")
