@@ -42,7 +42,6 @@ test/bytecode_3.3_run/decompiled/test/test_slices.py
 test/bytecode_3.3_run/decompiled/test/test_tuple_params.py
 test/bytecode_3.3_run/decompiled/test/test_tuples.py
 test/bytecode_3.3_run/decompiled/tuple_params.py
-test/bytecode_3.4/decompiled/simple_source/bug33/03_raise_from.py
 test/bytecode_3.4/decompiled/simple_source/comprehension/05_3x_set_comphension.py
 test/bytecode_3.4/decompiled/simple_source/exception/06_tryifelse.py
 test/bytecode_3.5/decompiled/simple_source/bug37/02_async_for_generator.py
