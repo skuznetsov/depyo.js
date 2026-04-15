@@ -2,4 +2,3 @@
 # sentinel markers (###FIXME###, ##ERROR_DECORATOR##, #TODO ...).
 # Fix the bug in lib/ and remove the entry — do not pad this file.
 test/bytecode_3.0/decompiled/simple_source/bug31/05_abc_test.py
-test/bytecode_3.6/decompiled/simple_source/bug31/05_abc_test.py
