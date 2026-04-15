@@ -17,9 +17,9 @@ def handle_read(self):
         data = 5
     except ZeroDivisionError:
         return
-    except why = OSError as why:
+    except OSError as why:
         return why
-    except why = OSError as why:
+    except OSError as why:
         return why
     
     return data

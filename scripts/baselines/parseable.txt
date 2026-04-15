@@ -15,7 +15,6 @@ test/bytecode_3.13/decompiled/Users/sergey/Projects/NodeJS/depyo/test/modern_fea
 test/bytecode_3.14/decompiled/Users/sergey/Projects/NodeJS/depyo/test/modern_features/py311_exception_groups.py
 test/bytecode_3.2/decompiled/home/rocky/.pyenv/versions/1.0.1/lib/python/posixpath.py
 test/bytecode_3.2/decompiled/simple_source/bug32/01_named_and_kwargs.py
-test/bytecode_3.2/decompiled/simple_source/bug32/03_if_try_raise.py
 test/bytecode_3.2/decompiled/simple_source/bug33/03_raise_from.py
 test/bytecode_3.2/decompiled/simple_source/comprehension/05_3x_set_comphension.py
 test/bytecode_3.2/decompiled/simple_source/def/10_kw+pos_args-bug.py
@@ -81,7 +80,6 @@ test/bytecode_3.6/decompiled/simple_source/bug35/02_async_for.py
 test/bytecode_3.6/decompiled/simple_source/bug35/04_call_function.py
 test/bytecode_3.6/decompiled/simple_source/bug36/03_async_from_coroutine.py
 test/bytecode_3.6/decompiled/simple_source/bug36/04_class_kwargs.py
-test/bytecode_3.6/decompiled/simple_source/bug36/04_try_finally.py
 test/bytecode_3.6/decompiled/simple_source/bug36/05_call_star_kw.py
 test/bytecode_3.6/decompiled/simple_source/bug36/10_extended_arg_loop.py
 test/bytecode_3.6/decompiled/simple_source/bug36/10_long_pop_jump.py
@@ -101,7 +99,6 @@ test/bytecode_3.7/decompiled/simple_source/bug35/02_async_for.py
 test/bytecode_3.7/decompiled/simple_source/bug35/04_call_function.py
 test/bytecode_3.7/decompiled/simple_source/bug36/03_async_from_coroutine.py
 test/bytecode_3.7/decompiled/simple_source/bug36/04_class_kwargs.py
-test/bytecode_3.7/decompiled/simple_source/bug36/04_try_finally.py
 test/bytecode_3.7/decompiled/simple_source/bug37/02_async_for_generator.py
 test/bytecode_3.7/decompiled/simple_source/bug38/00_while_true_pass.py
 test/bytecode_3.7/decompiled/simple_source/stmts/01_augmented_assign.py
