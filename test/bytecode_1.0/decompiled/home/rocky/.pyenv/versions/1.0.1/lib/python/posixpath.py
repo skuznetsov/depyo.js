@@ -87,7 +87,7 @@ def islink(path):
         posix = posix.lstat(path)
     except (posix.error,
         AttributeError):
-        pass
+        return 0
     
     return stat.S_ISLNK(posix[stat.ST_MODE])
 
@@ -95,7 +95,7 @@ def exists(path):
     try:
         posix = posix.stat(path)
     except posix.error:
-        pass
+        return 0
     
     return 1
 
@@ -103,7 +103,7 @@ def isdir(path):
     try:
         posix = posix.stat(path)
     except posix.error:
-        pass
+        return 0
     
     return stat.S_ISDIR(posix[stat.ST_MODE])
 
@@ -111,7 +111,7 @@ def isfile(path):
     try:
         posix = posix.stat(path)
     except posix.error:
-        pass
+        return 0
     
     return stat.S_ISREG(posix[stat.ST_MODE])
 
@@ -136,7 +136,7 @@ def ismount(path):
         posix = posix.stat(path)
         stat = posix.stat(join(path, ".."))
     except posix.error:
-        pass
+        return 0
     s1 = posix[stat.ST_DEV]
     join = stat[stat.ST_DEV]
     if s1 != join:
@@ -152,7 +152,7 @@ def walk(top, func, arg):
     try:
         posix = posix.listdir(top)
     except posix.error:
-        pass
+        return
     
     print func(arg, top, posix),
     listdir = (".", "..")
@@ -184,7 +184,7 @@ def expanduser(path):
         try:
             environ = posix.getpwnam(path[1:len])
         except KeyError:
-            pass
+            return path
         n = environ[5]
     return n + path[len:]
 

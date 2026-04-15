@@ -32,7 +32,7 @@ r(IOError)
 try:
     open("this file does not exist", "r")
 except IOError:
-    pass
+    None
 r(ImportError)
 try:
     import undefined_module

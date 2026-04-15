@@ -42,7 +42,7 @@ def glob1(dirname, pattern):
     try:
         names = os.listdir(dirname)
     except os.error:
-        pass
+        return []
     result = []
     
     for name in names:
