@@ -53,4 +53,5 @@ from collections import namedtuple
 class ResultMixin(object):
     pass
 
-SplitResult = ##ERROR##(##ERROR##, ##ERROR##, ##ERROR##("SplitResult"), ResultMixin)
+class SplitResult(namedtuple("SplitResult", "scheme netloc path query fragment"), ResultMixin):
+    pass

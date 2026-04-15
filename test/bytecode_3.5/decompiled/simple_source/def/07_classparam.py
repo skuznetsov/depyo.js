@@ -1,2 +1,4 @@
 from collections import namedtuple
-Event = ##ERROR##(##ERROR##, ##ERROR##, ##ERROR##("Event"))
+
+class Event(namedtuple("Event", "time, priority, action, argument")):
+    pass
