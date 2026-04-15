@@ -5,5 +5,4 @@ def __new__(classdict):
     members = {classdict[k]: k for k in classdict._member_names}
     return members
 
-for b in .0:
-    {a for a in b.__dict__}
+{a for b in bases for a in b.__dict__}

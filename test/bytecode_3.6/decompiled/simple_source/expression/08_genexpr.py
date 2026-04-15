@@ -1,2 +1,1 @@
-names = for k in .0:
-    yield formatmonthname(False)
+names = (formatmonthname(False) for k in __file__)

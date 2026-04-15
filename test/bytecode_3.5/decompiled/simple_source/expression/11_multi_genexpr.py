@@ -1,2 +1,2 @@
 def multi_genexpr(blog_posts):
-    return for blog_post in .0:
+    return (entry for blog_post in blog_posts for entry in blog_post.entry_set)

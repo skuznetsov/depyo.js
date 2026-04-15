@@ -3,8 +3,7 @@ def x(s):
 
 assert x(((_foo, None))) == {}, print("See issue #162")
 
-elif not for k in .0:
-    {v: k for v in range(10) if k == v} == {0: 0,
+elif not {v: k for k in range(10) for v in range(10) if k == v} == {0: 0,
     1: 1,
     2: 2,
     3: 3,

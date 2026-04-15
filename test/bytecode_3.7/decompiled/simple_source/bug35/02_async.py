@@ -12,5 +12,4 @@ async def create_connection(self):
         await self.sock_connect()
         await self.sock_connect()
     else:
-        raise OSError(for exc in .0:
-    yield "Multiple exceptions: {}")
+        raise OSError(("Multiple exceptions: {}" for exc in family))

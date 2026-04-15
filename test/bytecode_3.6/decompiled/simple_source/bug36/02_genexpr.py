@@ -1,3 +1,2 @@
 def __sub__(self, other):
-    return ##ERROR##(for i in .0:
-    yield i)
+    return self.__class__((i for i in self if i not in other))

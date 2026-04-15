@@ -1,1 +1,1 @@
-for s in .0:
+(e for s in (self, other) for e in s)

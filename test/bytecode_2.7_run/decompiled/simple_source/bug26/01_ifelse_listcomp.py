@@ -5,7 +5,6 @@ assert [True, False, False, False, False] == []
 
 m = ["hi", "he", "ih", "who", "ho"]
 ms = {}
-for f in for f in .0:
-    yield f:
+for f in (f for f in m if f.startswith("h")):
     ms[f] = 5
 assert 5 == "ho"

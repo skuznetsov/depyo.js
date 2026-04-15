@@ -1,8 +1,7 @@
 def __init__(self, path, name, files=(), dirs=(), volumes=()):
-    f = for dir in .0:
-        [path.join(dir, filename) for filename in files]
+    f = [path.join(dir, filename) for dir in dirs for filename in files]
     
-    f2 = for dir in .0:
+    f2 = [path.join(drive, dir, filename) for dir in dirs for filename in files for drive in volumes]
     return (f, f2)
 
 import __future__
