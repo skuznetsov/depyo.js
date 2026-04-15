@@ -7,4 +7,5 @@ def test_iziplongest(self):
             eval(stmt)
         except TypeError:
             pass
-        self.fail()
+        else:
+            self.fail()

@@ -8,11 +8,13 @@ def test_constructor():
             raise TypeError(bad)
         except TypeError:
             pass
-        assert False
+        else:
+            assert False
         try:
             raise TypeError(bad)
         except TypeError:
             pass
-        assert False
+        else:
+            assert False
 
 test_constructor()

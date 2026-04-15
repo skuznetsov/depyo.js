@@ -11,7 +11,8 @@ def test_exceptions():
     try:
         x = math.sqrt(-1.0)
     except ValueError:
-        else:
-            raise RuntimeError
+        return x
+    else:
+        raise RuntimeError
 
 test_exceptions()
