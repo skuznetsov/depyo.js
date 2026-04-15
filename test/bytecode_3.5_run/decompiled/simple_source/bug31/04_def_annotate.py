@@ -74,17 +74,17 @@ class TestSignatureObject3:
 
 class TestSignatureObject4:
     def test_signature_on_wkwonly(self):
-        def test(x="S", *args, c: str, a="c": float, kwargs="kwargs": str, **b: int) -> int:
+        def test(x="S", *args, c: str, a: float="c", kwargs: str="kwargs", **b: int) -> int:
             pass
 
 class TestSignatureObject5:
     def test_signature_on_wkwonly(self):
-        def test(x="S", *args: int, c, a="c": float, kwargs="kwargs": str, **b: int) -> int:
+        def test(x="S", *args: int, c, a: float="c", kwargs: str="kwargs", **b: int) -> int:
             pass
 
 class TestSignatureObject5:
     def test_signature_on_wkwonly(self):
-        def test(x: int="S", *args: (int, str), c, a="c": float, kwargs="kwargs": str, **b: int) -> int:
+        def test(x: int="S", *args: (int, str), c, a: float="c", kwargs: str="kwargs", **b: int) -> int:
             pass
 
 class TestSignatureObject7:
@@ -120,7 +120,7 @@ def ann2(args_1, b: int=5, **kwargs: float) -> float:
 
 class TestSignatureObject:
     def test_signature_on_wkwonly(self):
-        def test(x: int="S", *args: (int, str), c, a="c": float, kwargs="kwargs": str, **b: int) -> int:
+        def test(x: int="S", *args: (int, str), c, a: float="c", kwargs: str="kwargs", **b: int) -> int:
             pass
 
 assert test1(1, 5) == (1, 5, 4, {})
