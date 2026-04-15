@@ -147,8 +147,9 @@ assert test12(1, 2, 3, name="hi") == (1, (2, 3)), "a, *args, name"
 assert test13(1, 2, 3, name="hi") == ((1, 2, 3), hi), "*args, name"
 assert None == (2, 3, {},
     "b", "a")
-
 try:
     import typing
     def foo() -> typing.Iterator[typing.Tuple[(int, typing.Any)]]:
         pass
+except:
+    pass

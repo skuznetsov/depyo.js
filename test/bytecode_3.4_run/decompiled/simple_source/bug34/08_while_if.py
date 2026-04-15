@@ -10,13 +10,13 @@ def while_test(a, b, c):
 
 def while1_test(a, b, c):
     while 1:
-        if a != 2:
+        if a != 2 or b:
             a = 3
             b = 0
-    
-    c = 0
-    
-    a += b + c; break; return None if c else None if b else ##ERROR##
+        elif c:
+            c = 0
+        
+    a += b + c; break
 
 assert while_test(2, 0, 0) == (2, 0, 0), "no while loops"
 assert while_test(0, 1, 0) == (2, 1, 0), "two while loops of b branch"

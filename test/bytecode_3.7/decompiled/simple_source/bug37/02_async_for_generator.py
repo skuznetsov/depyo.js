@@ -8,4 +8,8 @@ async def run(m):
         return await []
 
 async def run_list(pair, f):
-    await [##ERROR##.__anext__ for pair in p]; return await [##ERROR##.__anext__ for pair in p]
+    await for pair in .0:
+        async for i in f:
+            pass; return await for pair in .0:
+    async for i in f:
+        pass

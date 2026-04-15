@@ -9,7 +9,6 @@ def create_connection(self, infos, f2, laddr_infos, protocol):
                         protocol = "foo"
         except OSError:
             protocol = "bar"
-        
         break
     
     return protocol

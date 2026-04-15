@@ -1,8 +1,10 @@
 def addnoise(c, noise):
     while c:
         if noise:
-            c = 2
-            c = 3
+            if c < 3:
+                c = 2
+            else:
+                c = 3
             noise = False
     return c
 
@@ -48,8 +50,9 @@ assert test_frozen(0, 0.5) == 8.0
 def __floordiv__(a, b):
     other = 0
     
-    other = 1
-    if not b:
+    if a:
+        other = 1
+    elif not b:
         return 2
     other += 3
     return other

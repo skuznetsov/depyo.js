@@ -1,6 +1,7 @@
 def interrupt_main():
     global _interrupt
-    raise KeyboardInterrupt
+    if _main:
+        raise KeyboardInterrupt
     
     _interrupt = True
 

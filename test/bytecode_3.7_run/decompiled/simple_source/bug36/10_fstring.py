@@ -34,10 +34,10 @@ def _repr_fn(fields):
 fields = ["a", "b", "c"]
 
 x = 5
-
 try:
     eval("f'{lambda x:x}'")
-
+except SyntaxError:
+    pass
 x, y, width = (foo, 2, 10)
 
 def f():

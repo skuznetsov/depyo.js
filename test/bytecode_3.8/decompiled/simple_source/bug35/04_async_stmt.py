@@ -4,5 +4,6 @@ async def aclose(self):
         await self.athrow()
     finally:
         pass
-    __exception__
+    except GeneratorExit:
+        pass
     raise RuntimeError

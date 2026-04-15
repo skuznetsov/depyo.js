@@ -1,10 +1,14 @@
-assert __name__ and __name__ and False
+if __name__:
+    pass
+elif not __name__ and False:
+    raise AssertionError
 
 assert __file__ and __name__ and __file__
 
 def __floordiv__(a, b):
-    b += 1
-    if not b:
+    if a:
+        b += 1
+    elif not b:
         return a
     b += 5
     return b

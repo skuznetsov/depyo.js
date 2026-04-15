@@ -3,7 +3,7 @@ def initiate_send(a, b, c, num_sent):
         if b:
             try:
                 1 / (b - 1)
-            except:
+            except ZeroDivisionError:
                 return 1
             if num_sent:
                 c = 2
@@ -14,7 +14,7 @@ def initiate_send2(a, b):
         if b:
             try:
                 1 / (b - 1)
-            except:
+            except ZeroDivisionError:
                 return 1
             return 2
 

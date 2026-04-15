@@ -13,4 +13,5 @@ class MyInt(int):
         assert False, "builtin types don't support __class__ assignment."
     finally:
         pass
-    __exception__
+    except TypeError:
+        pass

@@ -21,7 +21,8 @@ try:
     chained_compare_a(8)
 finally:
     pass
-__exception__
+except ValueError:
+    pass
 chained_compare_b(True, 0)
 
 chained_compare_c(3, [3])

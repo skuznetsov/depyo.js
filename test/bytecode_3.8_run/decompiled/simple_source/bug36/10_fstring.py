@@ -38,7 +38,8 @@ try:
     eval("f'{lambda x:x}'")
 finally:
     pass
-__exception__
+except SyntaxError:
+    pass
 x, y, width = (foo, 2, 10)
 
 def f():

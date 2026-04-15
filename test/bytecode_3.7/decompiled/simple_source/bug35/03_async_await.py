@@ -7,22 +7,11 @@ async def await_test(asyncio):
 
 async def afor_test():
     async for i in [1, 2, 3]:
-        try:
-            yield from await(##ERROR##.__anext__)
-        except StopAsyncIteration:
-            pass
-        __exception__
-        await(##ERROR##.__anext__)
+        pass
 
 async def afor_else_test():
     async for i in [1, 2, 3]:
-        try:
-            yield from await(##ERROR##.__anext__)
-        except StopAsyncIteration:
-            pass
-        __exception__
-        await(##ERROR##.__anext__)
-    z = 4
+        pass
 
 async def awith_test():
     async with i:

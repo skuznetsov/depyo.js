@@ -7,8 +7,6 @@ def create_connection(self, infos, f2, laddr_infos, protocol):
                         break
                     except OSError:
                         protocol = "foo"
-                else:
-                    continue
         except OSError:
             protocol = "bar"
         break

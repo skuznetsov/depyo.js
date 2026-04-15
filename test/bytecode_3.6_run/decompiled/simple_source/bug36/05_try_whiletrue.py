@@ -6,7 +6,7 @@ def iter(self):
             yield v
             i += 1
     except IndexError:
-        pass
+        return
 
 A = [10, 20, 30]
 assert list(iter(A)) == A

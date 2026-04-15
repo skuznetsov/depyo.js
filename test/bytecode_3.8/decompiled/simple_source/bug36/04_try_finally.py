@@ -18,13 +18,11 @@ def handle_read(self):
     except ZeroDivisionError:
         pass
     return
-    why = None
-    try:
-        pass
-    finally:
-        pass
-    why = None
-    del why
+    except why = OSError as why:
+        
+    except why = OSError as why:
+        
+    
     return data
 
 def __exit__(self, type, value, traceback):
@@ -32,19 +30,11 @@ def __exit__(self, type, value, traceback):
         value()
     finally:
         pass
-    exc = __exception__
-    try:
-        pass
-    finally:
-        pass
-    exc = None
-    del exc
-    exc = None
-    exc
-    
-    try:
-        pass
-    finally:
-        pass
-    exc = None
-    del exc
+    except StopIteration as exc:
+        
+    except StopIteration as exc:
+        
+    except exc = RuntimeError as exc:
+        
+    except exc = RuntimeError as exc:
+        

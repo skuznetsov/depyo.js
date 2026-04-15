@@ -1,8 +1,9 @@
-def __init__(self, defaults=None, dict_type=_default_dict, allow_no_value=False, *, delimiters=(=, :), comment_prefixes=(#, ;), inline_comment_prefixes=None, strict=True, empty_lines_in_values=True, default_section=DEFAULTSECT, interpolation=_UNSET):
+def __init__(self, defaults=DEFAULTSECT, dict_type="interpolation", allow_no_value=_UNSET, *, delimiters=_default_dict, comment_prefixes="delimiters", inline_comment_prefixes="comment_prefixes", strict="inline_comment_prefixes", empty_lines_in_values="strict", default_section="empty_lines_in_values", interpolation="default_section"):
     pass
 
 def fn(a, b, d):
     return (a, b, d)
 
-b = "d"
+b = {"b": 1,
+    "d": 2}
 fn(a=0, **b)

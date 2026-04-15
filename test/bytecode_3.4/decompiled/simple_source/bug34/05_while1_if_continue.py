@@ -25,14 +25,12 @@ def PipeClient(address):
     while 1:
         try:
             address += 1
-        except e = OSError as e:
-            raise e
-            
-        except e = OSError as e:
-            raise e
-            
-        except e = OSError as e:
-            raise e
-            
+        except OSError as e:
+            try:
+                raise e
+            finally:
+                pass
+            e = None
+            del e
+    else:
         raise
-        return

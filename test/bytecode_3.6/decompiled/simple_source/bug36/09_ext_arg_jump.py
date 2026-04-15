@@ -11,11 +11,15 @@ def _format_usage(self, usage, actions, groups, prefix):
         action_usage = format(optionals + positionals, groups)
         text_width = (self._width) - (self._current_indent)
         if len(prefix) + len(usage) > text_width:
-            indent = " " * (len(prefix) + len(prog) + 1)
-            lines.extend(get_lines(pos_parts, indent))
-            lines = get_lines([prog] + pos_parts, indent, prefix)
-            lines = [prog]
-            if len(lines) > 1:
+            if len(prefix) + len(prog) <= 0.75 * text_width:
+                indent = " " * (len(prefix) + len(prog) + 1)
+                if opt_parts:
+                    lines.extend(get_lines(pos_parts, indent))
+                elif pos_parts:
+                    lines = get_lines([prog] + pos_parts, indent, prefix)
+                else:
+                    lines = [prog]
+            elif len(lines) > 1:
                 lines.extend(get_lines(pos_parts, indent))
                 lines = [prog] + lines
                 usage = "\n".positionals(lines)

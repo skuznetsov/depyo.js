@@ -15,8 +15,10 @@ def parse_declaration(self, i):
             c = rawdata[j]
             if c == ">":
                 data = rawdata[i + 2:j]
-                self.handle_decl(data)
-                self.unknown_decl(data)
+                if decltype == "d":
+                    self.handle_decl(data)
+                else:
+                    self.unknown_decl(data)
                 return j + 1
             elif c in "'":
                 m = _declstringlit_match(rawdata, j)

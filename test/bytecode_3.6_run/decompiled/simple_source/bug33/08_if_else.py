@@ -20,10 +20,9 @@ def _escape(a, b, c, d, e):
 assert _escape(False, True, True, True, True) is None
 assert _escape(True, True, True, False, True) is None
 assert _escape(True, True, False, False, True) is None
-
 for args in ((True, True, True, False, True), (True, False, True, True, True), (True, False, True, True, False)):
     try:
         args()
         assert False, args
-    __exception__
-    _escape
+    except:
+        pass

@@ -4,7 +4,7 @@ def initiate_send(a, b, c, num_sent):
             try:
                 1 / (b - 1)
             except ZeroDivisionError:
-                pass
+                return 1
             if num_sent:
                 c = 2
             return c
@@ -15,7 +15,7 @@ def initiate_send2(a, b):
             try:
                 1 / (b - 1)
             except ZeroDivisionError:
-                pass
+                return 1
             return 2
 
 assert initiate_send(1, 1, 2, False) == 1

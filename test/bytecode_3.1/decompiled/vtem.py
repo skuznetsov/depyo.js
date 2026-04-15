@@ -63,8 +63,10 @@ while i < height:
     sys.stderr.write("[%d;%dH" % (i, width))
     sys.stderr.write("*")
     sys.stderr.write("[10D")
-    sys.stderr.write("E")
-    sys.stderr.write("\n")
+    if i < 10:
+        sys.stderr.write("E")
+    else:
+        sys.stderr.write("\n")
     i += 1
 sys.stderr.write("[2;10H")
 sys.stderr.write("[42D")
@@ -106,5 +108,5 @@ while i <= 15:
     i += 1
 try:
     input("")
-except:
-    None if i < 10 else ##ERROR##
+except SyntaxError:
+    pass

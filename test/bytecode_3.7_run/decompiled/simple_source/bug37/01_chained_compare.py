@@ -10,8 +10,8 @@ def chained_compare_b(a, obj):
     return 5
 
 chained_compare_a(3)
-
 try:
     chained_compare_a(8)
-
+except ValueError:
+    pass
 chained_compare_b(True, 0)

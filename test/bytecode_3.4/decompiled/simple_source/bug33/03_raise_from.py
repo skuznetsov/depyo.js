@@ -1,6 +1,6 @@
 try:
     x = 1
-except:
+except AttributeError as err:
     try:
         raise TypeError("an integer is required"), err
     finally:

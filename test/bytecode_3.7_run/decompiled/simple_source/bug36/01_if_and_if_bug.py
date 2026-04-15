@@ -1,7 +1,9 @@
 def f(a, b, c):
-    x = 1
+    if a and b:
+        x = 1
     
-    x = 2
+    else:
+        x = 2
     
     if c:
         x = 3

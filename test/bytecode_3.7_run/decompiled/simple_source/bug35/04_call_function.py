@@ -18,7 +18,7 @@ assert Time2Internaldate(time.localtime())
 def test_varargs0_ext():
     try:
         ()()
-    except:
+    except TypeError:
         {}.__contains__
 
 test_varargs0_ext()

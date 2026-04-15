@@ -16,5 +16,5 @@ def _get_default_tempdir(dirlist, fd):
             except OSError:
                 break
             
-            raise RuntimeError
-            return
+        
+    raise RuntimeError

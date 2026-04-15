@@ -20,8 +20,8 @@ def test_varargs0_ext():
         ()()
     finally:
         pass
-    __exception__
-    {}.__contains__
+    except TypeError:
+        {}.__contains__
 
 test_varargs0_ext()
 

@@ -140,8 +140,9 @@ assert test13(1, 2, 3, name="hi") == ((1, 2, 3), hi), "*args, name"
 assert test16("localhost", loop=2, limit=3, a="b") == ("localhost",
     None,
     2, 3, {"a": "b"})
-
 try:
     import typing
     def foo() -> typing.Iterator[typing.Tuple[(int, typing.Any)]]:
         pass
+except:
+    pass

@@ -1,8 +1,10 @@
 def addnoise(c, noise):
     while c:
         if noise:
-            c = 2
-            c = 3
+            if c < 3:
+                c = 2
+            else:
+                c = 3
             noise = False
     return c
 

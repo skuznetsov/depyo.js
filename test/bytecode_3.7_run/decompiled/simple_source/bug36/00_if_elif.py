@@ -1,9 +1,12 @@
 def testit(b):
-    a = 1
+    if b == 1:
+        a = 1
     
-    a = 2
+    elif b == 2:
+        a = 2
     
-    a = 4
+    else:
+        a = 4
     return a
 
 for x in (1, 2, 4):

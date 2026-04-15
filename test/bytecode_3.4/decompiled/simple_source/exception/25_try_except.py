@@ -1,15 +1,17 @@
 try:
     try:
         x = 1
-    except:
+    except AssertionError:
         x = 2
-except:
+except ImportError:
     x = 3
 finally:
-    x = 4
+    pass
+x = 4
 
 try:
     x = 1
-except:
+except SystemExit:
     x = 2
-x = 3
+except:
+    x = 3

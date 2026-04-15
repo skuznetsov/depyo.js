@@ -2,7 +2,7 @@ def options(self, section):
     try:
         opts = self._sections[section].copy()
     except KeyError:
-        pass
+        raise NoSectionError(section)
     opts.update(self._defaults)
     if "__name__" in opts:
         del opts["__name__"]

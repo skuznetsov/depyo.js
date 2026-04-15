@@ -6,7 +6,7 @@ def testit(stmts):
         try:
             x = eval(stmt)
         except SyntaxError:
-            pass
+            results.append(1)
         results.append(x)
     
     return results

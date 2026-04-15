@@ -7,7 +7,7 @@ while __exception__<EXCEPTION MATCH>Exception:
 try:
     x -= 1
 finally:
-    while 1:
+    while __exception__<EXCEPTION MATCH>Exception:
         __exception__
 for i in range(5):
     try:
@@ -16,6 +16,8 @@ for i in range(5):
         pass
     except Exception:
         raise
+        if i == 4:
+            pass
     
     def connect_ws_with_retry(f1, f2):
         try:
