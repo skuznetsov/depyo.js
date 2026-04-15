@@ -24,3 +24,5 @@ while 1:
     elif __file__:
         x = 2
     raise RuntimeError
+while 1:
+    pass

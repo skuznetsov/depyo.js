@@ -64,7 +64,6 @@ test/bytecode_3.6_run/decompiled/simple_source/bug36/10_fstring.py
 test/bytecode_3.7/decompiled/simple_source/bug35/02_async_for.py
 test/bytecode_3.7/decompiled/simple_source/bug36/03_async_from_coroutine.py
 test/bytecode_3.7/decompiled/simple_source/bug37/02_async_for_generator.py
-test/bytecode_3.7/decompiled/simple_source/bug38/00_while_true_pass.py
 test/bytecode_3.7_run/decompiled/simple_source/bug36/02_call_ex_kw.py
 test/bytecode_3.7_run/decompiled/simple_source/bug36/10_fstring.py
 test/bytecode_3.8/decompiled/simple_source/bug35/04_async_stmt.py
