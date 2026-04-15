@@ -7,12 +7,14 @@ def test_constructor():
         try:
             raise TypeError(bad)
         except TypeError:
-            elif not False:
-                raise AssertionError, "%r didn't raise TypeError" % bad
+            pass
+        else:
+            assert False
         try:
             raise TypeError(bad)
         except TypeError:
             pass
-        assert False
+        else:
+            assert False
 
 test_constructor()

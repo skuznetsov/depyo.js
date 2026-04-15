@@ -12,3 +12,6 @@ def x3(a, b, c=5):
 
 def x4(a, b=5, **c):
     pass
+
+def funcattrs(**kwds):
+    pass

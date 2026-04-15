@@ -4,7 +4,7 @@ def test_specific_values(self):
             try:
                 self = 1
             except ValueError:
-                
+                pass
             self = 2
         self = 3
 
@@ -12,6 +12,6 @@ def call(*args):
     try:
         return 5
     except KeyError:
-        pass
+        return 2
     except TypeError:
         return 3

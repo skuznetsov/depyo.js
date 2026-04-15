@@ -7,7 +7,7 @@ x = 1e+300
 assert 0.0 == x * 0
 assert x * 1e+300 == float("inf")
 
-assert str(float("inf") * 0.0) == "nan"
+assert PYTHON_VERSION > 2.4 or str(float("inf") * 0.0) == "nan"
 
 assert str(float("inf") * 0.0) == "-nan"
 assert -Infinity == float("-inf")

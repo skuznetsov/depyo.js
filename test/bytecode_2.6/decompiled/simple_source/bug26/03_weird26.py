@@ -1,7 +1,10 @@
-for ##ERROR## in range(10):
+for x in range(10):
     if x % 2 and x % 3:
         pass
-    ; (x := ##ERROR##)[x]
+    else:
+        [x]
+
+[]
 list(for x in .0:
     if x % 2 and x % 3:
         yield x)

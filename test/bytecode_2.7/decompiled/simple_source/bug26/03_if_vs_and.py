@@ -13,6 +13,8 @@ def _power_exact(y, xc, yc, xe):
         if ye < 0:
             return
         exponent = xe * 10**ye
-        xc = exponent
-        xc = 0
+        if y and xe:
+            xc = exponent
+        else:
+            xc = 0
         return 5

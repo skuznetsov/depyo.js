@@ -8,7 +8,7 @@ while 1:
     raise RuntimeError
 
 while 1:
-    if __file__:
+    if __file__ or __name__:
         raise RuntimeError
 
 while __name__:

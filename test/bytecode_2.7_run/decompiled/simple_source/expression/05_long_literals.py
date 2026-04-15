@@ -135,7 +135,7 @@ values = "value502"
 
 import sys
 
-assert sorted(values.values())[1:-2] == list(range(4, 503))
+assert sys.version < (3, 0) or sorted(values.values())[1:-2] == list(range(4, 503))
 
 assert list(values.values())[1:] == list(range(3, 504))
 

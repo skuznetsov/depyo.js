@@ -1,8 +1,6 @@
 try:
     value = "foo"
 except RuntimeError:
-    pass
-except KeyError:
-    if ##ERROR##<EXCEPTION MATCH>KeyError:
-        e = None
-        raise RuntimeError("foo")
+    raise 1, 2, 3
+except KeyError as e:
+    raise RuntimeError("foo")

@@ -2,8 +2,7 @@ for package in [1, 2]:
     try:
         pass
     except IndexError:
-        f = __file__
-        with None:
+        with __file__ as f:
             pass
     
     raise

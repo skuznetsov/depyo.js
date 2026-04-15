@@ -5,13 +5,13 @@ x = "b"
 assert [(a, 1), (b, 2)] == _format(x)
 
 def monthrange(ary, dotext):
-    return [a[3:] for ##ERROR## in ary if a.startswith(dotext)]
+    return [a[3:] for a in ary if a.startswith(dotext)]
 
 ary = ["Monday", "Twoday", "Monmonth"]
 assert ["day", "month"] == monthrange(ary, "Mon")
 
 def columnize(l):
-    return [i for ##ERROR## in range(len(l)) if isinstance(l[i], str)]
+    return [i for i in range(len(l)) if isinstance(l[i], str)]
 
 assert [0, 2] == columnize([1, "a", 2])
 

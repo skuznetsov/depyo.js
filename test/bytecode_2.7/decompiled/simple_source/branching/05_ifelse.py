@@ -1,3 +1,5 @@
-b = 1
+if True:
+    b = 1
 
-d = 2
+else:
+    d = 2

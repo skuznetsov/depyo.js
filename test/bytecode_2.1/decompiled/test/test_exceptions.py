@@ -27,51 +27,52 @@ def x21():
     try:
         a = "try KeyError"
     except KeyError:
-        pass
+        a = 8
     b = "--------"
 
 def x22():
     try:
         a = "try (IdxErr, KeyError) else(pass)"
     except (IndexError, KeyError):
-        pass
+        a = 8
     b = "--------"
 
 def x23():
     try:
         a = "try KeyError else(a=9)"
     except KeyError:
-        else:
-            a = 9
+        a = 8
+    else:
+        a = 9
     b = "--------"
 
 def x31():
     try:
         a = "try KeyError IndexError"
     except KeyError:
-        pass
-    except KeyError:
-        pass
+        a = 8
+    except IndexError:
+        a = 9
     b = "--------"
 
 def x32():
     try:
         a = "try KeyError IndexError else(pass)"
     except KeyError:
-        pass
-    except KeyError:
-        pass
+        a = 8
+    except IndexError:
+        a = 9
     b = "--------"
 
 def x33():
     try:
         a = "try KeyError IndexError else(a=9)"
     except KeyError:
+        a = 8
+    except IndexError:
         a = 9
-        else:
-        except IndexError:
-            a = 9
-            
+    else:
+        a = 9
     b = "#################"
 
 def x41():

@@ -4,4 +4,3 @@ for i in (1, 2):
     except ValueError:
         y = 2
     
-

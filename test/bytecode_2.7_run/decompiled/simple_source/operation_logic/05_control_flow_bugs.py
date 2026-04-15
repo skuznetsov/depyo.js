@@ -1,8 +1,10 @@
 def addnoise(c, noise):
     while c:
         if noise:
-            c = 2
-            c = 3
+            if c < 3:
+                c = 2
+            else:
+                c = 3
             noise = False
     return c
 
@@ -16,7 +18,7 @@ assert addnoise(5, False) == 5
 def test_random(a, r):
     x = 0
     for dummy in r:
-        if a:
+        if dummy or a:
             x += 2
         
     x += 1

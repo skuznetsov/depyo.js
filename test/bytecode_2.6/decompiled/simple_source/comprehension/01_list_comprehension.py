@@ -1,11 +1,11 @@
-[i for ##ERROR## in (1, 2, 3, 4)]
+[i for i in (1, 2, 3, 4)]
 
 []
 
-[i + 1 for ##ERROR## in (1, 2, 3, 4)]
+[i + 1 for i in (1, 2, 3, 4)]
 
 []
 
-[i * i for ##ERROR## in range(4)]
+[i * i for i in range(4)]
 
 []

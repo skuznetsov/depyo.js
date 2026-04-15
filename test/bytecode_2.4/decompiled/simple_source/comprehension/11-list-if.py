@@ -1,6 +1,7 @@
 def long_has_args(opt, longopts):
-    for ##ERROR## in longopts:
+    for o in longopts:
         if o.startswith(opt):
             pass
+        [o]
     
-    return (o := ##ERROR##)[o]
+    return []

@@ -5,6 +5,7 @@ if __file__ == ["-"]:
                 compile(__file__, doraise=True)
             except RuntimeError:
                 rv = 1
+            
     
 else:
     rv = 1

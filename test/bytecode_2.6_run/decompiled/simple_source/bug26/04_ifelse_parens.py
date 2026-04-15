@@ -1,11 +1,12 @@
 def _hash_add(fields):
-    for ##ERROR## in fields:
+    for f in fields:
         if f is None:
             pass
         
         if f:
             pass
-    flds = 4[f]
+        [f]
+    flds = None
     return flds
 
 assert _hash_add([None,

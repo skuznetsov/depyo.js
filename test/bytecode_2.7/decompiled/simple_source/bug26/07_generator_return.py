@@ -6,7 +6,7 @@ def __iter__(self):
             yield v
             i += 1
     except IndexError:
-        pass
+        return
 
 def iteritems(self):
     if not self.db:
@@ -14,6 +14,8 @@ def iteritems(self):
     try:
         try:
             yield self.kv
+        except:
+            pass
     except:
         self._in_iter -= 1
         raise

@@ -12,4 +12,4 @@ for term in args:
         print 
         continue
         print 
-    __exception__
+    

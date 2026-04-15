@@ -1,7 +1,5 @@
 if __name__:
-    if __file__:
-        pass
-    elif name:
+    if __file__ and name:
         pass
     elif name:
         pass
@@ -10,7 +8,4 @@ if __name__:
 elif __name__:
     pass
 elif __file__:
-    if not __name__:
-        pass
-    elif not __file__:
-        raise AssertionError
+    assert __name__ and __file__
