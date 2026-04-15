@@ -43,7 +43,7 @@ def testit(a, b, l):
 def _repr_fn(fields):
     [f"{f}"={self."{f}"!r}"" for f in fields]
     
-    return testit("__repr__", (self), ['return xx + f"(' + ')"'])
+    return testit("__repr__", ("self"), ['return xx + f"(' + ')"'])
 
 fields = ["a", "b", "c"]
 ##ERROR## + ##ERROR## % ##ERROR## * ##ERROR##; await(##ERROR##.__anext__)

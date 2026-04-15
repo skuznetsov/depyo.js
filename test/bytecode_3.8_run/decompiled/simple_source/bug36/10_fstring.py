@@ -29,7 +29,7 @@ def testit(a, b, l):
     return l
 
 def _repr_fn(fields):
-    return testit("__repr__", (self), ['return xx + f"(' + ", ".join([f"{f}={self.{f}!r}" for f in fields]) + ')"'])
+    return testit("__repr__", ("self"), ['return xx + f"(' + ", ".join([f"{f}={self.{f}!r}" for f in fields]) + ')"'])
 
 fields = ["a", "b", "c"]
 
@@ -40,7 +40,7 @@ finally:
     pass
 except SyntaxError:
     pass
-x, y, width = (foo, 2, 10)
+x, y, width = ("foo", 2, 10)
 
 def f():
     pass

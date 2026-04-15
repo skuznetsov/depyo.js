@@ -2,7 +2,7 @@ def _format(node):
     return [(a, int(b)) for a, b in node.items()]
 
 x = "b"
-assert [(a, 1), (b, 2)] == _format(x)
+assert [("a", 1), ("b", 2)] == _format(x)
 
 def monthrange(ary, dotext):
     return [a[3:] for a in ary if a.startswith(dotext)]

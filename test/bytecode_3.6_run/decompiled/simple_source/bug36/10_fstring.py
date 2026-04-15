@@ -32,7 +32,7 @@ def testit(a, b, ll):
     return ll
 
 def _repr_fn(fields):
-    return testit("__repr__", (self), ['return xx + f"(' + ", ".join([f"{f}={self.{f}!r}" for f in fields]) + ')"'])
+    return testit("__repr__", ("self"), ['return xx + f"(' + ", ".join([f"{f}={self.{f}!r}" for f in fields]) + ')"'])
 
 fields = ["a", "b", "c"]
 
@@ -41,7 +41,7 @@ try:
     eval("f'{lambda x:x}'")
 except SyntaxError:
     pass
-x, y, width = (foo, 2, 10)
+x, y, width = ("foo", 2, 10)
 
 def f():
     pass

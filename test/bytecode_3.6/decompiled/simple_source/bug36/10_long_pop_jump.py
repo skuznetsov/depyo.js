@@ -1,5 +1,5 @@
 def parse_declaration(self, i):
-    if rawdata[j:j] in (-, ):
+    if rawdata[j:j] in ("-", ""):
         return -1
     n = len(rawdata)
     if rawdata[j:j + 2] == "-":
@@ -32,7 +32,7 @@ def parse_declaration(self, i):
             elif c == "[":
                 if decltype == "d":
                     j = self._parse_doctype_subset(j + 1, i)
-                elif decltype in (link, attlist, element, linktype):
+                elif decltype in ("link", "attlist", "element", "linktype"):
                     self.error("unsupported '[' char in %s declaration" % decltype)
                 else:
                     self.error("unexpected '[' char in declaration")

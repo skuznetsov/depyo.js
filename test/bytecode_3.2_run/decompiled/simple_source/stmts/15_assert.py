@@ -1,7 +1,7 @@
 assert isinstance(1, int)
 
 for method_name in ["a"]:
-    if method_name in (b):
+    if method_name in ("b"):
         method = "a"
     elif not True:
         raise AssertionError("instance installed")

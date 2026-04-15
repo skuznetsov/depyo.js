@@ -4,7 +4,7 @@ def normpath(comps):
     while i < len(comps):
         if comps[i] == ".":
             del comps[i]
-        elif comps[i] == ".." and i > 0 and comps[i - 1] not in (..):
+        elif comps[i] == ".." and i > 0 and comps[i - 1] not in ("", ".."):
             del comps[i - 1:i + 1]
             i = i - 1
         elif comps[i] == "" and i > 0 and comps[i - 1] != "":

@@ -17,11 +17,11 @@ assert f(1, a=2, b=3) == {"c": 1, "a": 2, "b": 3, "test": "A"}
 
 a = {"param1": 2}
 
-assert (2, {'test': "4"})(test2="a") == {"c": "2", "test2": "a", "param1": 2, "test": "B"}
+assert ("2", "{'test': \"4\"}")(test2="a") == {"c": "2", "test2": "a", "param1": 2, "test": "B"}
 
-assert (2, "3")(test2="a") == {"c": 2, "test2": "a", "param1": 2, "test": "B"}
+assert (2, '"3"')(test2="a") == {"c": 2, "test2": "a", "param1": 2, "test": "B"}
 
-assert (False, "3")(test2="a") == {"c": False, "test2": "a", "param1": 2, "test": "B"}
+assert (False, '"3"')(test2="a") == {"c": False, "test2": "a", "param1": 2, "test": "B"}
 
 assert (2)(test2="A") == {"c": 2, "test2": "A", "param1": 2, "test": "A"}
 
