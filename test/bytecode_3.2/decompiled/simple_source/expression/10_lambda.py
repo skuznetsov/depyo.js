@@ -12,4 +12,4 @@ class ExtendedInterpolation:
         return value_getter
 
 def test_Iterable(self):
-    return (lambda: yield None; None)()
+    return (lambda: (yield))()
