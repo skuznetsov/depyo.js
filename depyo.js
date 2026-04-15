@@ -22,12 +22,15 @@ global.g_cliArgs = {
     sendToStdout: false,
     marshal: false,
     marshalScan: false,
+    strict: false,
     pyVersion: null,
     silent: false,
     fileExt: 'py',
     baseDir: null,
     filenames: []
 };
+
+let g_dirtyFiles = [];   // Files where decompiler caught at least one opcode exception.
 
 let g_totalInThroughput = 0;
 let g_totalOutThroughput = 0;
@@ -51,6 +54,7 @@ Options:
   --out               Print decompiled source to stdout instead of files
   --marshal           Treat input as raw marshalled data (no .pyc header)
   --marshal-scan      Fast scan of marshal blobs (no decompile, prints version)
+  --strict            Re-throw on first opcode handler exception (default: log + continue + non-zero exit)
   --py-version <x.y>  Python bytecode version hint (auto-scan if omitted)
   --basedir <path>    Output base directory (default: alongside input)
   --file-ext <ext>    Extension for generated source (default: py)
@@ -83,6 +87,8 @@ function parseCLIParams() {
         } else if (cliParam.toLowerCase() == "--marshal-scan" || cliParam.toLowerCase() == "--marshal-smoke") {
             g_cliArgs.marshalScan = true;
             g_cliArgs.marshal = true;
+        } else if (cliParam.toLowerCase() == "--strict") {
+            g_cliArgs.strict = true;
         } else if (cliParam.toLowerCase() == "--py-version") {
             g_cliArgs.pyVersion = process.argv[++idx];
         } else if (cliParam.toLowerCase() == "--basedir") {
@@ -341,9 +347,33 @@ function decompilePycObject(data) {
             let genStartTS = process.hrtime.bigint();
             let decompiler = new PycDecompiler(obj);
             let ast = decompiler.decompile();
-            let pycResult = ast.codeFragment();
-            pySrc = pycResult.toString();
+            let renderError = null;
+            try {
+                let pycResult = ast.codeFragment();
+                pySrc = pycResult.toString();
+            } catch (ex) {
+                if (g_cliArgs.strict) throw ex;
+                renderError = ex;
+                decompiler.errors.push({
+                    opcode: 'RENDER',
+                    codeObject: obj?.Name?.toString?.() || '<root>',
+                    message: ex.message,
+                    stack: ex.stack
+                });
+                decompiler.cleanBuild = false;
+                pySrc = `# DECOMPILER ERROR: codeFragment() threw: ${ex.message}\n`;
+                if (!g_cliArgs.silent) {
+                    console.error(`RENDER EXCEPTION in '${obj?.Name}': ${ex.message}`);
+                    if (g_cliArgs.debug) console.error(ex.stack);
+                }
+            }
             genSecs = Number(process.hrtime.bigint() - genStartTS) / 1000000000;
+            if (!decompiler.cleanBuild) {
+                g_dirtyFiles.push({
+                    file: typeof data === 'string' ? data : (obj?.FileName || '<buffer>'),
+                    errors: decompiler.errors.length
+                });
+            }
         }
         if (!pySrc.endsWith("\n")) {
             pySrc += "\n";
@@ -433,4 +463,15 @@ if (!g_cliArgs.sendToStdout) {
     const inRate = (g_totalInThroughput / g_totalExecTime).toFixed(2);
     const outRate = (g_totalOutThroughput / g_totalExecTime).toFixed(2);
     console.log(`Processed ${g_totalFiles} files in ${g_totalExecTime.toFixed(3)}s. In: ${g_totalInThroughput} bytes (${inRate} B/s). Out: ${g_totalOutThroughput} bytes (${outRate} B/s).`);
+}
+
+if (g_dirtyFiles.length > 0) {
+    console.error(`\nDirty decompile: ${g_dirtyFiles.length} file(s) had handler exceptions (output may be partial):`);
+    for (const d of g_dirtyFiles.slice(0, 20)) {
+        console.error(`  - ${d.file}  (${d.errors} opcode error${d.errors === 1 ? '' : 's'})`);
+    }
+    if (g_dirtyFiles.length > 20) {
+        console.error(`  ... and ${g_dirtyFiles.length - 20} more`);
+    }
+    process.exit(1);
 }
