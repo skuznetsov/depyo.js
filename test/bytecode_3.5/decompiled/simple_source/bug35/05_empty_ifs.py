@@ -1,2 +1,4 @@
-if __file__ and __import__:
+if __file__:
+    pass
+elif __import__:
     pass

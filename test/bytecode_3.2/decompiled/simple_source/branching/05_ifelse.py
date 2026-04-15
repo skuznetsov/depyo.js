@@ -2,36 +2,93 @@ b = 1
 
 a = 1
 
-a = 3
+if a == 1:
+    a = 3
 
-if a == 2:
+elif a == 2:
     a = 4
 
-a = 5
+elif a == 1:
+    a = 5
 
-a = 6
+elif a == 2:
+    a = 6
 
-a = 7
+else:
+    a = 7
 
-a = 8
+if a == 1:
+    a = 8
 
-a = 9
+elif a == 7:
+    a = 9
 
-a = 10
+elif a == 3:
+    a = 10
 
-a = 11
+else:
+    a = 11
 
-a = 12
+if a == 11:
+    a = 12
 
-a = 13
+elif a == 12:
+    a = 13
 
-if a == 13:
+elif a == 13:
     a = 14
 
-b = 1
+elif a == 1:
+    b = 1
 
-b = 2
+elif a == 2:
+    b = 2
 
-b = 3
+elif a == 3:
+    b = 3
 
-b = 4
+else:
+    b = 4
+
+if a == 1:
+    a = 1
+
+elif a == 2:
+    a = 2
+
+else:
+    b = 3
+    if a == 3:
+        b = 4
+    else:
+        b = 5
+
+if a == 1:
+    b = 1
+
+else:
+    b = 2
+    if a == 2:
+        b = 3
+    elif a == 3:
+        b = 4
+    else:
+        b = 5
+
+if a == 1:
+    b = 2
+
+else:
+    b = 3
+    if a == 2:
+        b = 4
+    else:
+        b = 5
+        if a == 3:
+            b = 6
+        elif a == 4:
+            b = 7
+        elif a == 4:
+            b = 8
+        else:
+            b = 9

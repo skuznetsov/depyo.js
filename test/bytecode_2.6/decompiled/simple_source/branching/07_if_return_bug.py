@@ -9,5 +9,6 @@ def effective(line):
                     b.ignore -= 1
                 else:
                     return (b, True)
-        __exception__
-        return (b, False)
+        except:
+            return (b, False)
+        

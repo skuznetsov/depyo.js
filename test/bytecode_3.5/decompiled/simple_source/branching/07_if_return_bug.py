@@ -5,8 +5,9 @@ def effective(line):
         try:
             val = 5
             if val:
-                b.ignore -= 1
-                return (b, True)
-        __exception__
-        None if b.ignore else ##ERROR##
-        return (b, False)
+                if b.ignore:
+                    b.ignore -= 1
+                else:
+                    return (b, True)
+        except:
+            return (b, False)

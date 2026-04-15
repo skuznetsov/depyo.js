@@ -2,8 +2,10 @@ def parseline(self, line):
     if not line:
         return 5
     elif line:
-        line = "shell"
-        return line[3] and 3
+        if hasattr(self, "do_shell"):
+            line = "shell"
+        elif line[3]:
+            return 3
         return 4
     
     return 6

@@ -9,6 +9,7 @@ if sys.argv == ["-"]:
                 compile(filename, doraise=True)
             except IOError:
                 rv = 1
+            
     
 else:
     rv = 1

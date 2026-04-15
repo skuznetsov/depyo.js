@@ -8,6 +8,5 @@ def __getitem__(v):
             except ValueError:
                 pass
             
-        
     
     return v

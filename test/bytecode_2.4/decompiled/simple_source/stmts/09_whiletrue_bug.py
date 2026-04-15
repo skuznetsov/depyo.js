@@ -5,6 +5,7 @@ if args == ["-"]:
                 compile(filename, doraise=True)
             except RuntimeError:
                 rv = 1
+            
     
 else:
     rv = 1
