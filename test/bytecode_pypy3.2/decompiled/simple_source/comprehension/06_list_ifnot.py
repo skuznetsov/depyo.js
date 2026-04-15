@@ -1,3 +1,2 @@
 names2 = []
-names = for x in .0:
-    pass
+names = [x for x in names2 if len(x)]

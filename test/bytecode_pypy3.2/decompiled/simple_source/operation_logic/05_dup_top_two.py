@@ -1,3 +1,3 @@
 import sys, termios
 new = sys.argv[:]
-3[##ERROR##] = ##ERROR##[new] &= ~termios.ECHO
+new[3] &= ~termios.ECHO

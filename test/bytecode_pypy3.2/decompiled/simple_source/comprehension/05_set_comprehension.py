@@ -1,13 +1,8 @@
-for y in .0:
-    pass
-b = for k, v in .0:
-    pass
+{y for y in range(3)}
+b = {k: v for k, v in enumerate(b3)}
 
 def __new__(classdict):
-    members = for k in .0:
-        pass
+    members = {classdict[k]: k for k in classdict._member_names}
     return members
 
-for b in .0:
-    for a in b.__dict__:
-        pass
+{a for b in bases for a in b.__dict__}

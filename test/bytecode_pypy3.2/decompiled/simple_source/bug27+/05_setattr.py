@@ -1,2 +1,4 @@
 def bug(state, slotstate):
-    pass
+    if state:
+        if slotstate is not None:
+            pass

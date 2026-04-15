@@ -1,3 +1,2 @@
 def as_completed(fs, *, loop=None):
-    todo = for f in .0:
-        pass
+    todo = {async(f, loop=loop) for f in set(fs)}

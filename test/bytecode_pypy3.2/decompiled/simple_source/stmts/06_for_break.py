@@ -1,2 +1,4 @@
 for value in __file__:
-    pass
+    if value:
+        tz = "a"
+        break

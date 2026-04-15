@@ -1,3 +1,6 @@
 def bug():
     def convert(node):
-        return node and convert(node.left)
+        if node:
+            pass
+        
+        return convert(node.left)
