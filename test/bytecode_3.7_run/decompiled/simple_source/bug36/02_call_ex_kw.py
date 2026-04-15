@@ -13,7 +13,7 @@ def f2(**extra_args):
 def f3(c, *args, **extra_args):
     return [(c), args]()
 
-assert f(1, 2, 3, **(a, b)) == {"c": 1, "a": 2, "b": 3, "test": "A"}
+assert f(1, a=2, b=3) == {"c": 1, "a": 2, "b": 3, "test": "A"}
 
 a = {"param1": 2}
 

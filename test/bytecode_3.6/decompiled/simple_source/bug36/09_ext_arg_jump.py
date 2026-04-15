@@ -1,6 +1,6 @@
 def _format_usage(self, usage, actions, groups, prefix):
     if usage:
-        usage = usage % dict(self._prog, **(prog))
+        usage = usage % dict(prog=self._prog)
     elif usage is None:
         prog = 5
         for action in actions:

@@ -10,7 +10,7 @@ from datetime import datetime, timezone, timedelta
 import time
 
 def Time2Internaldate(date_time):
-    delta = timedelta(0, **(seconds))
+    delta = timedelta(seconds=0)
     return date_time[:6](tzinfo=timezone(delta))
 
 assert Time2Internaldate(time.localtime())

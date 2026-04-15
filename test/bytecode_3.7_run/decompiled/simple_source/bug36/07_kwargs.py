@@ -3,4 +3,4 @@ def fn(arg, *, kwarg, **kw):
     assert kwarg == "testing"
     assert kw["foo"] == "bar"
 
-fn(1, "testing", "bar", **(kwarg, foo))
+fn(1, kwarg="testing", foo="bar")

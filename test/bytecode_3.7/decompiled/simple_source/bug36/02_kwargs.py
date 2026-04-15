@@ -1,10 +1,10 @@
 def bug(self, j, a, b):
-    self.parse_comment(j, 0, **(report))
-    self.parse_comment(j, 1, 2, **(report, foo))
-    self.parse_comment(a, b, 3, **(report))
+    self.parse_comment(j, report=0)
+    self.parse_comment(j, report=1, foo=2)
+    self.parse_comment(a, b, report=3)
 
 import functools
 
-@functools.lru_cache(256, True, **(maxsize, typed))
+@functools.lru_cache(maxsize=256, typed=True)
 def _compile_pattern(pat):
     pass
