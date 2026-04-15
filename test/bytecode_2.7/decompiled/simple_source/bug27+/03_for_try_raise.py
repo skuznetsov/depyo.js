@@ -4,5 +4,6 @@ for package in [1, 2]:
     except IndexError:
         f = __file__
         with None:
+            pass
     
     raise

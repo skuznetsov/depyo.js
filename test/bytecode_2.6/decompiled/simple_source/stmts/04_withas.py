@@ -9,12 +9,15 @@ def withas_bug(self, nested, a, b):
 
 def test_invalid_registrations(x):
     
-    x.__enter__(); with x as x:; break
+    x.__enter__()
+    with x as x:
+        pass; break
 
 def test_re_tests(tests):
     for t in tests:
         a.__enter__()
         with a:
+            pass
         break
 
 def _gen_temp_sourcefile(x, a, headers, lang):

@@ -6,8 +6,10 @@ class TestContextManager:
         return (self, exc_type, exc_value, exc_tb)
 
 with open(__file__) as a:
+    pass
 with open(__file__) as a:
     with open(__file__) as b:
+        pass
 with TestContextManager() as a:
     with b:
         b
