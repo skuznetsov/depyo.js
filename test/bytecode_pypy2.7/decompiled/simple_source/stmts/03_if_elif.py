@@ -1,5 +1,6 @@
 if __name__:
-    if __name__:
-        pass
+    pass
+elif __name__:
+    pass
 elif __file__:
     pass
