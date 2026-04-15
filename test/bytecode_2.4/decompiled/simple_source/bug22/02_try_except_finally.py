@@ -4,5 +4,4 @@ try:
     except RuntimeError:
         pass
 finally:
-    pass
-quitting = 1
+    quitting = 1

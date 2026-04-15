@@ -6,8 +6,7 @@ try:
 except ImportError:
     x = 3
 finally:
-    pass
-x = 4
+    x = 4
 
 try:
     x = 1
