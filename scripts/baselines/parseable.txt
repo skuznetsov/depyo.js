@@ -3,10 +3,7 @@
 # Fix the bug that produces the failure and remove the entry.
 test/bytecode_3.0/decompiled/simple_source/branching/02_ifelse_lambda.py
 test/bytecode_3.0/decompiled/simple_source/bug31/05_abc_test.py
-test/bytecode_3.0/decompiled/simple_source/bug31/decompiled/simple_source/bug31/05_abc_test.py
 test/bytecode_3.0_run/decompiled/simple_source/bug30/04_and_del.py
-test/bytecode_3.0_run/decompiled/simple_source/bug30/06_listcomp.py
-test/bytecode_3.1/decompiled/31_while_loops.py
 test/bytecode_3.1/decompiled/simple_source/bug35/04_call_function.py
 test/bytecode_3.11/decompiled/Users/sergey/Projects/NodeJS/depyo/test/modern_features/py311_exception_groups.py
 test/bytecode_3.12/decompiled/Users/sergey/Projects/NodeJS/depyo/test/modern_features/py311_exception_groups.py
@@ -87,7 +84,6 @@ test/bytecode_3.6/decompiled/simple_source/bug37/02_async_for_generator.py
 test/bytecode_3.6/decompiled/simple_source/bug38/00_while_true_pass.py
 test/bytecode_3.6/decompiled/simple_source/expression/11_multi_genexpr.py
 test/bytecode_3.6/decompiled/simple_source/stmts/00_docstring.py
-test/bytecode_3.6/decompiled/simple_source/stmts/01_augmented_assign.py
 test/bytecode_3.6_run/decompiled/simple_source/branching/02_ifelse_lambda.py
 test/bytecode_3.6_run/decompiled/simple_source/bug35/04_call_function.py
 test/bytecode_3.6_run/decompiled/simple_source/bug36/02_call_ex_kw.py
@@ -101,7 +97,6 @@ test/bytecode_3.7/decompiled/simple_source/bug36/03_async_from_coroutine.py
 test/bytecode_3.7/decompiled/simple_source/bug36/04_class_kwargs.py
 test/bytecode_3.7/decompiled/simple_source/bug37/02_async_for_generator.py
 test/bytecode_3.7/decompiled/simple_source/bug38/00_while_true_pass.py
-test/bytecode_3.7/decompiled/simple_source/stmts/01_augmented_assign.py
 test/bytecode_3.7_run/decompiled/simple_source/bug35/04_call_function.py
 test/bytecode_3.7_run/decompiled/simple_source/bug36/02_call_ex_kw.py
 test/bytecode_3.7_run/decompiled/simple_source/bug36/10_fstring.py

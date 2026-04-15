@@ -43,8 +43,7 @@ for i in range(3):
         
         lj.append(lk)
     
-    l.append(lj)
-j = ###FIXME###; k = (i := 1)
+    l.append(lj); i = j = k = 1
 def f():
     global i
     i += 1
