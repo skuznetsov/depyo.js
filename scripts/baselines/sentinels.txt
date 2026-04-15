@@ -1,0 +1,15 @@
+# check-no-sentinels baseline — decompiled fixtures that currently leak
+# sentinel markers (###FIXME###, ##ERROR_DECORATOR##, #TODO ...).
+# Fix the bug in lib/ and remove the entry — do not pad this file.
+test/bytecode_2.1/decompiled/augmentedAssign.py
+test/bytecode_2.1/decompiled/test/test_augmentedAssign.py
+test/bytecode_2.2/decompiled/simple_source/stmts/01_augmented_assign.py
+test/bytecode_2.4/decompiled/simple_source/stmts/01_augmented_assign.py
+test/bytecode_2.5/decompiled/simple_source/stmts/01_augmented_assign.py
+test/bytecode_2.6/decompiled/simple_source/def/07_closure_bug2.py
+test/bytecode_2.6/decompiled/simple_source/stmts/01_augmented_assign.py
+test/bytecode_2.6/decompiled/simple_source/stmts/04_withas.py
+test/bytecode_2.7/decompiled/simple_source/stmts/01_augmented_assign.py
+test/bytecode_3.0/decompiled/simple_source/bug31/05_abc_test.py
+test/bytecode_3.6/decompiled/simple_source/stmts/01_augmented_assign.py
+test/bytecode_3.7/decompiled/simple_source/stmts/01_augmented_assign.py
