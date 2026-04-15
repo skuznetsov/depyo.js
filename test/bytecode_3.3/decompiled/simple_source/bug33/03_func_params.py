@@ -2,7 +2,7 @@ def __new__(cls, encode, decode, streamreader=None, streamwriter=None, increment
     pass
 
 class StringIO(object):
-    def __init__(self, initial_value="\n", newline=(__class__)):
+    def __init__(self, initial_value="", newline="\n"):
         super(StringIO, self).__init__()
 
 class StringIO2(object):

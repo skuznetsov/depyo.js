@@ -1,4 +1,4 @@
-def compute(x, y={"x": int, "y": int, "return": int}):
+def compute(x: int, y: int) -> int:
     result = x + y
     return result
 

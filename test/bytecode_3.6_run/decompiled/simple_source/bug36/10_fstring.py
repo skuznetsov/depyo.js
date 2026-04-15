@@ -3,7 +3,7 @@ var2 = "y"
 abc = "def"
 
 def fn(x):
-    yield (lambda i=(x): x * i); yield f"{}"
+    yield (lambda i: x * i); yield f"{"x:"}"
 
 k = "1"; v = ["2"]
 x = f"{k}={v!r}"

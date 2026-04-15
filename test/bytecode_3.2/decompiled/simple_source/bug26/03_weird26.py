@@ -1,6 +1,5 @@
 [x for x in range(10) if x % 3]
-list(for x in .0:
-    yield x)
+list((x for x in range(10) if x % 3))
 if not 0:
     pass
 

@@ -1,6 +1,6 @@
 from math import atan2
 
-def assertCloseAbs(x, y, eps=(1e-9)):
+def assertCloseAbs(x, y, eps=1e-9):
     if abs(x) > abs(y):
         x = y
         y = x
@@ -9,7 +9,7 @@ def assertCloseAbs(x, y, eps=(1e-9)):
     elif x == 0:
         return abs(y) < eps
 
-def assertClose(x, y, eps=(1e-9)):
+def assertClose(x, y, eps=1e-9):
     assertCloseAbs(x.real, y.real, eps)
     assertCloseAbs(x.imag, y.imag, eps)
 
@@ -30,8 +30,7 @@ def check_div(x, y):
 
 def test_truediv():
     simple_real = [float(i) for i in range(-3, 3)]
-    simple_complex = for x in .0:
-        [complex(x, y) for y in simple_real]
+    simple_complex = [complex(x, y) for x in simple_real for y in simple_real]
     for x in simple_complex:
         for y in simple_complex:
             check_div(x, y)

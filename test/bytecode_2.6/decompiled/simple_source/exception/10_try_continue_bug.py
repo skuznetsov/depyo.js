@@ -4,16 +4,17 @@ def _get_default_tempdir(dirlist, fd):
             try:
                 try:
                     try:
-                        with fp.write("blat") as fp:
-                            fp.write("blat")
+                        fp = open(fd, "wb", "closefd" = False).__enter__()
+                        fp.write("blat")
                     finally:
-                        seq += 1
+                        break
                 finally:
-                    seq += 10
-                return dir
-            except RuntimeError:
-                pass
-            except OSError:
-                break
+                    seq += 1
+            seq += 10
+            return dir
         
+        except RuntimeError:
+            pass
+        except OSError:
+            break
     raise RuntimeError

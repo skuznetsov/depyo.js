@@ -1,6 +1,4 @@
-def __init__(self, defaults, dict_type=(None,
-    _default_dict,
-    False), allow_no_value={"delimiters": (=, :), "comment_prefixes": (#, ;), "inline_comment_prefixes": None, "strict": True, "empty_lines_in_values": True, "default_section": DEFAULTSECT, "interpolation": _UNSET}, *, delimiters, comment_prefixes, inline_comment_prefixes, strict, empty_lines_in_values, default_section, interpolation):
+def __init__(self, defaults=None, dict_type=_default_dict, allow_no_value=False, *, delimiters, comment_prefixes, inline_comment_prefixes, strict, empty_lines_in_values, default_section, interpolation):
     pass
 
 def fn(a, b, d):

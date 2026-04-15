@@ -5,7 +5,6 @@ class ContextDecorator(object):
         @(self, func)
         def inner(*args, **kwds):
             self._recreate_cm().__enter__()
-            with ###FIXME###:
-                return ##ERROR##(**self._recreate_cm().__exit__); break
+            return func(*args, **kwds); break
         
         return inner

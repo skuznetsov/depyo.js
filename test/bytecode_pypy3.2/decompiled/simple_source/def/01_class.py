@@ -1,4 +1,5 @@
-print 
-A = ##ERROR##("A")
-print 
-B = ##ERROR##("B", Exception)
+class A:
+    pass
+
+class B(Exception):
+    pass

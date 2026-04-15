@@ -10,5 +10,5 @@ class Semaphore:
     pass
 
 class BoundedSemaphore(Semaphore):
-    def __init__(self, value=__class__, *, loop=1):
+    def __init__(self, value=1, *, loop=None):
         super().__init__(value, "loop" = loop)

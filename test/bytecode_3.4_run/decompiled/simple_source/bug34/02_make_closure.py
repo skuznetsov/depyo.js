@@ -2,7 +2,7 @@
 
 a = 5
 class MakeClosureTest:
-    def __init__(self, dev, b):
+    def __init__(self, dev: str, b: bool):
         super().__init__()
         self.dev = dev
         self.b = b

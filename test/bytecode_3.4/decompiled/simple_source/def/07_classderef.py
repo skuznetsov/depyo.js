@@ -1,3 +1,5 @@
 def CFUNCTYPE(argtypes):
-    CFunctionType = ##ERROR##(##ERROR##, ##ERROR##, ##ERROR##)
+    class CFunctionType(object):
+        _argtypes_ = argtypes
+    
     return CFunctionType

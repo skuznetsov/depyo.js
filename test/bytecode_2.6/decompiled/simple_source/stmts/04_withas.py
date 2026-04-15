@@ -4,10 +4,8 @@ def formatweekday(self):
 
 def withas_bug(self, nested, a, b):
     self.assertRaises(ZeroDivisionError).__enter__()
-    with ###FIXME###:
-        with 1 // 0 as ###FIXME###:
-            1 // 0
-        break; break
+    x, y = nested(a(), b()).__enter__()
+    1 // 0; break
 
 def test_invalid_registrations(x):
     

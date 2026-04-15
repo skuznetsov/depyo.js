@@ -1,4 +1,4 @@
-def init(modules=(None)):
+def init(modules=None):
     mods = set() if modules else set(modules)
     return mods
 

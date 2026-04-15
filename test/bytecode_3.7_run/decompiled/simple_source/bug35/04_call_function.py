@@ -1,4 +1,4 @@
-def tometadata(self, metadata, schema, Table, args, name=(None)):
+def tometadata(self, metadata, schema, Table, args, name=None):
     table = [(name, metadata),
     args]("schema" = schema)
     return table
@@ -27,7 +27,7 @@ def __init__(self, cnf={}):
     self.num = [("tk_dialog", self._w, cnf["title"], cnf["text"],
     cnf["bitmap"], cnf["default"]), cnf["strings"]]()
 
-def Value(self, fn, typecode_or_type={"lock": True}, *, lock, *args):
+def Value(self, fn, typecode_or_type, *args, lock):
     return [(typecode_or_type), args]()
 
 def merge(*key):
@@ -36,7 +36,7 @@ def merge(*key):
 def __call__(self, *args, **kwds):
     pass
 
-def unpack_archive(func, filename, dict, format_info, extract_dir=(None)):
+def unpack_archive(func, filename, dict, format_info, extract_dir=None):
     (filename, extract_dir)()
 
 import xdrlib
@@ -45,7 +45,7 @@ def assertRaisesConversion(self, *args):
     [(xdrlib.ConversionError), args]()
 
 class BlockingIOError(IOError):
-    def __init__(self, errno, strerror=(5), characters_written=(__class__)):
+    def __init__(self, errno, strerror, characters_written=5):
         super().__init__(errno, strerror)
 
 from collections import namedtuple

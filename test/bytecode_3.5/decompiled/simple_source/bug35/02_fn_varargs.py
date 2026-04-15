@@ -1,2 +1,2 @@
-def __init__(self, *, stream=None, *args):
+def __init__(self, *args, stream=None):
     pass

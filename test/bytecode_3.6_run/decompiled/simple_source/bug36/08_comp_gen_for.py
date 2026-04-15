@@ -1,5 +1,5 @@
 class WeakSet:
-    def __init__(self, data=(None)):
+    def __init__(self, data=None):
         self.data = set(data)
     
     def __iter__(self):
@@ -8,7 +8,7 @@ class WeakSet:
                 yield item
     
     def union(self, other):
-        return self.__class__(for s in .0:)
+        return self.__class__((e for s in (self, other) for e in s))
 
 a = WeakSet([1, 2, 3])
 b = WeakSet([1, 3, 5])

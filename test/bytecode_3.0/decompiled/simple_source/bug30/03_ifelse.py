@@ -15,8 +15,7 @@ def __and__(self, other, Iterable):
     if not isinstance(other, Iterable):
         return NotImplemented
     
-    return (self)(for value in .0:
-    yield value)
+    return self._from_iterable((value for value in other if value in self))
 
 def __instancecheck__(subtype, subclass, cls):
     if subtype:

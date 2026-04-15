@@ -1,11 +1,11 @@
-def a85decode(b={"foldspaces": False, "adobe": False, "ignorechars": " 	\n"}, *, foldspaces, adobe, ignorechars):
+def a85decode(b, *, foldspaces, adobe, ignorechars):
     pass
 
 _UNSET = object()
-def get(self, section, option={"raw": False, "vars": None, "fallback": _UNSET}, *, raw, vars, fallback):
+def get(self, section, option, *, raw, vars, fallback):
     pass
 
-def compile_command(source, filename, symbol=(<input>, single)):
+def compile_command(source, filename="<input>", symbol="single"):
     pass
 
 import abc

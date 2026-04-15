@@ -23,7 +23,7 @@ test_varargs0_ext()
 def __init__(self, cnf={}):
     self.num = self.tk.call("tk_dialog", self._w, cnf["title"], cnf["text"], cnf["bitmap"], cnf["default"], *cnf["strings"])
 
-def Value(self, fn, typecode_or_type, *, lock=True, *args):
+def Value(self, fn, typecode_or_type, *args, lock=True):
     return fn(typecode_or_type, args = "lock", lock = "ctx", *self.get_context())
 
 def merge(*key):
@@ -41,7 +41,7 @@ def assertRaisesConversion(self, *args):
     self.assertRaises(xdrlib.ConversionError, *args)
 
 class BlockingIOError(IOError):
-    def __init__(self, errno, strerror, characters_written=__class__):
+    def __init__(self, errno, strerror, characters_written=5):
         super().__init__(errno, strerror)
 
 from collections import namedtuple

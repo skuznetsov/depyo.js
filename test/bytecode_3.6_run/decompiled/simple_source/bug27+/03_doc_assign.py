@@ -8,8 +8,10 @@ def test_doc_descriptor():
                 otype = otype.__name__
             return "object=%s; type=%s" % (object, otype)
     
-    OldClass = ##ERROR##("OldClass")
+    class OldClass:
+        __doc__ = DocDescr()
     
-    NewClass = ##ERROR##("NewClass", object)
+    class NewClass(object):
+        __doc__ = DocDescr()
 
 test_doc_descriptor()

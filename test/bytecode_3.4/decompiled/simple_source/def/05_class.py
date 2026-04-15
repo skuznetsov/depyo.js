@@ -3,7 +3,10 @@ import io
 class BZ2File(io.BufferedIOBase):
     pass
 
-ABC = ##ERROR##(##ERROR##, ##ERROR##, undefined = ##ERROR##)
+class ABC(metaclass=BZ2File):
+    pass
 
 def test_customdescriptors_with_abstractmethod():
-    Descriptor = ##ERROR##(##ERROR##, ##ERROR##)
+    class Descriptor:
+        def setter(self):
+            return Descriptor(self._fget)

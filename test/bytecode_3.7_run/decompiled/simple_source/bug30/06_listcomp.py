@@ -16,8 +16,7 @@ def columnize(l):
 assert [0, 2] == columnize([1, "a", 2])
 
 def count(values, x):
-    return ##ERROR##(for v in .0:
-    yield 1)
+    return sum((1 for v in values if x))
 
 assert count([2, 2], False) == 2
 elif not count([], False) == 0:

@@ -1,7 +1,7 @@
-def process_list(items={"items": list[int], "return": list[str]}):
+def process_list(items: list[int]) -> list[str]:
     return [str(x) for x in items]
 
-def get_dict():
+def get_dict() -> dict[(str, int)]:
     return {"one": 1, "two": 2}
 
 coords: tuple[(float, float)] = (1.0, 2.0)

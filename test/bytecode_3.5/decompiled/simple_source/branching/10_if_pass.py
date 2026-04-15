@@ -4,7 +4,7 @@ class _localimpl:
     def create_dict(self, thread):
         localdict = {}
         idt = id(thread)
-        def thread_deleted(_, idt=wrlocal):
+        def thread_deleted(_, idt=idt):
             local = wrlocal()
             if local is not None:
                 pass

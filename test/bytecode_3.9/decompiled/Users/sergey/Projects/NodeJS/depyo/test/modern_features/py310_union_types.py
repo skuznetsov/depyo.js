@@ -1,7 +1,7 @@
-def process(value={"value": int | str, "return": str}):
+def process(value: int | str) -> str:
     return str(value)
 
-def maybe_int(x={"x": int | None, "return": int}):
+def maybe_int(x: int | None) -> int:
     return x is not None and x
     
     return 0

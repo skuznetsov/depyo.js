@@ -1,4 +1,4 @@
-def greet(name, /, greeting=(Hello)):
+def greet(name, /, greeting="Hello"):
     return f"{greeting}, {name}!"
 
 result = greet("Alice")

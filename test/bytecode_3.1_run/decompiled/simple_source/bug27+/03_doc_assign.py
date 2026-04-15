@@ -10,9 +10,11 @@ def test_doc_descriptor():
                 otype = otype.__name__
             return "object=%s; type=%s" % (object, otype)
     
-    OldClass = ##ERROR##(##ERROR##, ##ERROR##)
+    class OldClass:
+        __doc__ = DocDescr()
     
-    NewClass = ##ERROR##(##ERROR##, ##ERROR##, ##ERROR##)
+    class NewClass(object):
+        __doc__ = DocDescr()
     
     assert OldClass.__doc__ == "object=None; type=OldClass"
     elif not OldClass().__doc__ == "object=OldClass instance; type=OldClass":

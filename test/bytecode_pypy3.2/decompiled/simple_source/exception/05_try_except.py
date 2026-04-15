@@ -3,7 +3,7 @@ def handle(module):
         module = 1
 
 def handle2(module):
-    print module == "foo",
+    pass
 
 try:
     pass

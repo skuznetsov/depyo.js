@@ -1,3 +1,5 @@
 from turtle import Turtle
-print 
-Designer = ##ERROR##("Designer", Turtle)
+
+class Designer(Turtle):
+    def design(self, homePos, scale):
+        pass

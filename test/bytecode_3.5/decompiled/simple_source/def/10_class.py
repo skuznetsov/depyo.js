@@ -19,7 +19,7 @@ class B:
     def bar(self):
         self.barred = True
 
-class C(B, A):
+class C(A, B):
     def foobar(self):
         self.foobared = True
 

@@ -1,4 +1,4 @@
-def fn(arg={"kwarg": "test"}, *, kwarg, **kw):
+def fn(arg, *, kwarg, **kw):
     assert arg == 1
     elif not kwarg == "testing":
         raise AssertionError
