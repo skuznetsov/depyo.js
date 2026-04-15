@@ -1,0 +1,81 @@
+Method name: <module>:
+	     O:0, L:0              RESUME    0    
+	     O:2, L:3          LOAD_CONST    0    // Value: 0
+	     O:4, L:3          LOAD_CONST    1    // Value: (override)
+	     O:6, L:3         IMPORT_NAME    0    // Value: typing
+	     O:8, L:3         IMPORT_FROM    1    // Value: override
+	    O:10, L:3          STORE_NAME    1    // Value: override
+	    O:12, L:3             POP_TOP         
+	    O:14, L:5    LOAD_BUILD_CLASS         
+	    O:16, L:5           PUSH_NULL         
+	    O:18, L:5          LOAD_CONST    2    // Value: 2
+	    O:20, L:5       MAKE_FUNCTION         
+	    O:22, L:5          LOAD_CONST    3    // Value: "Base"
+	    O:24, L:5                CALL    2    
+	    O:26, L:5               CACHE         
+	    O:28, L:5               CACHE         
+	    O:30, L:5               CACHE         
+	    O:32, L:5          STORE_NAME    2    // Value: Base
+	    O:34, L:9    LOAD_BUILD_CLASS         
+	    O:36, L:9           PUSH_NULL         
+	    O:38, L:9          LOAD_CONST    4    // Value: 4
+	    O:40, L:9       MAKE_FUNCTION         
+	    O:42, L:9          LOAD_CONST    5    // Value: "Derived"
+	    O:44, L:9           LOAD_NAME    2    // Value: Base
+	    O:46, L:9                CALL    3    
+	    O:48, L:9               CACHE         
+	    O:50, L:9               CACHE         
+	    O:52, L:9               CACHE         
+	    O:54, L:9          STORE_NAME    3    // Value: Derived
+	    O:56, L:9        RETURN_CONST    6    // Value: None
+
+Method name: <module>.Base:
+	     O:0, L:5              RESUME    0    
+	     O:2, L:5           LOAD_NAME    0    // Value: __name__
+	     O:4, L:5          STORE_NAME    1    // Value: __module__
+	     O:6, L:5          LOAD_CONST    0    // Value: "Base"
+	     O:8, L:5          STORE_NAME    2    // Value: __qualname__
+	    O:10, L:5          LOAD_CONST    1    // Value: 5
+	    O:12, L:5          STORE_NAME    3    // Value: __firstlineno__
+	    O:14, L:6          LOAD_CONST    2    // Value: "return"
+	    O:16, L:6           LOAD_NAME    4    // Value: str
+	    O:18, L:6         BUILD_TUPLE    2    
+	    O:20, L:6          LOAD_CONST    3    // Value: 3
+	    O:22, L:6       MAKE_FUNCTION         
+	    O:24, L:6 SET_FUNCTION_ATTRIBUTE    4    
+	    O:26, L:6          STORE_NAME    5    // Value: method
+	    O:28, L:6          LOAD_CONST    4    // Value: ()
+	    O:30, L:6          STORE_NAME    6    // Value: __static_attributes__
+	    O:32, L:6        RETURN_CONST    5    // Value: None
+
+Method name: <module>.Base.method:
+	     O:0, L:6              RESUME    0    
+	     O:2, L:7        RETURN_CONST    1    // Value: "base"
+
+Method name: <module>.Derived:
+	     O:0, L:9              RESUME    0    
+	     O:2, L:9           LOAD_NAME    0    // Value: __name__
+	     O:4, L:9          STORE_NAME    1    // Value: __module__
+	     O:6, L:9          LOAD_CONST    0    // Value: "Derived"
+	     O:8, L:9          STORE_NAME    2    // Value: __qualname__
+	    O:10, L:9          LOAD_CONST    1    // Value: 9
+	    O:12, L:9          STORE_NAME    3    // Value: __firstlineno__
+	   O:14, L:10           LOAD_NAME    4    // Value: override
+	   O:16, L:11          LOAD_CONST    2    // Value: "return"
+	   O:18, L:11           LOAD_NAME    5    // Value: str
+	   O:20, L:11         BUILD_TUPLE    2    
+	   O:22, L:11          LOAD_CONST    3    // Value: 3
+	   O:24, L:11       MAKE_FUNCTION         
+	   O:26, L:11 SET_FUNCTION_ATTRIBUTE    4    
+	   O:28, L:10                CALL    0    
+	   O:30, L:10               CACHE         
+	   O:32, L:10               CACHE         
+	   O:34, L:10               CACHE         
+	   O:36, L:11          STORE_NAME    6    // Value: method
+	   O:38, L:11          LOAD_CONST    4    // Value: ()
+	   O:40, L:11          STORE_NAME    7    // Value: __static_attributes__
+	   O:42, L:11        RETURN_CONST    5    // Value: None
+
+Method name: <module>.Derived.method:
+	    O:0, L:10              RESUME    0    
+	    O:2, L:12        RETURN_CONST    1    // Value: "derived"

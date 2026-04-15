@@ -1,0 +1,128 @@
+Method name: <module>:
+	     O:0, L:4           LOAD_NAME    0    // Value: _async_test
+	     O:2, L:5          LOAD_CONST    0    
+	     O:4, L:5          LOAD_CONST    1    // Value: "test_enter"
+	     O:6, L:5       MAKE_FUNCTION    0    
+	     O:8, L:5       CALL_FUNCTION    1    
+	    O:10, L:5          STORE_NAME    1    // Value: test_enter
+	   O:12, L:16    LOAD_BUILD_CLASS         
+	   O:14, L:16          LOAD_CONST    2    // Value: 2
+	   O:16, L:16          LOAD_CONST    3    // Value: "CoroutineTest"
+	   O:18, L:16       MAKE_FUNCTION    0    
+	   O:20, L:16          LOAD_CONST    3    // Value: "CoroutineTest"
+	   O:22, L:16       CALL_FUNCTION    2    
+	   O:24, L:16          STORE_NAME    2    // Value: CoroutineTest
+	   O:26, L:16          LOAD_CONST    4    // Value: None
+	   O:28, L:16        RETURN_VALUE         
+
+Method name: <module>.test_enter:
+	     O:0, L:6           LOAD_FAST    0    // Value: self
+	     O:2, L:6         LOAD_METHOD    0    // Value: assertIs
+	     O:4, L:6         LOAD_GLOBAL    1    // Value: manager
+	     O:6, L:6         LOAD_METHOD    2    // Value: __aenter__
+	     O:8, L:6         CALL_METHOD    0    
+	    O:10, L:6       GET_AWAITABLE         
+	    O:12, L:6          LOAD_CONST    0    // Value: None
+	    O:14, L:6          YIELD_FROM         
+	    O:16, L:6         LOAD_GLOBAL    1    // Value: manager
+	    O:18, L:6         CALL_METHOD    2    
+	    O:20, L:6             POP_TOP         
+	    O:22, L:8         LOAD_GLOBAL    1    // Value: manager
+	    O:24, L:8   BEFORE_ASYNC_WITH         
+	    O:26, L:8       GET_AWAITABLE         
+	    O:28, L:8          LOAD_CONST    0    // Value: None
+	    O:30, L:8          YIELD_FROM         
+	    O:32, L:8    SETUP_ASYNC_WITH   93    // Value: 58
+	    O:34, L:8          STORE_FAST    1    // Value: context
+	    O:36, L:9         LOAD_GLOBAL    3    // Value: woohoo
+	    O:38, L:9       CALL_FUNCTION    0    
+	    O:40, L:9   BEFORE_ASYNC_WITH         
+	    O:42, L:9       GET_AWAITABLE         
+	    O:44, L:9          LOAD_CONST    0    // Value: None
+	    O:46, L:9          YIELD_FROM         
+	    O:48, L:9    SETUP_ASYNC_WITH   65    // Value: 14
+	    O:50, L:9          STORE_FAST    2    // Value: x
+	   O:52, L:10          LOAD_CONST    1    // Value: 1
+	   O:54, L:10          STORE_FAST    2    // Value: x
+	   O:56, L:11          LOAD_CONST    2    // Value: 2
+	   O:58, L:11          STORE_FAST    3    // Value: y
+	   O:60, L:11           POP_BLOCK         
+	   O:62, L:11       BEGIN_FINALLY         
+	   O:64, L:11  WITH_CLEANUP_START         
+	   O:66, L:11       GET_AWAITABLE         
+	   O:68, L:11          LOAD_CONST    0    // Value: None
+	   O:70, L:11          YIELD_FROM         
+	   O:72, L:11 WITH_CLEANUP_FINISH         
+	   O:74, L:11         END_FINALLY         
+	   O:76, L:12         LOAD_GLOBAL    1    // Value: manager
+	   O:78, L:12           LOAD_FAST    1    // Value: context
+	   O:80, L:12          COMPARE_OP    8    // Value: is
+	   O:82, L:12    POP_JUMP_IF_TRUE   88    
+	   O:84, L:12         LOAD_GLOBAL    4    // Value: AssertionError
+	   O:86, L:12       RAISE_VARARGS    1    
+	   O:88, L:12           POP_BLOCK         
+	   O:90, L:12       BEGIN_FINALLY         
+	   O:92, L:12  WITH_CLEANUP_START         
+	   O:94, L:12       GET_AWAITABLE         
+	   O:96, L:12          LOAD_CONST    0    // Value: None
+	   O:98, L:12          YIELD_FROM         
+	  O:100, L:12 WITH_CLEANUP_FINISH         
+	  O:102, L:12         END_FINALLY         
+	  O:104, L:12          LOAD_CONST    0    // Value: None
+	  O:106, L:12        RETURN_VALUE         
+
+Method name: <module>.CoroutineTest:
+	    O:0, L:16           LOAD_NAME    0    // Value: __name__
+	    O:2, L:16          STORE_NAME    1    // Value: __module__
+	    O:4, L:16          LOAD_CONST    0    // Value: "CoroutineTest"
+	    O:6, L:16          STORE_NAME    2    // Value: __qualname__
+	    O:8, L:17          LOAD_CONST    1    // Value: 1
+	   O:10, L:17          LOAD_CONST    2    // Value: "CoroutineTest.test_with_8"
+	   O:12, L:17       MAKE_FUNCTION    0    
+	   O:14, L:17          STORE_NAME    3    // Value: test_with_8
+	   O:16, L:17          LOAD_CONST    3    // Value: None
+	   O:18, L:17        RETURN_VALUE         
+
+Method name: <module>.CoroutineTest.test_with_8:
+	    O:0, L:18          LOAD_CONST    1    // Value: 0
+	    O:2, L:18         STORE_DEREF    0    // Value: null
+	    O:4, L:19        LOAD_CLOSURE    0    // Value: null
+	    O:6, L:19         BUILD_TUPLE    1    
+	    O:8, L:19          LOAD_CONST    2    // Value: 2
+	   O:10, L:19          LOAD_CONST    3    // Value: "CoroutineTest.test_with_8.<locals>.foo"
+	   O:12, L:19       MAKE_FUNCTION    8    
+	   O:14, L:19          STORE_FAST    1    // Value: foo
+	   O:16, L:19          LOAD_CONST    0    // Value: None
+	   O:18, L:19        RETURN_VALUE         
+
+Method name: <module>.CoroutineTest.test_with_8.foo:
+	    O:0, L:21         LOAD_GLOBAL    0    // Value: CM
+	    O:2, L:21       CALL_FUNCTION    0    
+	    O:4, L:21   BEFORE_ASYNC_WITH         
+	    O:6, L:21       GET_AWAITABLE         
+	    O:8, L:21          LOAD_CONST    0    // Value: None
+	   O:10, L:21          YIELD_FROM         
+	   O:12, L:21    SETUP_ASYNC_WITH   45    // Value: 30
+	   O:14, L:21             POP_TOP         
+	   O:16, L:22          LOAD_DEREF    0    // Value: null
+	   O:18, L:22          LOAD_CONST    1    // Value: 1
+	   O:20, L:22         INPLACE_ADD         
+	   O:22, L:22         STORE_DEREF    0    // Value: null
+	   O:24, L:23           POP_BLOCK         
+	   O:26, L:23       BEGIN_FINALLY         
+	   O:28, L:23  WITH_CLEANUP_START         
+	   O:30, L:23       GET_AWAITABLE         
+	   O:32, L:23          LOAD_CONST    0    // Value: None
+	   O:34, L:23          YIELD_FROM         
+	   O:36, L:23 WITH_CLEANUP_FINISH         
+	   O:38, L:23         POP_FINALLY    0    
+	   O:40, L:23          LOAD_CONST    0    // Value: None
+	   O:42, L:23        RETURN_VALUE         
+	   O:44, L:23  WITH_CLEANUP_START         
+	   O:46, L:23       GET_AWAITABLE         
+	   O:48, L:23          LOAD_CONST    0    // Value: None
+	   O:50, L:23          YIELD_FROM         
+	   O:52, L:23 WITH_CLEANUP_FINISH         
+	   O:54, L:23         END_FINALLY         
+	   O:56, L:23          LOAD_CONST    0    // Value: None
+	   O:58, L:23        RETURN_VALUE         

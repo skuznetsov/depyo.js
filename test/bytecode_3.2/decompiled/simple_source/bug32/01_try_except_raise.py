@@ -3,7 +3,7 @@ def pop(self):
     
     try:
         value = next(it)
-    if ##ERROR##<EXCEPTION MATCH>StopIteration:
+    except:
         raise KeyError
     self.discard(value)
     return value

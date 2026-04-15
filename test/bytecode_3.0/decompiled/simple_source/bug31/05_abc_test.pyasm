@@ -1,0 +1,90 @@
+Method name: <module>:
+	     O:0, L:4          LOAD_CONST    0    // Value: 0
+	     O:3, L:4          LOAD_CONST    1    // Value: None
+	     O:6, L:4         IMPORT_NAME    0    // Value: abc
+	     O:9, L:4          STORE_NAME    0    // Value: abc
+	    O:12, L:5          LOAD_CONST    0    // Value: 0
+	    O:15, L:5          LOAD_CONST    1    // Value: None
+	    O:18, L:5         IMPORT_NAME    1    // Value: unittest
+	    O:21, L:5          STORE_NAME    1    // Value: unittest
+	    O:24, L:6          LOAD_CONST    0    // Value: 0
+	    O:27, L:6          LOAD_CONST    2    // Value: (isabstract)
+	    O:30, L:6         IMPORT_NAME    2    // Value: inspect
+	    O:33, L:6         IMPORT_FROM    3    // Value: isabstract
+	    O:36, L:6          STORE_NAME    3    // Value: isabstract
+	    O:39, L:6             POP_TOP         
+	    O:40, L:8          LOAD_CONST    3    // Value: 3
+	    O:43, L:8       MAKE_FUNCTION    0    
+	    O:46, L:8          STORE_NAME    4    // Value: test_abstractmethod_integration
+	   O:49, L:18           LOAD_NAME    4    // Value: test_abstractmethod_integration
+	   O:52, L:18          LOAD_CONST    1    // Value: None
+	   O:55, L:18       CALL_FUNCTION    1    
+	   O:58, L:18             POP_TOP         
+	   O:59, L:18          LOAD_CONST    1    // Value: None
+	   O:62, L:18        RETURN_VALUE         
+
+Method name: <module>.test_abstractmethod_integration:
+	     O:0, L:9          SETUP_LOOP  100    // Value: 97
+	     O:3, L:9         LOAD_GLOBAL    0    // Value: abc
+	     O:6, L:9           LOAD_ATTR    1    // Value: abstractmethod
+	     O:9, L:9          BUILD_LIST    1    
+	    O:12, L:9            GET_ITER         
+	    O:13, L:9            FOR_ITER   99    // Value: 83
+	    O:16, L:9         STORE_DEREF    0    // Value: null
+	   O:19, L:10          PRINT_ITEM         
+	   O:20, L:10        LOAD_CLOSURE    0    // Value: null
+	   O:23, L:10         BUILD_TUPLE    1    
+	   O:26, L:10          LOAD_CONST    1    // Value: 1
+	   O:29, L:10        MAKE_CLOSURE    0    
+	   O:32, L:10          LOAD_CONST    2    // Value: "C"
+	   O:35, L:10          LOAD_CONST    3    // Value: "metaclass"
+	   O:38, L:10         LOAD_GLOBAL    0    // Value: abc
+	   O:41, L:10           LOAD_ATTR    2    // Value: ABCMeta
+	   O:44, L:10       CALL_FUNCTION  258    
+	   O:47, L:10          STORE_FAST    1    // Value: C
+	   O:50, L:14           LOAD_FAST    1    // Value: C
+	   O:53, L:14           LOAD_ATTR    3    // Value: __abstractmethods__
+	   O:56, L:14        JUMP_IF_TRUE   75    // Value: 16
+	   O:59, L:14             POP_TOP         
+	   O:60, L:14         LOAD_GLOBAL    4    // Value: AssertionError
+	   O:63, L:14          LOAD_CONST    4    // Value: "foo"
+	   O:66, L:14           BUILD_SET    1    
+	   O:69, L:14       CALL_FUNCTION    1    
+	   O:72, L:14       RAISE_VARARGS    1    
+	   O:75, L:14             POP_TOP         
+	   O:76, L:15         LOAD_GLOBAL    5    // Value: isabstract
+	   O:79, L:15           LOAD_FAST    1    // Value: C
+	   O:82, L:15       CALL_FUNCTION    1    
+	   O:85, L:15        JUMP_IF_TRUE   95    // Value: 7
+	   O:88, L:15             POP_TOP         
+	   O:89, L:15         LOAD_GLOBAL    4    // Value: AssertionError
+	   O:92, L:15       RAISE_VARARGS    1    
+	   O:95, L:15             POP_TOP         
+	   O:96, L:16       JUMP_ABSOLUTE   13    
+	   O:99, L:16           POP_BLOCK         
+	  O:100, L:16          LOAD_CONST    0    // Value: None
+	  O:103, L:16        RETURN_VALUE         
+
+Method name: <module>.test_abstractmethod_integration.C:
+	    O:0, L:10           LOAD_FAST    0    // Value: __locals__
+	    O:3, L:10        STORE_LOCALS         
+	    O:4, L:10           LOAD_NAME    0    // Value: __name__
+	    O:7, L:10          STORE_NAME    1    // Value: __module__
+	   O:10, L:11          LOAD_DEREF    0    // Value: null
+	   O:13, L:11          LOAD_CONST    0    
+	   O:16, L:11       MAKE_FUNCTION    0    
+	   O:19, L:11       CALL_FUNCTION    1    
+	   O:22, L:11          STORE_NAME    2    // Value: foo
+	   O:25, L:13          LOAD_CONST    1    // Value: 1
+	   O:28, L:13       MAKE_FUNCTION    0    
+	   O:31, L:13          STORE_NAME    3    // Value: bar
+	   O:34, L:13          LOAD_CONST    2    // Value: None
+	   O:37, L:13        RETURN_VALUE         
+
+Method name: <module>.test_abstractmethod_integration.C.foo:
+	    O:0, L:12          LOAD_CONST    0    // Value: None
+	    O:3, L:12        RETURN_VALUE         
+
+Method name: <module>.test_abstractmethod_integration.C.bar:
+	    O:0, L:13          LOAD_CONST    0    // Value: None
+	    O:3, L:13        RETURN_VALUE         

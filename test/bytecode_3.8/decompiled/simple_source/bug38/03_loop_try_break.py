@@ -15,9 +15,7 @@ for i in range(5):
     finally:
         pass
     except Exception:
-        None if __exception__<EXCEPTION MATCH>Exception else ##ERROR##
-        if i == 4:
-            raise 
+        raise
     
     def connect_ws_with_retry(f1, f2):
         try:
@@ -26,5 +24,4 @@ for i in range(5):
             while __exception__<EXCEPTION MATCH>Exception:
                 __exception__
                 f2()
-            return
     return

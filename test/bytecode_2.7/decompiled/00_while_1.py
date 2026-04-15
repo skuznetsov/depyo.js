@@ -6,4 +6,3 @@ else:
 
 while True:
     a = 3
-

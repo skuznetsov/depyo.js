@@ -1,3 +1,0 @@
-if True:
-    b = False
-

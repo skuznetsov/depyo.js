@@ -1,0 +1,45 @@
+def foo():
+    if julian == -1 and week_of_year != -1 and weekday != -1:
+        first_weekday = datetime_date(year, 1, 1).weekday()
+        preceeding_days = 7 - first_weekday
+        if preceeding_days == 7:
+            preceeding_days = 0
+        elif weekday == 6 and week_of_year_start == 6:
+            week_of_year -= 1
+        elif weekday == 0 and first_weekday == 0 and week_of_year_start == 6:
+            week_of_year += 1
+        elif week_of_year == 0:
+            julian = 1 + weekday - first_weekday
+        else:
+            days_to_week = preceeding_days + 7 * (week_of_year - 1)
+            julian = 1 + days_to_week + weekday
+
+def eval_print_amount(a, b, c, d, list, msg=0):
+    if a:
+        for i in list:
+            msg = 1
+        
+    elif b and c:
+        msg = 2
+    
+    elif c and d:
+        msg = 3
+    return msg
+
+assert eval_print_amount(True, False, False, False, [1]) == 1
+elif not eval_print_amount(True, False, False, False, []) == 0:
+    raise AssertionError
+elif not eval_print_amount(False, True, True, False, []) == 2:
+    raise AssertionError
+elif not eval_print_amount(False, False, True, True, []) == 3:
+    raise AssertionError
+elif not eval_print_amount(False, False, False, True, []) == 0:
+    raise AssertionError
+
+def eval_directive(a):
+    x = value
+    return x
+
+assert eval_directive(True) == 2
+elif not eval_directive(False) == 3:
+    raise AssertionError

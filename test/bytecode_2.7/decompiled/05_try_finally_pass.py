@@ -1,5 +1,0 @@
-try:
-    pass
-finally:
-    pass
-

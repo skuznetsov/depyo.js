@@ -16,13 +16,15 @@ def handle_read(self, *, data, why, ###MISSING_VAR###):
     finally:
         pass
     except ZeroDivisionError:
-        return
+        pass
+    return
     why = None
     try:
         pass
     finally:
-        why = None
-        del why
+        pass
+    why = None
+    del why
     return data
 
 async def __exit__(self, type, value, traceback, *, exc, ###MISSING_VAR###, ###MISSING_VAR###, ###MISSING_VAR###, ###MISSING_VAR###):
@@ -34,12 +36,15 @@ async def __exit__(self, type, value, traceback, *, exc, ###MISSING_VAR###, ###M
     try:
         pass
     finally:
-        exc = None
-        del exc
+        pass
+    exc = None
+    del exc
     exc = None
     exc
+    
     try:
         pass
     finally:
-        exc = None
-        del exc
+        pass
+    exc = None
+    del exc

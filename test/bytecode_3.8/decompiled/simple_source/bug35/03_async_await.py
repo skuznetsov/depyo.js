@@ -16,20 +16,12 @@ async def afor_else_test():
     z = 4
 
 async def awith_test():
-    await await(i.__aenter__)
-    
-    undefined:
-        await await(i.__aenter__)
+    async with i:
         print(i)
-    await ###FIXME###
 
 async def awith_as_test():
-    await await(1.__aenter__)
-    
-    undefined:
-        i = await await(1.__aenter__)
+    async with 1 as i:
         print(i)
-    await ###FIXME###
 
 async def f(z, *, ###MISSING_VAR###):
     await z

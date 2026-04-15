@@ -1,0 +1,172 @@
+Method name: <module>:
+	     O:0, L:0              RESUME    0    
+	     O:2, L:3    LOAD_BUILD_CLASS         
+	     O:4, L:3           PUSH_NULL         
+	     O:6, L:3          LOAD_CONST    0    
+	     O:8, L:3       MAKE_FUNCTION         
+	    O:10, L:3          LOAD_CONST    1    // Value: "Point"
+	    O:12, L:3                CALL    2    
+	    O:14, L:3               CACHE         
+	    O:16, L:3               CACHE         
+	    O:18, L:3               CACHE         
+	    O:20, L:3          STORE_NAME    0    // Value: Point
+	    O:22, L:8          LOAD_CONST    2    // Value: 2
+	    O:24, L:8       MAKE_FUNCTION         
+	    O:26, L:8          STORE_NAME    1    // Value: where_is
+	   O:28, L:21           LOAD_NAME    0    // Value: Point
+	   O:30, L:21           PUSH_NULL         
+	   O:32, L:21          LOAD_CONST    3    // Value: 1
+	   O:34, L:21          LOAD_CONST    4    // Value: 2
+	   O:36, L:21                CALL    2    
+	   O:38, L:21               CACHE         
+	   O:40, L:21               CACHE         
+	   O:42, L:21               CACHE         
+	   O:44, L:21          STORE_NAME    2    // Value: p
+	   O:46, L:22           LOAD_NAME    1    // Value: where_is
+	   O:48, L:22           PUSH_NULL         
+	   O:50, L:22           LOAD_NAME    2    // Value: p
+	   O:52, L:22                CALL    1    
+	   O:54, L:22               CACHE         
+	   O:56, L:22               CACHE         
+	   O:58, L:22               CACHE         
+	   O:60, L:22          STORE_NAME    3    // Value: result
+	   O:62, L:22        RETURN_CONST    5    // Value: None
+
+Method name: <module>.Point:
+	     O:0, L:3              RESUME    0    
+	     O:2, L:3           LOAD_NAME    0    // Value: __name__
+	     O:4, L:3          STORE_NAME    1    // Value: __module__
+	     O:6, L:3          LOAD_CONST    0    // Value: "Point"
+	     O:8, L:3          STORE_NAME    2    // Value: __qualname__
+	    O:10, L:3          LOAD_CONST    1    // Value: 3
+	    O:12, L:3          STORE_NAME    3    // Value: __firstlineno__
+	    O:14, L:4          LOAD_CONST    2    // Value: 2
+	    O:16, L:4       MAKE_FUNCTION         
+	    O:18, L:4          STORE_NAME    4    // Value: __init__
+	    O:20, L:4          LOAD_CONST    3    // Value: (x, y)
+	    O:22, L:4          STORE_NAME    5    // Value: __static_attributes__
+	    O:24, L:4        RETURN_CONST    4    // Value: None
+
+Method name: <module>.Point.__init__:
+	     O:0, L:4              RESUME    0    
+	     O:2, L:5 LOAD_FAST_LOAD_FAST   16    // Value: null
+	     O:4, L:5          STORE_ATTR    0    // Value: x
+	     O:6, L:5               CACHE         
+	     O:8, L:5               CACHE         
+	    O:10, L:5               CACHE         
+	    O:12, L:5               CACHE         
+	    O:14, L:6 LOAD_FAST_LOAD_FAST   32    // Value: null
+	    O:16, L:6          STORE_ATTR    1    // Value: y
+	    O:18, L:6               CACHE         
+	    O:20, L:6               CACHE         
+	    O:22, L:6               CACHE         
+	    O:24, L:6               CACHE         
+	    O:26, L:6        RETURN_CONST    0    // Value: None
+
+Method name: <module>.where_is:
+	     O:0, L:8              RESUME    0    
+	     O:2, L:9           LOAD_FAST    0    // Value: point
+	    O:4, L:10                COPY    1    
+	    O:6, L:10         LOAD_GLOBAL    0    // Value: Point
+	    O:8, L:10               CACHE         
+	   O:10, L:10               CACHE         
+	   O:12, L:10               CACHE         
+	   O:14, L:10               CACHE         
+	   O:16, L:10          LOAD_CONST    1    // Value: (x, y)
+	   O:18, L:10         MATCH_CLASS    0    
+	   O:20, L:10                COPY    1    
+	   O:22, L:10    POP_JUMP_IF_NONE   14    
+	   O:24, L:10               CACHE         
+	   O:26, L:10     UNPACK_SEQUENCE    2    
+	   O:28, L:10               CACHE         
+	   O:30, L:10          LOAD_CONST    2    // Value: 0
+	   O:32, L:10          COMPARE_OP   88    
+	   O:34, L:10               CACHE         
+	   O:36, L:10   POP_JUMP_IF_FALSE    7    
+	   O:38, L:10               CACHE         
+	   O:40, L:10          LOAD_CONST    2    // Value: 0
+	   O:42, L:10          COMPARE_OP   88    
+	   O:44, L:10               CACHE         
+	   O:46, L:10   POP_JUMP_IF_FALSE    3    
+	   O:48, L:10               CACHE         
+	   O:50, L:10             POP_TOP         
+	   O:52, L:11        RETURN_CONST    3    // Value: "origin"
+	   O:54, L:10             POP_TOP         
+	   O:56, L:12                COPY    1    
+	   O:58, L:12         LOAD_GLOBAL    0    // Value: Point
+	   O:60, L:12               CACHE         
+	   O:62, L:12               CACHE         
+	   O:64, L:12               CACHE         
+	   O:66, L:12               CACHE         
+	   O:68, L:12          LOAD_CONST    1    // Value: (x, y)
+	   O:70, L:12         MATCH_CLASS    0    
+	   O:72, L:12                COPY    1    
+	   O:74, L:12    POP_JUMP_IF_NONE   14    
+	   O:76, L:12               CACHE         
+	   O:78, L:12     UNPACK_SEQUENCE    2    
+	   O:80, L:12               CACHE         
+	   O:82, L:12          LOAD_CONST    2    // Value: 0
+	   O:84, L:12          COMPARE_OP   88    
+	   O:86, L:12               CACHE         
+	   O:88, L:12   POP_JUMP_IF_FALSE    7    
+	   O:90, L:12               CACHE         
+	   O:92, L:12          STORE_FAST    1    // Value: y
+	   O:94, L:12             POP_TOP         
+	   O:96, L:13          LOAD_CONST    4    // Value: "on y-axis at y="
+	   O:98, L:13           LOAD_FAST    1    // Value: y
+	  O:100, L:13       FORMAT_SIMPLE         
+	  O:102, L:13        BUILD_STRING    2    
+	  O:104, L:13        RETURN_VALUE         
+	  O:106, L:12             POP_TOP         
+	  O:108, L:14                COPY    1    
+	  O:110, L:14         LOAD_GLOBAL    0    // Value: Point
+	  O:112, L:14               CACHE         
+	  O:114, L:14               CACHE         
+	  O:116, L:14               CACHE         
+	  O:118, L:14               CACHE         
+	  O:120, L:14          LOAD_CONST    1    // Value: (x, y)
+	  O:122, L:14         MATCH_CLASS    0    
+	  O:124, L:14                COPY    1    
+	  O:126, L:14    POP_JUMP_IF_NONE   15    
+	  O:128, L:14               CACHE         
+	  O:130, L:14     UNPACK_SEQUENCE    2    
+	  O:132, L:14               CACHE         
+	  O:134, L:14                SWAP    2    
+	  O:136, L:14          LOAD_CONST    2    // Value: 0
+	  O:138, L:14          COMPARE_OP   88    
+	  O:140, L:14               CACHE         
+	  O:142, L:14   POP_JUMP_IF_FALSE    7    
+	  O:144, L:14               CACHE         
+	  O:146, L:14          STORE_FAST    2    // Value: x
+	  O:148, L:14             POP_TOP         
+	  O:150, L:15          LOAD_CONST    5    // Value: "on x-axis at x="
+	  O:152, L:15           LOAD_FAST    2    // Value: x
+	  O:154, L:15       FORMAT_SIMPLE         
+	  O:156, L:15        BUILD_STRING    2    
+	  O:158, L:15        RETURN_VALUE         
+	  O:160, L:14             POP_TOP         
+	  O:162, L:16         LOAD_GLOBAL    0    // Value: Point
+	  O:164, L:16               CACHE         
+	  O:166, L:16               CACHE         
+	  O:168, L:16               CACHE         
+	  O:170, L:16               CACHE         
+	  O:172, L:16          LOAD_CONST    1    // Value: (x, y)
+	  O:174, L:16         MATCH_CLASS    0    
+	  O:176, L:16                COPY    1    
+	  O:178, L:16    POP_JUMP_IF_NONE   12    
+	  O:180, L:16               CACHE         
+	  O:182, L:16     UNPACK_SEQUENCE    2    
+	  O:184, L:16               CACHE         
+	  O:186, L:16 STORE_FAST_STORE_FAST   33    // Value: null
+	  O:188, L:17          LOAD_CONST    6    // Value: "at ("
+	  O:190, L:17           LOAD_FAST    2    // Value: x
+	  O:192, L:17       FORMAT_SIMPLE         
+	  O:194, L:17          LOAD_CONST    7    // Value: ", "
+	  O:196, L:17           LOAD_FAST    1    // Value: y
+	  O:198, L:17       FORMAT_SIMPLE         
+	  O:200, L:17          LOAD_CONST    8    // Value: ")"
+	  O:202, L:17        BUILD_STRING    5    
+	  O:204, L:17        RETURN_VALUE         
+	  O:206, L:16             POP_TOP         
+	  O:208, L:18                 NOP         
+	  O:210, L:19        RETURN_CONST    9    // Value: "unknown"

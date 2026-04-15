@@ -1,0 +1,258 @@
+Method name: <module>:
+	     O:0, L:5          LOAD_CONST    0    // Value: "This program is self-checking!"
+	     O:2, L:5          STORE_NAME    0    // Value: __doc__
+	     O:4, L:6          LOAD_CONST    1    // Value: 0
+	     O:6, L:6          LOAD_CONST    2    // Value: None
+	     O:8, L:6         IMPORT_NAME    1    // Value: asyncio
+	    O:10, L:6          STORE_NAME    1    // Value: asyncio
+	    O:12, L:7          LOAD_CONST    1    // Value: 0
+	    O:14, L:7          LOAD_CONST    3    // Value: (asynccontextmanager, AbstractAsyncContextManager)
+	    O:16, L:7         IMPORT_NAME    2    // Value: contextlib
+	    O:18, L:7         IMPORT_FROM    3    // Value: asynccontextmanager
+	    O:20, L:7          STORE_NAME    3    // Value: asynccontextmanager
+	    O:22, L:7         IMPORT_FROM    4    // Value: AbstractAsyncContextManager
+	    O:24, L:7          STORE_NAME    4    // Value: AbstractAsyncContextManager
+	    O:26, L:7             POP_TOP         
+	    O:28, L:8          LOAD_CONST    1    // Value: 0
+	    O:30, L:8          LOAD_CONST    2    // Value: None
+	    O:32, L:8         IMPORT_NAME    5    // Value: functools
+	    O:34, L:8          STORE_NAME    5    // Value: functools
+	   O:36, L:11          LOAD_CONST    4    // Value: 4
+	   O:38, L:11          LOAD_CONST    5    // Value: "_async_test"
+	   O:40, L:11       MAKE_FUNCTION    0    
+	   O:42, L:11          STORE_NAME    6    // Value: _async_test
+	   O:44, L:28          BUILD_LIST    0    
+	   O:46, L:28          STORE_NAME    7    // Value: state
+	   O:48, L:31           LOAD_NAME    3    // Value: asynccontextmanager
+	   O:50, L:32          LOAD_CONST    6    // Value: 6
+	   O:52, L:32          LOAD_CONST    7    // Value: "woohoo"
+	   O:54, L:32       MAKE_FUNCTION    0    
+	   O:56, L:32       CALL_FUNCTION    1    
+	   O:58, L:32          STORE_NAME    8    // Value: woohoo
+	   O:60, L:38           LOAD_NAME    6    // Value: _async_test
+	   O:62, L:39          LOAD_CONST    8    // Value: 8
+	   O:64, L:39          LOAD_CONST    9    // Value: "test_enter"
+	   O:66, L:39       MAKE_FUNCTION    0    
+	   O:68, L:39       CALL_FUNCTION    1    
+	   O:70, L:39          STORE_NAME    9    // Value: test_enter
+	   O:72, L:59    LOAD_BUILD_CLASS         
+	   O:74, L:59          LOAD_CONST   10    // Value: 10
+	   O:76, L:59          LOAD_CONST   11    // Value: "CoroutineTest"
+	   O:78, L:59       MAKE_FUNCTION    0    
+	   O:80, L:59          LOAD_CONST   11    // Value: "CoroutineTest"
+	   O:82, L:59       CALL_FUNCTION    2    
+	   O:84, L:59          STORE_NAME   10    // Value: CoroutineTest
+	   O:86, L:70           LOAD_NAME    9    // Value: test_enter
+	   O:88, L:70       CALL_FUNCTION    0    
+	   O:90, L:70             POP_TOP         
+	   O:92, L:70          LOAD_CONST    2    // Value: None
+	   O:94, L:70        RETURN_VALUE         
+
+Method name: <module>._async_test:
+	    O:0, L:14         LOAD_GLOBAL    0    // Value: functools
+	    O:2, L:14         LOAD_METHOD    1    // Value: wraps
+	    O:4, L:14          LOAD_DEREF    0    // Value: null
+	    O:6, L:14         CALL_METHOD    1    
+	    O:8, L:15        LOAD_CLOSURE    0    // Value: null
+	   O:10, L:15         BUILD_TUPLE    1    
+	   O:12, L:15          LOAD_CONST    1    // Value: 1
+	   O:14, L:15          LOAD_CONST    2    // Value: "_async_test.<locals>.wrapper"
+	   O:16, L:15       MAKE_FUNCTION    8    
+	   O:18, L:15       CALL_FUNCTION    1    
+	   O:20, L:15          STORE_FAST    1    // Value: wrapper
+	   O:22, L:25           LOAD_FAST    1    // Value: wrapper
+	   O:24, L:25        RETURN_VALUE         
+
+Method name: <module>._async_test.wrapper:
+	    O:0, L:16          LOAD_DEREF    0    // Value: null
+	    O:2, L:16           LOAD_FAST    0    // Value: args
+	    O:4, L:16           LOAD_FAST    1    // Value: kwargs
+	    O:6, L:16    CALL_FUNCTION_EX    1    
+	    O:8, L:16          STORE_FAST    2    // Value: coro
+	   O:10, L:17         LOAD_GLOBAL    0    // Value: asyncio
+	   O:12, L:17         LOAD_METHOD    1    // Value: new_event_loop
+	   O:14, L:17         CALL_METHOD    0    
+	   O:16, L:17          STORE_FAST    3    // Value: loop
+	   O:18, L:18         LOAD_GLOBAL    0    // Value: asyncio
+	   O:20, L:18         LOAD_METHOD    2    // Value: set_event_loop
+	   O:22, L:18           LOAD_FAST    3    // Value: loop
+	   O:24, L:18         CALL_METHOD    1    
+	   O:26, L:18             POP_TOP         
+	   O:28, L:19       SETUP_FINALLY   45    // Value: 14
+	   O:30, L:20           LOAD_FAST    3    // Value: loop
+	   O:32, L:20         LOAD_METHOD    4    // Value: run_until_complete
+	   O:34, L:20           LOAD_FAST    2    // Value: coro
+	   O:36, L:20         CALL_METHOD    1    
+	   O:38, L:20           POP_BLOCK         
+	   O:40, L:20        CALL_FINALLY   45    // Value: 2
+	   O:42, L:20        RETURN_VALUE         
+	   O:44, L:22           LOAD_FAST    3    // Value: loop
+	   O:46, L:22         LOAD_METHOD    3    // Value: close
+	   O:48, L:22         CALL_METHOD    0    
+	   O:50, L:22             POP_TOP         
+	   O:52, L:23         LOAD_GLOBAL    0    // Value: asyncio
+	   O:54, L:23         LOAD_METHOD    2    // Value: set_event_loop
+	   O:56, L:23          LOAD_CONST    0    // Value: None
+	   O:58, L:23         CALL_METHOD    1    
+	   O:60, L:23             POP_TOP         
+	   O:62, L:23         END_FINALLY         
+	   O:64, L:23          LOAD_CONST    0    // Value: None
+	   O:66, L:23        RETURN_VALUE         
+
+Method name: <module>.woohoo:
+	    O:0, L:33         LOAD_GLOBAL    0    // Value: state
+	    O:2, L:33         LOAD_METHOD    1    // Value: append
+	    O:4, L:33          LOAD_CONST    1    // Value: 1
+	    O:6, L:33         CALL_METHOD    1    
+	    O:8, L:33             POP_TOP         
+	   O:10, L:34          LOAD_CONST    2    // Value: 42
+	   O:12, L:34         YIELD_VALUE         
+	   O:14, L:34             POP_TOP         
+	   O:16, L:35         LOAD_GLOBAL    0    // Value: state
+	   O:18, L:35         LOAD_METHOD    1    // Value: append
+	   O:20, L:35          LOAD_CONST    3    // Value: 999
+	   O:22, L:35         CALL_METHOD    1    
+	   O:24, L:35             POP_TOP         
+	   O:26, L:35          LOAD_CONST    0    // Value: None
+	   O:28, L:35        RETURN_VALUE         
+
+Method name: <module>.test_enter:
+	    O:0, L:40    LOAD_BUILD_CLASS         
+	    O:2, L:40          LOAD_CONST    1    // Value: 1
+	    O:4, L:40          LOAD_CONST    2    // Value: "DefaultEnter"
+	    O:6, L:40       MAKE_FUNCTION    0    
+	    O:8, L:40          LOAD_CONST    2    // Value: "DefaultEnter"
+	   O:10, L:40         LOAD_GLOBAL    0    // Value: AbstractAsyncContextManager
+	   O:12, L:40       CALL_FUNCTION    3    
+	   O:14, L:40          STORE_FAST    0    // Value: DefaultEnter
+	   O:16, L:45           LOAD_FAST    0    // Value: DefaultEnter
+	   O:18, L:45       CALL_FUNCTION    0    
+	   O:20, L:45          STORE_FAST    1    // Value: manager
+	   O:22, L:46           LOAD_FAST    1    // Value: manager
+	   O:24, L:46         LOAD_METHOD    1    // Value: __aenter__
+	   O:26, L:46         CALL_METHOD    0    
+	   O:28, L:46       GET_AWAITABLE         
+	   O:30, L:46          LOAD_CONST    0    // Value: None
+	   O:32, L:46          YIELD_FROM         
+	   O:34, L:46          STORE_FAST    2    // Value: got_manager
+	   O:36, L:48           LOAD_FAST    2    // Value: got_manager
+	   O:38, L:48           LOAD_FAST    1    // Value: manager
+	   O:40, L:48          COMPARE_OP    8    // Value: is
+	   O:42, L:48    POP_JUMP_IF_TRUE   48    
+	   O:44, L:48         LOAD_GLOBAL    2    // Value: AssertionError
+	   O:46, L:48       RAISE_VARARGS    1    
+	   O:48, L:50           LOAD_FAST    1    // Value: manager
+	   O:50, L:50   BEFORE_ASYNC_WITH         
+	   O:52, L:50       GET_AWAITABLE         
+	   O:54, L:50          LOAD_CONST    0    // Value: None
+	   O:56, L:50          YIELD_FROM         
+	   O:58, L:50    SETUP_ASYNC_WITH  119    // Value: 58
+	   O:60, L:50          STORE_FAST    3    // Value: context
+	   O:62, L:51         LOAD_GLOBAL    3    // Value: woohoo
+	   O:64, L:51       CALL_FUNCTION    0    
+	   O:66, L:51   BEFORE_ASYNC_WITH         
+	   O:68, L:51       GET_AWAITABLE         
+	   O:70, L:51          LOAD_CONST    0    // Value: None
+	   O:72, L:51          YIELD_FROM         
+	   O:74, L:51    SETUP_ASYNC_WITH   91    // Value: 14
+	   O:76, L:51          STORE_FAST    4    // Value: x
+	   O:78, L:52          LOAD_CONST    3    // Value: 1
+	   O:80, L:52          STORE_FAST    4    // Value: x
+	   O:82, L:53          LOAD_CONST    4    // Value: 2
+	   O:84, L:53          STORE_FAST    5    // Value: y
+	   O:86, L:53           POP_BLOCK         
+	   O:88, L:53       BEGIN_FINALLY         
+	   O:90, L:53  WITH_CLEANUP_START         
+	   O:92, L:53       GET_AWAITABLE         
+	   O:94, L:53          LOAD_CONST    0    // Value: None
+	   O:96, L:53          YIELD_FROM         
+	   O:98, L:53 WITH_CLEANUP_FINISH         
+	  O:100, L:53         END_FINALLY         
+	  O:102, L:54           LOAD_FAST    1    // Value: manager
+	  O:104, L:54           LOAD_FAST    3    // Value: context
+	  O:106, L:54          COMPARE_OP    8    // Value: is
+	  O:108, L:54    POP_JUMP_IF_TRUE  114    
+	  O:110, L:54         LOAD_GLOBAL    2    // Value: AssertionError
+	  O:112, L:54       RAISE_VARARGS    1    
+	  O:114, L:54           POP_BLOCK         
+	  O:116, L:54       BEGIN_FINALLY         
+	  O:118, L:54  WITH_CLEANUP_START         
+	  O:120, L:54       GET_AWAITABLE         
+	  O:122, L:54          LOAD_CONST    0    // Value: None
+	  O:124, L:54          YIELD_FROM         
+	  O:126, L:54 WITH_CLEANUP_FINISH         
+	  O:128, L:54         END_FINALLY         
+	  O:130, L:54          LOAD_CONST    0    // Value: None
+	  O:132, L:54        RETURN_VALUE         
+
+Method name: <module>.test_enter.DefaultEnter:
+	    O:0, L:40           LOAD_NAME    0    // Value: __name__
+	    O:2, L:40          STORE_NAME    1    // Value: __module__
+	    O:4, L:40          LOAD_CONST    0    // Value: "test_enter.<locals>.DefaultEnter"
+	    O:6, L:40          STORE_NAME    2    // Value: __qualname__
+	    O:8, L:41          LOAD_CONST    1    // Value: 1
+	   O:10, L:41          LOAD_CONST    2    // Value: "test_enter.<locals>.DefaultEnter.__aexit__"
+	   O:12, L:41       MAKE_FUNCTION    0    
+	   O:14, L:41          STORE_NAME    3    // Value: __aexit__
+	   O:16, L:41          LOAD_CONST    3    // Value: None
+	   O:18, L:41        RETURN_VALUE         
+
+Method name: <module>.test_enter.DefaultEnter.__aexit__:
+	    O:0, L:42          LOAD_CONST    0    // Value: None
+	    O:2, L:42        RETURN_VALUE         
+
+Method name: <module>.CoroutineTest:
+	    O:0, L:59           LOAD_NAME    0    // Value: __name__
+	    O:2, L:59          STORE_NAME    1    // Value: __module__
+	    O:4, L:59          LOAD_CONST    0    // Value: "CoroutineTest"
+	    O:6, L:59          STORE_NAME    2    // Value: __qualname__
+	    O:8, L:60          LOAD_CONST    1    // Value: 1
+	   O:10, L:60          LOAD_CONST    2    // Value: "CoroutineTest.test_with_8"
+	   O:12, L:60       MAKE_FUNCTION    0    
+	   O:14, L:60          STORE_NAME    3    // Value: test_with_8
+	   O:16, L:60          LOAD_CONST    3    // Value: None
+	   O:18, L:60        RETURN_VALUE         
+
+Method name: <module>.CoroutineTest.test_with_8:
+	    O:0, L:61          LOAD_CONST    1    // Value: 0
+	    O:2, L:61         STORE_DEREF    0    // Value: null
+	    O:4, L:63        LOAD_CLOSURE    0    // Value: null
+	    O:6, L:63         BUILD_TUPLE    1    
+	    O:8, L:63          LOAD_CONST    2    // Value: 2
+	   O:10, L:63          LOAD_CONST    3    // Value: "CoroutineTest.test_with_8.<locals>.foo"
+	   O:12, L:63       MAKE_FUNCTION    8    
+	   O:14, L:63          STORE_FAST    1    // Value: foo
+	   O:16, L:63          LOAD_CONST    0    // Value: None
+	   O:18, L:63        RETURN_VALUE         
+
+Method name: <module>.CoroutineTest.test_with_8.foo:
+	    O:0, L:65         LOAD_GLOBAL    0    // Value: CM
+	    O:2, L:65       CALL_FUNCTION    0    
+	    O:4, L:65   BEFORE_ASYNC_WITH         
+	    O:6, L:65       GET_AWAITABLE         
+	    O:8, L:65          LOAD_CONST    0    // Value: None
+	   O:10, L:65          YIELD_FROM         
+	   O:12, L:65    SETUP_ASYNC_WITH   45    // Value: 30
+	   O:14, L:65             POP_TOP         
+	   O:16, L:66          LOAD_DEREF    0    // Value: null
+	   O:18, L:66          LOAD_CONST    1    // Value: 1
+	   O:20, L:66         INPLACE_ADD         
+	   O:22, L:66         STORE_DEREF    0    // Value: null
+	   O:24, L:67           POP_BLOCK         
+	   O:26, L:67       BEGIN_FINALLY         
+	   O:28, L:67  WITH_CLEANUP_START         
+	   O:30, L:67       GET_AWAITABLE         
+	   O:32, L:67          LOAD_CONST    0    // Value: None
+	   O:34, L:67          YIELD_FROM         
+	   O:36, L:67 WITH_CLEANUP_FINISH         
+	   O:38, L:67         POP_FINALLY    0    
+	   O:40, L:67          LOAD_CONST    0    // Value: None
+	   O:42, L:67        RETURN_VALUE         
+	   O:44, L:67  WITH_CLEANUP_START         
+	   O:46, L:67       GET_AWAITABLE         
+	   O:48, L:67          LOAD_CONST    0    // Value: None
+	   O:50, L:67          YIELD_FROM         
+	   O:52, L:67 WITH_CLEANUP_FINISH         
+	   O:54, L:67         END_FINALLY         
+	   O:56, L:67          LOAD_CONST    0    // Value: None
+	   O:58, L:67        RETURN_VALUE         

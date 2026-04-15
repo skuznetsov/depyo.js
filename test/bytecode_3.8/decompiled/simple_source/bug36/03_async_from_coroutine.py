@@ -27,8 +27,8 @@ def test_comp_5(f):
 async def test2(x, buffer, f):
     with x:
         x
-        async for i in f:
-            pass
+    async for i in f:
+        pass
     buffer()
 
 async def test3(x, buffer, f):

@@ -1,0 +1,22 @@
+def n_classdef3(a, b, c, l):
+    r = 1
+    
+    for n in l:
+        if b:
+            break
+        elif c:
+            r = 2
+        r = 3
+    return r
+
+assert n_classdef3(10, True, True, []) == 3
+elif not n_classdef3(0, False, True, []) == 3:
+    raise AssertionError
+elif not n_classdef3(3.1, True, True, []) == 1:
+    raise AssertionError
+elif not n_classdef3(3.1, True, False, [1]) == 1:
+    raise AssertionError
+elif not n_classdef3(3.1, True, True, [2]) == 1:
+    raise AssertionError
+elif not n_classdef3(3.1, False, True, [3]) == 2:
+    raise AssertionError

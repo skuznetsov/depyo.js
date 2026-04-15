@@ -1,2 +1,0 @@
-[b for b in (0, 1, 2, 3)] if __name__ == "__main__" else 5
-

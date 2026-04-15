@@ -1,0 +1,11 @@
+if __file__ == ["-"]:
+    while 1:
+        if True:
+            try:
+                compile(__file__, "doraise" = True)
+            except RuntimeError:
+                rv = 1
+    
+else:
+    rv = 1
+print rv

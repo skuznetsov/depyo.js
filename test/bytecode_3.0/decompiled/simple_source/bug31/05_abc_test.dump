@@ -1,0 +1,104 @@
+Py_CodeObject
+Code Object: undefined ()
+ArgCount = 0
+NumLocals 0
+StackSize 5
+Flags 64
+Consts:
+  Py_Int, Value = 0
+  Py_None
+  Py_Typle:
+    Py_Unicode, Value = "isabstract"
+  Py_CodeObject
+Code Object: undefined (self)
+ArgCount = 1
+NumLocals 2
+StackSize 6
+Flags 3
+Consts:
+    Py_None
+    Py_CodeObject
+Code Object: undefined (__locals__)
+ArgCount = 1
+NumLocals 1
+StackSize 2
+Flags 2
+Consts:
+      Py_CodeObject
+Code Object: undefined (self)
+ArgCount = 1
+NumLocals 1
+StackSize 1
+Flags 83
+Consts:
+        Py_None
+Names:
+VarNames:
+        Py_Unicode, Value = "self"
+FreeVars:
+CellVars:
+FileName = undefined
+Name = undefined
+FirstLineNo = 11
+      Py_CodeObject
+Code Object: undefined (self)
+ArgCount = 1
+NumLocals 1
+StackSize 1
+Flags 83
+Consts:
+        Py_None
+Names:
+VarNames:
+        Py_Unicode, Value = "self"
+FreeVars:
+CellVars:
+FileName = undefined
+Name = undefined
+FirstLineNo = 13
+      Py_None
+Names:
+      Py_Unicode, Value = "__name__"
+      Py_Unicode, Value = "__module__"
+      Py_Unicode, Value = "foo"
+      Py_Unicode, Value = "bar"
+VarNames:
+      Py_Unicode, Value = "__locals__"
+FreeVars:
+      Py_Unicode, Value = "abstractthing"
+CellVars:
+FileName = undefined
+Name = undefined
+FirstLineNo = 10
+    Py_Unicode, Value = "C"
+    Py_Unicode, Value = "metaclass"
+    Py_Unicode, Value = "foo"
+Names:
+    Py_Unicode, Value = "abc"
+    Py_Unicode, Value = "abstractmethod"
+    Py_Unicode, Value = "ABCMeta"
+    Py_Unicode, Value = "__abstractmethods__"
+    Py_Unicode, Value = "AssertionError"
+    Py_Unicode, Value = "isabstract"
+VarNames:
+    Py_Unicode, Value = "self"
+    Py_Unicode, Value = "C"
+FreeVars:
+CellVars:
+    Py_Unicode, Value = "abstractthing"
+FileName = undefined
+Name = undefined
+FirstLineNo = 8
+Names:
+  Py_Unicode, Value = "abc"
+  Py_Unicode, Value = "unittest"
+  Py_Unicode, Value = "inspect"
+  Py_Unicode, Value = "isabstract"
+  Py_Unicode, Value = "test_abstractmethod_integration"
+  Py_Unicode, Value = "None"
+VarNames:
+FreeVars:
+CellVars:
+FileName = undefined
+Name = undefined
+FirstLineNo = 4

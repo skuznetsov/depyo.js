@@ -5,4 +5,4 @@ def whcms_license_info(md5hash, datahash, results, *, ###MISSING_VAR###, ###MISS
         finally:
             return md5hash
             __exception__
-            return
+        return

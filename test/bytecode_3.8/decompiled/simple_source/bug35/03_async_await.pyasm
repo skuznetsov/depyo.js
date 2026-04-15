@@ -1,0 +1,153 @@
+Method name: <module>:
+	     O:0, L:2          LOAD_CONST    0    
+	     O:2, L:2          LOAD_CONST    1    // Value: "await_test"
+	     O:4, L:2       MAKE_FUNCTION    0    
+	     O:6, L:2          STORE_NAME    0    // Value: await_test
+	     O:8, L:6          LOAD_CONST    2    // Value: 2
+	    O:10, L:6          LOAD_CONST    3    // Value: "afor_test"
+	    O:12, L:6       MAKE_FUNCTION    0    
+	    O:14, L:6          STORE_NAME    1    // Value: afor_test
+	   O:16, L:12          LOAD_CONST    4    // Value: 4
+	   O:18, L:12          LOAD_CONST    5    // Value: "afor_else_test"
+	   O:20, L:12       MAKE_FUNCTION    0    
+	   O:22, L:12          STORE_NAME    2    // Value: afor_else_test
+	   O:24, L:20          LOAD_CONST    6    // Value: 6
+	   O:26, L:20          LOAD_CONST    7    // Value: "awith_test"
+	   O:28, L:20       MAKE_FUNCTION    0    
+	   O:30, L:20          STORE_NAME    3    // Value: awith_test
+	   O:32, L:24          LOAD_CONST    8    // Value: 8
+	   O:34, L:24          LOAD_CONST    9    // Value: "awith_as_test"
+	   O:36, L:24       MAKE_FUNCTION    0    
+	   O:38, L:24          STORE_NAME    4    // Value: awith_as_test
+	   O:40, L:28          LOAD_CONST   10    // Value: 10
+	   O:42, L:28          LOAD_CONST   11    // Value: "f"
+	   O:44, L:28       MAKE_FUNCTION    0    
+	   O:46, L:28          STORE_NAME    5    // Value: f
+	   O:48, L:31          LOAD_CONST   12    // Value: 12
+	   O:50, L:31          LOAD_CONST   13    // Value: "g"
+	   O:52, L:31       MAKE_FUNCTION    0    
+	   O:54, L:31          STORE_NAME    6    // Value: g
+	   O:56, L:31          LOAD_CONST   14    // Value: None
+	   O:58, L:31        RETURN_VALUE         
+
+Method name: <module>.await_test:
+	     O:0, L:3           LOAD_FAST    0    // Value: asyncio
+	     O:2, L:3         LOAD_METHOD    0    // Value: open_connection
+	     O:4, L:3          LOAD_CONST    1    // Value: 80
+	     O:6, L:3         CALL_METHOD    1    
+	     O:8, L:3       GET_AWAITABLE         
+	    O:10, L:3          LOAD_CONST    0    // Value: None
+	    O:12, L:3          YIELD_FROM         
+	    O:14, L:3     UNPACK_SEQUENCE    2    
+	    O:16, L:3          STORE_FAST    1    // Value: reader
+	    O:18, L:3          STORE_FAST    2    // Value: writer
+	    O:20, L:4         LOAD_GLOBAL    1    // Value: bar
+	    O:22, L:4       CALL_FUNCTION    0    
+	    O:24, L:4       GET_AWAITABLE         
+	    O:26, L:4          LOAD_CONST    0    // Value: None
+	    O:28, L:4          YIELD_FROM         
+	    O:30, L:4             POP_TOP         
+	    O:32, L:4          LOAD_CONST    0    // Value: None
+	    O:34, L:4        RETURN_VALUE         
+
+Method name: <module>.afor_test:
+	     O:0, L:8          LOAD_CONST    1    // Value: 1
+	     O:2, L:8          LOAD_CONST    2    // Value: 2
+	     O:4, L:8          LOAD_CONST    3    // Value: 3
+	     O:6, L:8          BUILD_LIST    3    
+	     O:8, L:8           GET_AITER         
+	    O:10, L:8       SETUP_FINALLY   29    // Value: 16
+	    O:12, L:8           GET_ANEXT         
+	    O:14, L:8          LOAD_CONST    0    // Value: None
+	    O:16, L:8          YIELD_FROM         
+	    O:18, L:8           POP_BLOCK         
+	    O:20, L:8          STORE_FAST    0    // Value: i
+	    O:22, L:9           LOAD_FAST    0    // Value: i
+	    O:24, L:9          STORE_FAST    1    // Value: x
+	    O:26, L:9       JUMP_ABSOLUTE   10    
+	    O:28, L:9       END_ASYNC_FOR         
+	    O:30, L:9          LOAD_CONST    0    // Value: None
+	    O:32, L:9        RETURN_VALUE         
+
+Method name: <module>.afor_else_test:
+	    O:0, L:14          LOAD_CONST    1    // Value: 1
+	    O:2, L:14          LOAD_CONST    2    // Value: 2
+	    O:4, L:14          LOAD_CONST    3    // Value: 3
+	    O:6, L:14          BUILD_LIST    3    
+	    O:8, L:14           GET_AITER         
+	   O:10, L:14       SETUP_FINALLY   29    // Value: 16
+	   O:12, L:14           GET_ANEXT         
+	   O:14, L:14          LOAD_CONST    0    // Value: None
+	   O:16, L:14          YIELD_FROM         
+	   O:18, L:14           POP_BLOCK         
+	   O:20, L:14          STORE_FAST    0    // Value: i
+	   O:22, L:15           LOAD_FAST    0    // Value: i
+	   O:24, L:15          STORE_FAST    1    // Value: x
+	   O:26, L:15       JUMP_ABSOLUTE   10    
+	   O:28, L:15       END_ASYNC_FOR         
+	   O:30, L:17          LOAD_CONST    4    // Value: 4
+	   O:32, L:17          STORE_FAST    2    // Value: z
+	   O:34, L:17          LOAD_CONST    0    // Value: None
+	   O:36, L:17        RETURN_VALUE         
+
+Method name: <module>.awith_test:
+	    O:0, L:21         LOAD_GLOBAL    0    // Value: i
+	    O:2, L:21   BEFORE_ASYNC_WITH         
+	    O:4, L:21       GET_AWAITABLE         
+	    O:6, L:21          LOAD_CONST    0    // Value: None
+	    O:8, L:21          YIELD_FROM         
+	   O:10, L:21    SETUP_ASYNC_WITH   27    // Value: 14
+	   O:12, L:21             POP_TOP         
+	   O:14, L:22         LOAD_GLOBAL    1    // Value: print
+	   O:16, L:22         LOAD_GLOBAL    0    // Value: i
+	   O:18, L:22       CALL_FUNCTION    1    
+	   O:20, L:22             POP_TOP         
+	   O:22, L:22           POP_BLOCK         
+	   O:24, L:22       BEGIN_FINALLY         
+	   O:26, L:22  WITH_CLEANUP_START         
+	   O:28, L:22       GET_AWAITABLE         
+	   O:30, L:22          LOAD_CONST    0    // Value: None
+	   O:32, L:22          YIELD_FROM         
+	   O:34, L:22 WITH_CLEANUP_FINISH         
+	   O:36, L:22         END_FINALLY         
+	   O:38, L:22          LOAD_CONST    0    // Value: None
+	   O:40, L:22        RETURN_VALUE         
+
+Method name: <module>.awith_as_test:
+	    O:0, L:25          LOAD_CONST    1    // Value: 1
+	    O:2, L:25   BEFORE_ASYNC_WITH         
+	    O:4, L:25       GET_AWAITABLE         
+	    O:6, L:25          LOAD_CONST    0    // Value: None
+	    O:8, L:25          YIELD_FROM         
+	   O:10, L:25    SETUP_ASYNC_WITH   27    // Value: 14
+	   O:12, L:25          STORE_FAST    0    // Value: i
+	   O:14, L:26         LOAD_GLOBAL    0    // Value: print
+	   O:16, L:26           LOAD_FAST    0    // Value: i
+	   O:18, L:26       CALL_FUNCTION    1    
+	   O:20, L:26             POP_TOP         
+	   O:22, L:26           POP_BLOCK         
+	   O:24, L:26       BEGIN_FINALLY         
+	   O:26, L:26  WITH_CLEANUP_START         
+	   O:28, L:26       GET_AWAITABLE         
+	   O:30, L:26          LOAD_CONST    0    // Value: None
+	   O:32, L:26          YIELD_FROM         
+	   O:34, L:26 WITH_CLEANUP_FINISH         
+	   O:36, L:26         END_FINALLY         
+	   O:38, L:26          LOAD_CONST    0    // Value: None
+	   O:40, L:26        RETURN_VALUE         
+
+Method name: <module>.f:
+	    O:0, L:29           LOAD_FAST    0    // Value: z
+	    O:2, L:29       GET_AWAITABLE         
+	    O:4, L:29          LOAD_CONST    0    // Value: None
+	    O:6, L:29          YIELD_FROM         
+	    O:8, L:29             POP_TOP         
+	   O:10, L:29          LOAD_CONST    0    // Value: None
+	   O:12, L:29        RETURN_VALUE         
+
+Method name: <module>.g:
+	    O:0, L:32           LOAD_FAST    0    // Value: z
+	    O:2, L:32       GET_AWAITABLE         
+	    O:4, L:32          LOAD_CONST    0    // Value: None
+	    O:6, L:32          YIELD_FROM         
+	    O:8, L:32        RETURN_VALUE         
