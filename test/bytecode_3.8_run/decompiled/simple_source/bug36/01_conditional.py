@@ -3,7 +3,7 @@ def foo(n):
     return zero_stride
 
 assert foo(95)
-elif foo(94):
+if foo(94):
     raise AssertionError
 elif foo(96):
     raise AssertionError
@@ -13,9 +13,6 @@ def rslice(a, b):
     return minlen
 
 assert rslice(False, False) == 1
-elif not rslice(False, True) == 0:
-    raise AssertionError
-elif not rslice(True, False) == 0:
-    raise AssertionError
-elif not rslice(True, True) == 0:
-    raise AssertionError
+assert rslice(False, True) == 0
+assert rslice(True, False) == 0
+assert rslice(True, True) == 0

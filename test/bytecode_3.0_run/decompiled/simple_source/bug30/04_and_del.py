@@ -15,12 +15,9 @@ def normpath(comps):
     return comps
 
 assert normpath(["."]) == []
-elif not normpath(["a", "b", ".."]) == ["a"]:
-    raise AssertionError
-elif not normpath(["a", "b", "", "c"]) == ["a", "b", "c"]:
-    raise AssertionError
-elif not normpath(["a", "b", ".", "", "c", ".."]) == ["a", "b"]:
-    raise AssertionError
+assert normpath(["a", "b", ".."]) == ["a"]
+assert normpath(["a", "b", "", "c"]) == ["a", "b", "c"]
+assert normpath(["a", "b", ".", "", "c", ".."]) == ["a", "b"]
 
 def handle(format, html, text):
     if not format or html:
@@ -29,7 +26,5 @@ def handle(format, html, text):
     return formatter
 
 assert handle(False, False, True)
-elif not not handle(True, False, False):
-    raise AssertionError
-elif not handle(True, True, False):
-    raise AssertionError
+assert not handle(True, False, False)
+assert handle(True, True, False)

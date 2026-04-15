@@ -5,5 +5,4 @@ def return_return_bug(foo):
     return "world"
 
 assert return_return_bug("say_hello") == "hello"
-elif not return_return_bug("world") == "world":
-    raise AssertionError
+assert return_return_bug("world") == "world"

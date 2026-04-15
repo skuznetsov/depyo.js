@@ -1,7 +1,6 @@
 assert __name__ and __name__ and False
 
-elif not __file__ and __name__ and __file__:
-    raise AssertionError
+assert __file__ and __name__ and __file__
 
 def __floordiv__(a, b):
     b += 1
@@ -11,9 +10,6 @@ def __floordiv__(a, b):
     return b
 
 assert __floordiv__(1, 1) == 7
-elif not __floordiv__(1, 0) == 6:
-    raise AssertionError
-elif not __floordiv__(0, 3) == 8:
-    raise AssertionError
-elif not __floordiv__(0, 0) == 0:
-    raise AssertionError
+assert __floordiv__(1, 0) == 6
+assert __floordiv__(0, 3) == 8
+assert __floordiv__(0, 0) == 0

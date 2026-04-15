@@ -40,16 +40,13 @@ def test_truediv():
 
 def test_plus_minus_0j():
     assert 0+0j == 0+0j == complex(0.0, 0.0)
-    elif not 0+0j == 0+0j == complex(0.0, 0.0):
-        raise AssertionError
+    assert 0+0j == 0+0j == complex(0.0, 0.0)
     z1, z2 = (0+0j, 0+0j)
     assert atan2(z1.imag, -1.0) == atan2(0.0, -1.0)
-    elif not atan2(z2.imag, -1.0):
-        raise AssertionError(atan2(0.0, -1.0))
+    assert atan2(z2.imag, -1.0), atan2(0.0, -1.0)
 
 z1, z2 = (0+-Infinityj, 0+Infinityj)
 assert z1 in (0+-Infinityj, 0+Infinityj)
-elif not z1 != z2:
-    raise AssertionError
+assert z1 != z2
 test_truediv()
 test_plus_minus_0j()

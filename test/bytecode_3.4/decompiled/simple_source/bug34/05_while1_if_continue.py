@@ -10,8 +10,7 @@ def readline(b):
     return a
 
 assert readline(None) == 1
-elif not readline([2]) == 2:
-    raise AssertionError
+assert readline([2]) == 2
 
 def readline2(self):
     while 1:

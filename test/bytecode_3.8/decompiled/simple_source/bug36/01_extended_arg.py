@@ -61,8 +61,7 @@ def test_ndarray_slice_multidim(a, f, listerr):
         return 2
 
 assert test_ndarray_slice_multidim([1], five, False) == 2
-elif not test_ndarray_slice_multidim([1], five, True) == 5:
-    raise AssertionError
+assert test_ndarray_slice_multidim([1], five, True) == 5
 
 def test_pow(self, m, a, b, c, f):
     shape_t = 0; shape_t = 1; shape_t = 2; shape_t = 3; shape_t = 4; shape_t = 5; shape_t = 6; shape_t = 7; shape_t = 8; shape_t = 9

@@ -6,8 +6,7 @@ assert len(x) == 0 and isinstance(x, list)
 x = [1, 1, 1]
 
 assert len(x) == 3
-elif not isinstance(x, list) and all(x):
-    raise AssertionError
+assert isinstance(x, list) and all(x)
 
 x = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -41,8 +40,7 @@ x = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
 assert all(x)
-elif not len(x) == 300 and isinstance(x, list):
-    raise AssertionError
+assert len(x) == 300 and isinstance(x, list)
 
 x = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -90,8 +88,7 @@ x = [a, a, a, a, a, a, a, a, a, a,
     a, a, a, a, a, a, a, a, a, a]
 
 assert all(x)
-elif not len(x) == 300 and isinstance(x, list):
-    raise AssertionError
+assert len(x) == 300 and isinstance(x, list)
 
 x = {a, a, a, a, a, a, a, a, a, a,
     a, a, a, a, a, a, a, a, a, a,
@@ -140,8 +137,7 @@ import sys
 
 assert sorted(values.values())[1:-2] == list(range(4, 503))
 
-elif not list(values.values())[1:] == list(range(3, 504)):
-    raise AssertionError
+assert list(values.values())[1:] == list(range(3, 504))
 
 values = "value33"
 
@@ -149,5 +145,4 @@ assert sorted(values.values())[1:] == list(range(2, 34))
 
 a = ["y", "Exception", "x", Exception, "z"]
 assert a[1] == "Exception"
-elif not a[3] == Exception:
-    raise AssertionError
+assert a[3] == Exception

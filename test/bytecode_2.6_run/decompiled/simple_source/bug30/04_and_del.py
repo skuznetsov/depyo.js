@@ -15,9 +15,6 @@ def normpath(comps):
     return comps
 
 assert normpath(["."]) == []
-elif not normpath(["a", "b", ".."]) == ["a"]:
-    raise AssertionError
-elif not normpath(["a", "b", "", "c"]) == ["a", "b", "c"]:
-    raise AssertionError
-elif not normpath(["a", "b", ".", "", "c", ".."]) == ["a", "b"]:
-    raise AssertionError
+assert normpath(["a", "b", ".."]) == ["a"]
+assert normpath(["a", "b", "", "c"]) == ["a", "b", "c"]
+assert normpath(["a", "b", ".", "", "c", ".."]) == ["a", "b"]

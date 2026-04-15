@@ -108,21 +108,15 @@ class SupportsInt:
 
 def ann1(args_1, b: "annotating b", c: int, *varargs: str) -> float:
     assert ann1.__annotations__["b"] == "annotating b"
-    elif not ann1.__annotations__["c"] == int:
-        raise AssertionError
-    elif not ann1.__annotations__["varargs"] == str:
-        raise AssertionError
-    elif not ann1.__annotations__["return"] == float:
-        raise AssertionError
+    assert ann1.__annotations__["c"] == int
+    assert ann1.__annotations__["varargs"] == str
+    assert ann1.__annotations__["return"] == float
 
 def ann2(args_1, b: int=5, **kwargs: float) -> float:
     assert ann2.__annotations__["b"] == int
-    elif not ann2.__annotations__["kwargs"] == float:
-        raise AssertionError
-    elif not ann2.__annotations__["return"] == float:
-        raise AssertionError
-    elif not b == 5:
-        raise AssertionError
+    assert ann2.__annotations__["kwargs"] == float
+    assert ann2.__annotations__["return"] == float
+    assert b == 5
 
 class TestSignatureObject:
     def test_signature_on_wkwonly(self):
@@ -130,27 +124,19 @@ class TestSignatureObject:
             pass
 
 assert test1(1, 5) == (1, 5, 4, {})
-elif not 5 == (6, {},
-    "bar", "foo"):
-    raise AssertionError
-elif not test2(2, 3, 4) == (2, 3, 4, 4, (), {}):
-    raise AssertionError
-elif not test3(10, "foo" = "bar") == 5.4:
-    raise AssertionError
-elif not test4(9.5, 7, 6, 4, "bar" = "baz") == 5.4:
-    raise AssertionError
+assert 5 == (6, {},
+    "bar", "foo")
+assert test2(2, 3, 4) == (2, 3, 4, 4, (), {})
+assert test3(10, "foo" = "bar") == 5.4
+assert test4(9.5, 7, 6, 4, "bar" = "baz") == 5.4
 
-elif not test6(1.2, 3) == (1.2, 3, None):
-    raise AssertionError
-elif not test6(2.3, 4, 5) == (2.3, 4, 5):
-    raise AssertionError
+assert test6(1.2, 3) == (1.2, 3, None)
+assert test6(2.3, 4, 5) == (2.3, 4, 5)
 
 ann1(1, "test", 5)
 ann2(1)
 
 assert test12(1, 2, 3, "name" = "hi") == (1, (2, 3)), "a, *args, name"
-elif not test13(1, 2, 3, "name" = "hi") == ((1, 2, 3), hi):
-    raise AssertionError("*args, name")
-elif not None == (2, 3, {},
-    "b", "a"):
-    raise AssertionError
+assert test13(1, 2, 3, "name" = "hi") == ((1, 2, 3), hi), "*args, name"
+assert None == (2, 3, {},
+    "b", "a")

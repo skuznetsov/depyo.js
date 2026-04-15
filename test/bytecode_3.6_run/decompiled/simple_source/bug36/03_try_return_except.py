@@ -7,8 +7,7 @@ def effective(possibles):
         return 3
 
 assert effective([5]) == 1
-elif not effective([]) == 3:
-    raise AssertionError
+assert effective([]) == 3
 
 def effective2(possibles):
     b = 0
@@ -22,7 +21,5 @@ def effective2(possibles):
         return b
 
 assert effective2([5]) == 5
-elif not effective2([]) == 0:
-    raise AssertionError
-elif not effective2(["a"]) == 3:
-    raise AssertionError
+assert effective2([]) == 0
+assert effective2(["a"]) == 3

@@ -13,7 +13,5 @@ def f3(x, y):
     return [(1), x, (y)]
 
 assert f1(i) == ((5), x)
-elif not f2(j) == (4, 10, 2):
-    raise AssertionError
-elif not f3(x, a) == [1, 1, 2, 3, 5]:
-    raise AssertionError
+assert f2(j) == (4, 10, 2)
+assert f3(x, a) == [1, 1, 2, 3, 5]

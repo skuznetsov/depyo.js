@@ -10,13 +10,8 @@ def n_classdef3(a, b, c, l):
     return r
 
 assert n_classdef3(10, True, True, []) == 3
-elif not n_classdef3(0, False, True, []) == 3:
-    raise AssertionError
-elif not n_classdef3(3.1, True, True, []) == 1:
-    raise AssertionError
-elif not n_classdef3(3.1, True, False, [1]) == 1:
-    raise AssertionError
-elif not n_classdef3(3.1, True, True, [2]) == 1:
-    raise AssertionError
-elif not n_classdef3(3.1, False, True, [3]) == 2:
-    raise AssertionError
+assert n_classdef3(0, False, True, []) == 3
+assert n_classdef3(3.1, True, True, []) == 1
+assert n_classdef3(3.1, True, False, [1]) == 1
+assert n_classdef3(3.1, True, True, [2]) == 1
+assert n_classdef3(3.1, False, True, [3]) == 2

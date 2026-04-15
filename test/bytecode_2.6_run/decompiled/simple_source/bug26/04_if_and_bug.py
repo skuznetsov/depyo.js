@@ -27,19 +27,14 @@ def eval_print_amount(a, b, c, d, list, msg=0):
     return msg
 
 assert eval_print_amount(True, False, False, False, [1]) == 1
-elif not eval_print_amount(True, False, False, False, []) == 0:
-    raise AssertionError
-elif not eval_print_amount(False, True, True, False, []) == 2:
-    raise AssertionError
-elif not eval_print_amount(False, False, True, True, []) == 3:
-    raise AssertionError
-elif not eval_print_amount(False, False, False, True, []) == 0:
-    raise AssertionError
+assert eval_print_amount(True, False, False, False, []) == 0
+assert eval_print_amount(False, True, True, False, []) == 2
+assert eval_print_amount(False, False, True, True, []) == 3
+assert eval_print_amount(False, False, False, True, []) == 0
 
 def eval_directive(a):
     x = value
     return x
 
 assert eval_directive(True) == 2
-elif not eval_directive(False) == 3:
-    raise AssertionError
+assert eval_directive(False) == 3

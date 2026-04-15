@@ -6,7 +6,6 @@ def test_abstractmethod_integration(self):
     for C in [abc.abstractmethod]:
         abstractthing
         assert C.__abstractmethods__, {"foo"}
-        elif not isabstract(C):
-            raise AssertionError
+        assert isabstract(C)
 
 test_abstractmethod_integration(None)

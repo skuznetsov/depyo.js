@@ -22,12 +22,9 @@ assert count([2, 2], False) == 2
 {}
 
 assert count([], False) == 0
-elif not count([], True) == 0:
-    raise AssertionError
-elif not count([2], True) == 1:
-    raise AssertionError
-elif not count([0], False) == 0:
-    raise AssertionError
+assert count([], True) == 0
+assert count([2], True) == 1
+assert count([0], False) == 0
 
 def init_board(c):
     return [][io]

@@ -17,11 +17,8 @@ def test_doc_descriptor():
         __doc__ = DocDescr()
     
     assert OldClass.__doc__ == "object=None; type=OldClass"
-    elif not OldClass().__doc__ == "object=OldClass instance; type=OldClass":
-        raise AssertionError
-    elif not NewClass.__doc__ == "object=None; type=NewClass":
-        raise AssertionError
-    elif not NewClass().__doc__ == "object=NewClass instance; type=NewClass":
-        raise AssertionError
+    assert OldClass().__doc__ == "object=OldClass instance; type=OldClass"
+    assert NewClass.__doc__ == "object=None; type=NewClass"
+    assert NewClass().__doc__ == "object=NewClass instance; type=NewClass"
 
 test_doc_descriptor()

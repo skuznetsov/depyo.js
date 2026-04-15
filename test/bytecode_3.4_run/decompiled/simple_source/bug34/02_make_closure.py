@@ -10,7 +10,5 @@ class MakeClosureTest:
 
 x = MakeClosureTest("dev", True)
 assert x.dev == "dev"
-elif not x.b == True:
-    raise AssertionError
-elif not x.a == 5:
-    raise AssertionError
+assert x.b == True
+assert x.a == 5

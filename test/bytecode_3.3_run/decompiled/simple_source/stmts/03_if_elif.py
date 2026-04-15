@@ -12,9 +12,6 @@ def __floordiv__(a, b):
     return b
 
 assert __floordiv__(1, 1) == 7
-elif not __floordiv__(1, 0) == 6:
-    raise AssertionError
-elif not __floordiv__(0, 3) == 8:
-    raise AssertionError
-elif not __floordiv__(0, 0) == 0:
-    raise AssertionError
+assert __floordiv__(1, 0) == 6
+assert __floordiv__(0, 3) == 8
+assert __floordiv__(0, 0) == 0

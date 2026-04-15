@@ -3,5 +3,4 @@ def init(modules=None):
     return mods
 
 assert init() == set()
-elif not init([1, 2, 3]) == set([1, 2, 3]):
-    raise AssertionError
+assert init([1, 2, 3]) == set([1, 2, 3])

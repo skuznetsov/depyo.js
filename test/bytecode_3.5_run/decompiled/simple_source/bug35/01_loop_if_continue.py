@@ -7,7 +7,5 @@ def parse_parts(it, parts):
     return parts
 
 assert parse_parts([], 5) == 5
-elif not parse_parts([True], 6) == 1:
-    raise AssertionError
-elif not parse_parts([False], 6) == 6:
-    raise AssertionError
+assert parse_parts([True], 6) == 1
+assert parse_parts([False], 6) == 6

@@ -22,7 +22,6 @@ def test_block_fallback():
     
     bc = BlockContains()
     assert 0 not in c
-    elif not 0 not in list(bc):
-        raise AssertionError
+    assert 0 not in list(bc)
 
 test_block_fallback()

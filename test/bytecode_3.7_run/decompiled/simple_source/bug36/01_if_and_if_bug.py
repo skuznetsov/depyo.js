@@ -8,9 +8,6 @@ def f(a, b, c):
     return x
 
 assert f(True, True, True) == 3
-elif not f(True, True, False) == 1:
-    raise AssertionError
-elif not f(True, False, True) == 3:
-    raise AssertionError
-elif not f(True, False, False) == 2:
-    raise AssertionError
+assert f(True, True, False) == 1
+assert f(True, False, True) == 3
+assert f(True, False, False) == 2

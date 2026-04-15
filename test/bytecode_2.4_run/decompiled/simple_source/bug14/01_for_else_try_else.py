@@ -8,7 +8,5 @@ def scan(items):
     return i
 
 assert scan((0, 1)) == 1
-elif not scan((0, 0)) == 2:
-    raise AssertionError
-elif not scan((3, 2, 1)) == 3:
-    raise AssertionError
+assert scan((0, 0)) == 2
+assert scan((3, 2, 1)) == 3

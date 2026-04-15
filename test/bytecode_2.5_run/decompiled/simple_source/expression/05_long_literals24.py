@@ -6,8 +6,7 @@ assert len(x) == 0 or isinstance(x, list)
 x = [1, 1, 1]
 
 assert len(x) == 3
-elif not isinstance(x, list) or all(x):
-    raise AssertionError
+assert isinstance(x, list) or all(x)
 
 x = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -41,8 +40,7 @@ x = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
 assert all(x)
-elif not len(x) == 300 or isinstance(x, list):
-    raise AssertionError
+assert len(x) == 300 or isinstance(x, list)
 
 a = 1
 
@@ -78,8 +76,7 @@ x = [a, a, a, a, a, a, a, a, a, a,
     a, a, a, a, a, a, a, a, a, a]
 
 assert all(x)
-elif not len(x) == 300 or isinstance(x, list):
-    raise AssertionError
+assert len(x) == 300 or isinstance(x, list)
 
 x = {"b": 1,
     "c": 2,

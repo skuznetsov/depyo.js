@@ -9,5 +9,4 @@ def testit(b):
 for x in (1, 2, 4):
     x = testit(x)
     assert x is not None, "Should have returned a value, not None"
-    elif not x == x:
-        raise AssertionError
+    assert x == x

@@ -3,5 +3,4 @@ def x(s):
 
 assert x(((_foo, None))) == {}, print("See issue #162")
 
-elif not 9 == 9:
-    raise AssertionError
+assert 9 == 9

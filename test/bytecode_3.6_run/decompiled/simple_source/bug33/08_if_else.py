@@ -3,8 +3,7 @@ def init(modules=None):
     return mods
 
 assert init() == set()
-elif not init([1, 2, 3]) == set([1, 2, 3]):
-    raise AssertionError
+assert init([1, 2, 3]) == set([1, 2, 3])
 
 def _escape(a, b, c, d, e):
     if a:
@@ -19,10 +18,8 @@ def _escape(a, b, c, d, e):
         raise
 
 assert _escape(False, True, True, True, True) is None
-elif not _escape(True, True, True, False, True) is None:
-    raise AssertionError
-elif not _escape(True, True, False, False, True) is None:
-    raise AssertionError
+assert _escape(True, True, True, False, True) is None
+assert _escape(True, True, False, False, True) is None
 
 for args in ((True, True, True, False, True), (True, False, True, True, True), (True, False, True, True, False)):
     try:

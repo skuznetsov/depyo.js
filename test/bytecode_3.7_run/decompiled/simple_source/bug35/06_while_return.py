@@ -19,12 +19,8 @@ def initiate_send2(a, b):
             return 2
 
 assert initiate_send(1, 1, 2, False) == 1
-elif not initiate_send(1, 2, 3, False) == 3:
-    raise AssertionError
-elif not initiate_send(1, 2, 3, True) == 2:
-    raise AssertionError
+assert initiate_send(1, 2, 3, False) == 3
+assert initiate_send(1, 2, 3, True) == 2
 
-elif not initiate_send2(1, 1) == 1:
-    raise AssertionError
-elif not initiate_send2(1, 2) == 2:
-    raise AssertionError
+assert initiate_send2(1, 1) == 1
+assert initiate_send2(1, 2) == 2

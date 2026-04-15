@@ -17,9 +17,6 @@ def lasti2lineno(linestarts, a):
     return -1
 
 assert lasti2lineno([], True) == -1
-elif not lasti2lineno([], False) == -1:
-    raise AssertionError
-elif not lasti2lineno([1], False) == -1:
-    raise AssertionError
-elif not lasti2lineno([1], True) == 1:
-    raise AssertionError
+assert lasti2lineno([], False) == -1
+assert lasti2lineno([1], False) == -1
+assert lasti2lineno([1], True) == 1
