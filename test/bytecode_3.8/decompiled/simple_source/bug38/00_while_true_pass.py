@@ -1,2 +1,3 @@
 if __name__:
-    pass
+    while 1:
+        pass
