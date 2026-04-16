@@ -7,14 +7,11 @@ def where_is(point):
     match point:
         case Point(x=0, y=0):
             return "origin"
-        case Point(x=0, y=_):
-            y = Point; Point[1]
+        case Point(x=0, y=y):
             return f"on y-axis at y={y}"
-        case Point(x=0, y=_):
-            x = Point; Point[0]
+        case Point(x=x, y=0):
             return f"on x-axis at x={x}"
-        case Point(x=_, y=_):
-            x = Point; y = Point[0]
+        case Point(x=x, y=y):
             return f"at ({x}, {y})"
         case _:
             return "unknown"
