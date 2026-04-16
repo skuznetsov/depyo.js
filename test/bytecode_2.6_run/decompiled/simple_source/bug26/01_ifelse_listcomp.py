@@ -6,4 +6,4 @@ ms = {}
 for f in (f for f in m if f.startswith("h")):
     ms[f] = 5
 
-assert 5 == "ho"
+assert ms == {"hi": 5, "he": 5, "ho": 5}

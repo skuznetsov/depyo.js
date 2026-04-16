@@ -4,5 +4,6 @@ def __init__(self, defaults=None, dict_type=_default_dict, allow_no_value=False,
 def fn(a, b, d):
     return (a, b, d)
 
-b = "d"
+b = {"b": 1,
+    "d": 2}
 fn(a=0, **b)

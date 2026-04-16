@@ -1,4 +1,6 @@
-opts = "b"
+opts = {"highlight": True,
+    "start_line": -1,
+    "end_line": None, "a": 1, "b": 2}
 
 x = 5
 

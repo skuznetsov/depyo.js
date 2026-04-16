@@ -1,7 +1,7 @@
 def _format(node):
     return [(a, int(b)) for a, b in node.items()]
 
-x = "b"
+x = {"a": "1", "b": "2"}
 assert [("a", 1), ("b", 2)] == _format(x)
 
 def monthrange(ary, dotext):
@@ -19,8 +19,6 @@ def count(values, x):
     return sum((1 for v in values if x))
 
 assert count([2, 2], False) == 2
-{}
-
 assert count([], False) == 0
 assert count([], True) == 0
 assert count([2], True) == 1

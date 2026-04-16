@@ -124,8 +124,8 @@ class TestSignatureObject:
             pass
 
 assert test1(1, 5) == (1, 5, 4, {})
-assert 5 == (6, {},
-    "bar", "foo")
+assert test1(1, 5, 6, foo="bar") == (1, 5, 6,
+    {"foo": "bar"})
 assert test2(2, 3, 4) == (2, 3, 4, 4, (), {})
 assert test3(10, foo="bar") == 5.4
 assert test4(9.5, 7, 6, 4, bar="baz") == 5.4
@@ -138,8 +138,10 @@ ann2(1)
 
 assert test12(1, 2, 3, name="hi") == (1, (2, 3)), "a, *args, name"
 assert test13(1, 2, 3, name="hi") == ((1, 2, 3), "hi"), "*args, name"
-assert None == (2, 3, {},
-    "b", "a")
+assert test16("localhost", loop=2, limit=3, a="b") == ("localhost",
+    None,
+    2, 3,
+    {"a": "b"})
 try:
     import typing
     def foo() -> typing.Iterator[typing.Tuple[(int, typing.Any)]]:
