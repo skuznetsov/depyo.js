@@ -48,4 +48,4 @@ assert p == Point(**dict(x=11, y=22))
 def posonly_sum(pos_arg1, *arg, **kwarg):
     return pos_arg1 + sum(arg) + sum(kwarg.values())
 
-assert 10 == posonly_sum((1), (2, 3), 4=4)
+assert 10 == posonly_sum((1), (2, 3), **{"4": 4})
