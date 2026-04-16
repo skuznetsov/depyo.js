@@ -22,7 +22,7 @@ assert _escape(True, True, True, False, True) is None
 assert _escape(True, True, False, False, True) is None
 for args in ((True, True, True, False, True), (True, False, True, True, True), (True, False, True, True, False)):
     try:
-        args()
+        _escape(*args)
         assert False, args
     except:
         pass
