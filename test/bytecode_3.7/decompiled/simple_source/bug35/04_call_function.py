@@ -1,34 +1,33 @@
 def tometadata(self, metadata, schema, Table, args, name=None):
-    table = [(name, metadata),
-    args](schema=schema)
+    table = Table((name, metadata), args, **{"schema": schema}, **self.kwargs)
     return table
 
 def _strptime_datetime(cls, args):
-    return args()
+    return cls(*args)
 
 from datetime import datetime, timezone, timedelta
 import time
 
 def Time2Internaldate(date_time):
     delta = timedelta(seconds=0)
-    return date_time[:6](tzinfo=timezone(delta))
+    return datetime(tzinfo=timezone(delta), *date_time[:6])
 
 assert Time2Internaldate(time.localtime())
 
 def test_varargs0_ext():
     try:
-        ()()
+        {}.__contains__()
     except TypeError:
-        {}.__contains__
+        pass
 
 test_varargs0_ext()
 
 def __init__(self, cnf={}):
-    self.num = [("tk_dialog", self._w, cnf["title"], cnf["text"],
-    cnf["bitmap"], cnf["default"]), cnf["strings"]]()
+    self.num = self.tk.call(("tk_dialog", self._w, cnf["title"], cnf["text"],
+    cnf["bitmap"], cnf["default"]), cnf["strings"])
 
 def Value(self, fn, typecode_or_type, *args, lock):
-    return [(typecode_or_type), args]()
+    return fn((typecode_or_type), args, **{"lock": lock, "ctx": self.get_context()})
 
 def merge(*key):
     pass
@@ -37,12 +36,12 @@ def __call__(self, *args, **kwds):
     pass
 
 def unpack_archive(func, filename, dict, format_info, extract_dir=None):
-    (filename, extract_dir)()
+    func(filename, extract_dir, **dict(format_info[2]))
 
 import xdrlib
 
 def assertRaisesConversion(self, *args):
-    [(xdrlib.ConversionError), args]()
+    self.assertRaises((xdrlib.ConversionError), args)
 
 class BlockingIOError(IOError):
     def __init__(self, errno, strerror, characters_written=5):

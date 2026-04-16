@@ -1,2 +1,2 @@
 def add_related(self, *args, **kw):
-    [("related"), args](_disp="inline")
+    self._add_multipart(("related"), args, **{"_disp": "inline"}, **kw)

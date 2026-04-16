@@ -1,8 +1,8 @@
 from foo import f, dialect, args, kwds, reader
 
-[]()
+f()
 
-x = [(f, dialect), args]()
+x = reader((f, dialect), args, **kwds)
 
 def cmp_to_key(mycmp):
     class K(object):
