@@ -1,5 +1,5 @@
-assert ##ERROR## == [False if not a else True for a in range(5)]; [False, True, True, True, True]
-assert ##ERROR## == [False if a else True for a in range(5)]; [True, False, False, False, False]
+assert [False, True, True, True, True] == [False if not a else True for a in range(5)]
+assert [True, False, False, False, False] == [False if a else True for a in range(5)]
 
 m = ["hi", "he", "ih", "who", "ho"]
 ms = {}
