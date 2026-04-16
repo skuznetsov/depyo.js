@@ -3,5 +3,4 @@ def list_public_methods(obj):
         if not member.startswith("_"):
             pass
         elif hasattr(getattr(obj, member), "__call__"):
-            ##ERROR##(member)
-    return [].append
+            [].append(member)

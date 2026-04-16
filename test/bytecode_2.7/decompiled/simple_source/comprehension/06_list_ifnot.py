@@ -1,3 +1,2 @@
 names2 = []
-[x for x in names2 if len(x)]
-names = []
+names = [x for x in names2 if not len(x)]

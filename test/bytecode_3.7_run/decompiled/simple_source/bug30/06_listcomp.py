@@ -11,7 +11,7 @@ ary = ["Monday", "Twoday", "Monmonth"]
 assert ["day", "month"] == monthrange(ary, "Mon")
 
 def columnize(l):
-    return [i for i in range(len(l)) if isinstance(l[i], str)]
+    return [i for i in range(len(l)) if not isinstance(l[i], str)]
 
 assert [0, 2] == columnize([1, "a", 2])
 

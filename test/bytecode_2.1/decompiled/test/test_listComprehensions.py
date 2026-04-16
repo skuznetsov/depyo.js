@@ -1,29 +1,28 @@
 XXX = range(4)
 
-[i for i in XXX]
-print 0
+print [i for i in XXX]
 print 
 
-[i for i in (1, 2, 3, 4)]
-print 0
+print [i for i in (1, 2, 3, 4)]
 print 
 
-[(i, 1) for i in XXX]
-print 0
+print [(i, 1) for i in XXX]
 print 
 
-[i * 2 for i in range(4)]
-print 0
+print [i * 2 for i in range(4)]
 print 
 
-[i * j for i in range(4) for j in range(7)]
-print 0
+print [i * j for i in range(4) for j in range(7)]
+for i in range(4):
+    pass
 
-print 0
-print 0
+print [i * 2]
+for i in range(4):
+    pass
 
-print 0
+print [(i, i**2)]
 
+print [i * j for i in range(4)]
 seq1 = "abc"
 seq2 = (1, 2, 3)
 
@@ -31,8 +30,7 @@ seq2 = (1, 2, 3)
 
 def flatten(seq):
     global x
-    [x for subseq in seq for x in subseq]
-    return 0
+    return [x for subseq in seq for x in subseq]
 
 print flatten([[0], [1, 2, 3], [4, 5], [6, 7, 8, 9],
     []])
