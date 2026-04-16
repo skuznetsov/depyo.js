@@ -10,7 +10,6 @@ def ybug(g):
 
 def __iter__(self, IterationGuard):
     with IterationGuard(self):
-        IterationGuard(self)
         for itemref in self.data:
             item = itemref()
             if item is not None:

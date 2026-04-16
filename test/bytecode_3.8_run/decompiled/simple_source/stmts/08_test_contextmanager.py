@@ -12,4 +12,4 @@ with open(__file__) as a:
         pass
 with TestContextManager() as a:
     with b:
-        b
+        pass

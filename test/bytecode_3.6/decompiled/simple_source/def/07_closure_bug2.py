@@ -5,7 +5,6 @@ class ContextDecorator(object):
         @wraps(func)
         def inner(*args, **kwds):
             with self._recreate_cm():
-                self._recreate_cm()
-                return args()
+                return func(*args, **kwds)
         
         return inner
