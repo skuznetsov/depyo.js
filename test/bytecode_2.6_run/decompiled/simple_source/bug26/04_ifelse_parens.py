@@ -1,12 +1,5 @@
 def _hash_add(fields):
-    for f in fields:
-        if f is None:
-            pass
-        
-        if f:
-            pass
-        [f]
-    flds = None
+    flds = [f for f in fields if f]
     return flds
 
 assert _hash_add([None,

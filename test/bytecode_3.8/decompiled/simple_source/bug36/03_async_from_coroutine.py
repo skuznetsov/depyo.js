@@ -1,17 +1,8 @@
 async def run_gen(f):
-    async for ##ERROR## in f:
-        return try:
-            yield from await(.0.__anext__)
-        return
+    return (10 async for i in f)
 
 async def run_list(f):
-    async for ##ERROR## in f():
-        await try:
-            yield from await(.0.__anext__)
-        return __exception__
-        return await try:
-    yield from await(.0.__anext__)
-return __exception__
+    return [i async for i in f()]
 
 async def iterate(gen):
     res = []
@@ -22,7 +13,7 @@ async def iterate(gen):
 
 def test_comp_5(f):
     async def run_list():
-        await __exception__; return await __exception__
+        return [i async for i in (10, 20)]
 
 async def test2(x, buffer, f):
     with x:

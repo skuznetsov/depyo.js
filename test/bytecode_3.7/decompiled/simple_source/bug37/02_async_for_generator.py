@@ -1,11 +1,8 @@
 def make_arange(n):
-    async for ##ERROR## in n:
-        return .0
+    return (i * 2 async for i in n)
 
 async def run(m):
-    async for ##ERROR## in m:
-        await []
-        return await []
+    return [i async for i in m]
 
 async def run_list(pair, f):
     await for pair in .0:

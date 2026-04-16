@@ -1,11 +1,8 @@
 async def run_gen(f):
-    async for ##ERROR## in f:
-        return .0
+    return (10 async for i in f)
 
 async def run_list(f):
-    async for ##ERROR## in f():
-        await []
-        return await []
+    return [i async for i in f()]
 
 async def iterate(gen):
     res = []

@@ -18,4 +18,3 @@ try:
     x = 1
 except ImportError as e:
     x = 2
-

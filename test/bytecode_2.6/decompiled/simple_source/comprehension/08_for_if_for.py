@@ -1,2 +1,2 @@
 rv = "%s(%s" % (node.__class__.__name__,
-    ", ".join(##ERROR## if annotate_fields else ##ERROR##))
+    ", ".join(("%s=%s" % field for field in fields) if annotate_fields else (b for a, b in fields)))

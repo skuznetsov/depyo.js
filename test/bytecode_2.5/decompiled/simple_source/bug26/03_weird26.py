@@ -3,8 +3,7 @@ for x in range(10):
 
 [x]
 list(for x in .0:
-    if x % 2 and x % 3:
-        yield x)
+    pass)
 
 max(5, 2)
 

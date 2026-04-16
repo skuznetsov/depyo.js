@@ -1,7 +1,5 @@
-[False if a else True for a in range(5)]
-assert [False, True, True, True, True] == []
-[False if a else True for a in range(5)]
-assert [True, False, False, False, False] == []
+assert [] == [False if a else True for a in range(5)]
+assert [] == [False if a else True for a in range(5)]
 
 m = ["hi", "he", "ih", "who", "ho"]
 ms = {}
