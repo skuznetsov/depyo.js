@@ -1,16 +1,10 @@
 b = True
 c = False
 d = True
-if b:
-    pass
-
-elif not c:
+if not b or c:
     pass
 a = d
-if not b:
-    pass
-
-elif c:
+if b or c:
     pass
 a = d
 if not b and c:
@@ -25,24 +19,13 @@ a = d
 if not b and c:
     pass
 a = d
-if b:
-    pass
-
-elif not c:
+if not b or c:
     pass
 a = d
-if b and c:
-    pass
-
-elif d:
+if b and c or d:
     pass
 a = b
 if not b:
-    if c:
+    if c or d or a:
         pass
-    elif not d:
-        pass
-
-elif a:
-    pass
 a = b
