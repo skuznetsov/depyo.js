@@ -1,8 +1,9 @@
-def aclose(self, *, ###MISSING_VAR###):
+async def aclose(self):
     try:
         await self.athrow()
         await self.athrow()
     finally:
         pass
-    __exception__
+    except GeneratorExit:
+        pass
     raise RuntimeError

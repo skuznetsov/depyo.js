@@ -9,4 +9,3 @@ def ascii_value(val):
 
 def constant_spec(z):
     return f"{z:.2f}"
-
