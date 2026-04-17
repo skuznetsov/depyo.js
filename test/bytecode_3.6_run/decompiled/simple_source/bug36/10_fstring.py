@@ -15,7 +15,7 @@ chunk = {len(chunk):X} + chunk2
 
 chunk = "abc"
 chunk2 = "d"
-chunk = f"{len(chunk):X}\n".encode("ascii") + chunk + "\r\n"
+chunk = f"{len(chunk):X}\r\n".encode("ascii") + chunk + "\r\n"
 
 import os
 
