@@ -20,9 +20,7 @@ def cmp(f1, f2):
     key = f1 + " " + f2
     if cache.has_key(key):
         cs1, cs2, outcome = cache[key]
-        if s1 == cs1:
-            pass
-        elif s2 == cs2:
+        if s1 == cs1 and s2 == cs2:
             return outcome
     outcome = do_cmp(f1, f2)
     cache[key] = (s1, s2, outcome); return outcome

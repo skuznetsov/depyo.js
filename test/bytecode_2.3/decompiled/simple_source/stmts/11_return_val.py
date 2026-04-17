@@ -5,9 +5,7 @@ def _formatparam(param, value=None, quote=True):
     elif len(value) > 0:
         if isinstance(value, tuple):
             value = "a"
-        elif not quote:
-            pass
-        elif param:
+        elif quote or param:
             pass
         else:
             return "%s=%s" % (param, value)

@@ -46,9 +46,7 @@ def glob1(dirname, pattern):
     result = []
     
     for name in names:
-        if not name[0] != ".":
-            pass
-        elif pattern[0] == ".":
+        if name[0] != "." or pattern[0] == ".":
             if fnmatch.fnmatch(name, pattern):
                 result.append(name)
     

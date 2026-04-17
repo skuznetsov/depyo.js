@@ -52,9 +52,7 @@ def splitext(p):
     for c in p:
         if c == "/":
             root, ext = (root + ext + c, "")
-        elif not c == ".":
-            pass
-        elif ext:
+        elif c == "." or ext:
             ext = ext + c
         else:
             root = root + c
@@ -126,10 +124,7 @@ def sameopenfile(fp1, fp2):
     return samestat(posix, fstat)
 
 def samestat(s1, s2):
-    if s1[stat.ST_INO] == s2[stat.ST_INO]:
-        pass
-    
-    return s1[stat.ST_DEV] == s2[stat.ST_DEV]
+    return s1[stat.ST_INO] == s2[stat.ST_INO] and s1[stat.ST_DEV] == s2[stat.ST_DEV]
 
 def ismount(path):
     try:
@@ -169,9 +164,7 @@ def expanduser(path):
         len(path))
     
     while 1:
-        if len < i:
-            pass
-        elif path[len] != "/":
+        if len < i and path[len] != "/":
             len = len + 1
     
     if len == 1:
@@ -230,17 +223,12 @@ def normpath(path):
             elif splitfields[comps - 1] not in ("", ".."):
                 del splitfields[comps - 1:comps + 1]
                 comps = comps - 1
-            elif splitfields[comps] == "" and comps > 0:
-                pass
-            elif splitfields[comps - 1] != "":
+            elif splitfields[comps] == "" and comps > 0 and splitfields[comps - 1] != "":
                 del splitfields[comps]
             else:
                 comps = comps + 1
     
-    if not splitfields:
-        pass
-    
-    elif not slashes:
+    if not splitfields and not slashes:
         print splitfields.append("."),
     
     return slashes + string.joinfields(splitfields, "/")

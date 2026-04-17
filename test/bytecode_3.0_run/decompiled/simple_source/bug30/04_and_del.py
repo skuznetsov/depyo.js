@@ -20,9 +20,7 @@ assert normpath(["a", "b", "", "c"]) == ["a", "b", "c"]
 assert normpath(["a", "b", ".", "", "c", ".."]) == ["a", "b"]
 
 def handle(format, html, text):
-    if not format or html:
-        pass
-    formatter = text
+    formatter = format and html or text
     return formatter
 
 assert handle(False, False, True)

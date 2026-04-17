@@ -31,7 +31,7 @@ if not b and c:
     pass
 a = d
 assert a
-if b or c and d:
+if (b or c) and d:
     pass
 a = b
 assert a
