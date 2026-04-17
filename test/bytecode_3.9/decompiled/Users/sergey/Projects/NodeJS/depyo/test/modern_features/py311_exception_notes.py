@@ -12,8 +12,5 @@ if ValueError:
         raise
     finally:
         pass
-    e = None
-    del e
-    e = None
-    del e
     return
+

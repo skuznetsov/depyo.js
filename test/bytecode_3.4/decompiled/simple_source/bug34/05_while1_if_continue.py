@@ -26,11 +26,7 @@ def PipeClient(address):
         try:
             address += 1
         except OSError as e:
-            try:
-                raise e
-            finally:
-                pass
-            e = None
-            del e
+            raise e
     else:
         raise
+

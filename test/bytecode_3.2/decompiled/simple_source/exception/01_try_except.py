@@ -17,9 +17,5 @@ finally:
 try:
     x = 1
 except ImportError as e:
-    try:
-        x = 2
-    finally:
-        pass
-    e = None
-    del e
+    x = 2
+

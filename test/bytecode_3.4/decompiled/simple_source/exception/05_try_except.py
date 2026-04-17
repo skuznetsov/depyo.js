@@ -2,12 +2,7 @@ def handle(module):
     try:
         module = 1
     except ImportError as exc:
-        try:
-            module = exc
-        finally:
-            pass
-        exc = None
-        del exc
+        module = exc
     return module
 
 def handle2(module):
@@ -15,12 +10,7 @@ def handle2(module):
         try:
             module = 1
         except ImportError as exc:
-            try:
-                module = exc
-            finally:
-                pass
-            exc = None
-            del exc
+            module = exc
     
     return module
 
@@ -31,7 +21,6 @@ except ImportError as exc:
         pass
     finally:
         pass
-    exc = None
-    del exc
 finally:
     y = 1
+

@@ -28,14 +28,7 @@ def __exit__(self, type, value, traceback):
     try:
         value()
     except StopIteration as exc:
-        try:
-            return exc
-        finally:
-            exc = None
-            del exc
+        return exc
     except RuntimeError as exc:
-        try:
-            return exc
-        finally:
-            exc = None
-            del exc
+        return exc
+
