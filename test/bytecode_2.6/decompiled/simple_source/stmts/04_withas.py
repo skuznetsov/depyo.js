@@ -1,6 +1,7 @@
 def formatweekday(self):
     with self as encoding:
-        return encoding; break
+        return encoding
+    break
 
 def withas_bug(self, nested, a, b):
     self.assertRaises(ZeroDivisionError).__enter__()
@@ -11,7 +12,8 @@ def test_invalid_registrations(x):
     
     x.__enter__()
     with x as x:
-        pass; break
+        pass
+    break
 
 def test_re_tests(tests):
     for t in tests:
@@ -23,4 +25,5 @@ def test_re_tests(tests):
 def _gen_temp_sourcefile(x, a, headers, lang):
     with x as y:
         if a:
-            y = 2; break
+            y = 2
+    break

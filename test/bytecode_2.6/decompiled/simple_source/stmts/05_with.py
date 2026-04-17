@@ -3,4 +3,5 @@ f = open(__file__, "r").__enter__()
 print f
 f.__enter__()
 with f:
-    pass; break
+    pass
+break
