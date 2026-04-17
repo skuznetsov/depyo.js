@@ -1,5 +1,5 @@
 def extend(stmt, a, c, c1, c2, c3):
-    return c([None if c1 else c2 if a else c3])
+    return c(([None if c1 else c2 if a else c3] for i in enumerate(stmt)))
 
 def foo(gen):
     return list(gen)

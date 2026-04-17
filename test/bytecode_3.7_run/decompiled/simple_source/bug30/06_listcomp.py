@@ -25,6 +25,6 @@ assert count([2], True) == 1
 assert count([0], False) == 0
 
 def init_board(c):
-    return [][io]
+    return [io for io in c]
 
 assert init_board(list(range(6))) == [3, 4]
