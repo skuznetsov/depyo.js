@@ -1,116 +1,193 @@
 # depyo — Python bytecode decompiler in Node.js
 
-Depyo converts Python `.pyc` files (or archives of them) back to readable Python source. It aims for broad coverage (Python 1.0 through 3.14) and fast throughput, with fixtures for modern features (exception groups, pattern matching, walrus, f-strings, async, context managers).
+Depyo converts Python `.pyc` files (or archives of them) back to readable Python source — right from Node.js, without a Python runtime. Coverage spans **Python 1.0 through 3.15** plus PyPy, with first-class support for modern features: match/case, walrus, f-strings, exception groups, async/await, type parameters, PEP 696 TypeVar defaults, and t-strings (PEP 750).
 
-## Why depyo?
-- **Wide version coverage:** Opcode tables and expected outputs for Python 1.0–3.14, plus decompilation support for PyPy bytecode sets.
-- **Modern features:** WITH_EXCEPT_START/PREP_RERAISE_STAR, async/await, walrus, match/case, f-strings, type params, dict/set merges.
-- **Workflow friendly:** CLI options for asm dumps, raw spacing hints, raw `.pyc` preservation, and flattened output paths.
-- **Verification harness:** `run-fixtures.js` and `run-matrix.js` compare decompiled output against expected fixtures across versions.
+```bash
+npx depyo my_script.pyc
+# → writes my_script.py next to the input
+```
+
+## What it's good for
+
+- **Reverse engineering stripped Python.** You have a `.pyc` (maybe extracted from a PyInstaller binary, an Android APK's Kivy bundle, or an old archive) and no source. Depyo reconstructs the source — even for Python versions the original `uncompyle6`/`decompyle3` no longer follow.
+- **Malware / threat analysis.** Quickly triage suspicious Python payloads without setting up a matching Python interpreter. Add `--asm` for a bytecode listing alongside the source.
+- **Forensics on old codebases.** Resurrect Python 2.x (even 1.x) modules when the source is long gone.
+- **CI-side audits.** Depyo is a pure Node.js CLI — drop it in any Node pipeline to spot-check compiled `.pyc` against expected sources, or to extract and diff shipped bytecode.
+- **Learning tool.** Inspect how CPython lowers a given Python feature (comprehensions, pattern matching, exception groups) across versions. `--asm` is handy here.
+- **Batch processing.** Feed a `.zip` of `.pyc` files and get back a mirrored tree of `.py` sources.
+
+## Why depyo (vs alternatives)
+
+| Tool                  | Versions              | Modern features¹ | Runtime | Throughput | Notes                                        |
+| --------------------- | --------------------- | ---------------- | ------- | ---------- | -------------------------------------------- |
+| **depyo**             | 1.0–3.15 + PyPy       | Yes              | Node.js | ~0.1 ms/file² | Modern opcodes land fast; no Python needed |
+| uncompyle6/decompyle3 | 2.x–3.12 (stalled)    | Partial          | Python  | slower     | Development largely halted on 3.13+          |
+| pycdc (C++)           | 2.x–3.x (limited new) | Partial          | native  | fast       | Rich history, but slow to adopt new opcodes  |
+
+¹ match/case, walrus, f-strings, exception groups, async/await, type params.
+² Informal: `py314_exception_groups.pyc` × 50 in-process, Node 25, single thread (`--stats` on your machine for real numbers).
 
 ## Install
-- Global: `npm i -g depyo`
-- One-off: `npx depyo <file.pyc>`
 
-Node.js 20+ recommended (matches CI).
+```bash
+npm i -g depyo          # global CLI
+npx depyo <file.pyc>    # one-off, no install
+```
+
+Node.js 20+ recommended (CI gate).
 
 ## Quick start
 
 ```bash
-# Decompile a single .pyc
+# Single .pyc → writes <name>.py next to it
 node depyo.js /path/to/file.pyc
 
-# Decompile a zip of .pyc files, emit asm and keep raw bytes
+# ZIP of .pyc files → mirrors structure
+node depyo.js my_archive.zip
+
+# Also emit disassembly and preserve the raw .pyc
 node depyo.js --asm --raw my_archive.zip
 
-# Write sources next to inputs (skip directory mirroring)
-node depyo.js --skip-path /path/to/file.pyc
-
-# Dump to stdout instead of files
+# Stream to stdout (no files written)
 node depyo.js --out /path/to/file.pyc
 
-# Marshal-only blob (no .pyc header)
-node depyo.js --marshal --py-version 3.11 /path/to/blob.bin
-node depyo.js --marshal /path/to/blob.bin
+# Flatten outputs (drop mirrored directories)
+node depyo.js --skip-path /path/to/file.pyc
 
-# Fast marshal scan (no decompile)
-node depyo.js --marshal-scan /path/to/blob.bin
+# Headerless marshal blob (no .pyc magic)
+node depyo.js --marshal --py-version 3.11 /path/to/blob.bin
+node depyo.js --marshal /path/to/blob.bin            # auto-scan
+node depyo.js --marshal-scan /path/to/blob.bin       # fast scan, no decompile
 ```
+
 Without `--py-version`, depyo scans supported versions (oldest → newest) and accepts the first clean output when all clean candidates agree. If outputs diverge (ambiguous), it stops and asks for `--py-version`. Use `--debug` to see scan results.
 
-### CLI options
-- `--asm` emit `.pyasm` disassembly alongside source
-- `--raw` emit raw `.pyc` next to output
-- `--raw-spacing` preserve blank lines/comment gaps
-- `--dump` dump marshalled object tree
-- `--stats` print throughput stats
-- `--skip-source-gen` skip writing `.py` (use with `--asm/--dump`)
-- `--skip-path` flatten output paths (write next to input)
-- `--out` print source to stdout instead of files
-- `--marshal` treat input as raw marshalled data (no .pyc header, auto-scan versions)
-- `--marshal-scan` fast scan marshal blobs and print version candidates
-- `--py-version <x.y>` bytecode version hint (use with `--marshal`)
-- `--basedir <dir>` override output root (default: alongside input)
-- `--file-ext <ext>` change emitted extension (default `py`)
+## Example
 
-## Examples
-- Disassemble only (no source): `node depyo.js --skip-source-gen --asm file.pyc`
-- Keep raw + disassembly next to source: `node depyo.js --raw --asm path/to/file.pyc`
-- Flatten outputs (helpful for bulk zips): `node depyo.js --skip-path archive.zip`
+Input `greet.py`:
 
-## Testing
-- Smoke per version:
-  ```bash
-  node scripts/run-fixtures.js --root test/bytecode_3.14 --pattern py314_with_except_star --fail-fast
-  node scripts/run-fixtures.js --root test/bytecode_3.6 --pattern py36_fstrings --fail-fast
-  ```
-- Matrix (all versions, optional PyPy):
-  ```bash
-  node scripts/run-matrix.js                  # full sweep
-  node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
-  ```
-- Marshal fixtures (headerless marshal blobs):
-  ```bash
-  node scripts/run-marshal-fixtures.js
-  ```
-- Regenerate marshal fixtures:
-  ```bash
-  node scripts/generate-marshal-fixtures.js --clean
-  ```
-- Modern fixtures are generated via `test/generate_modern_tests.py` (Python 3.8+ on PATH).
+```python
+async def greet(names: list[str], *, greeting: str = "Hello") -> None:
+    seen = set()
+    for name in names:
+        if name in seen:
+            continue
+        seen.add(name)
+        print(f"{greeting}, {name}!")
+```
+
+Compile (`python3.13 -c 'import py_compile; py_compile.compile("greet.py", "greet.pyc")'`) then:
+
+```bash
+$ npx depyo --out greet.pyc
+async def greet(names: list[str], *, greeting: str = "Hello") -> None:
+    seen = set()
+    for name in names:
+        if name in seen:
+            continue
+        seen.add(name)
+        print(f"{greeting}, {name}!")
+```
+
+Pattern matching round-trips too:
+
+```python
+match command.split():
+    case [action]:
+        run(action)
+    case [action, obj] if action in VERBS:
+        run(action, obj)
+    case _:
+        print("usage: ...")
+```
+
+## CLI options
+
+| Option                   | Effect                                                          |
+| ------------------------ | --------------------------------------------------------------- |
+| `--asm`                  | Emit `.pyasm` disassembly alongside source                      |
+| `--raw`                  | Copy raw `.pyc` next to output                                  |
+| `--raw-spacing`          | Preserve blank-line / comment gaps                              |
+| `--dump`                 | Dump the marshalled object tree                                 |
+| `--stats`                | Print throughput stats                                          |
+| `--skip-source-gen`      | Skip writing `.py` (useful with `--asm`/`--dump`)               |
+| `--skip-path`            | Flatten output paths (write next to input)                      |
+| `--out`                  | Print source to stdout instead of files                         |
+| `--marshal`              | Treat input as raw marshalled data (no `.pyc` header)           |
+| `--marshal-scan`         | Fast scan marshal blobs; print candidate versions               |
+| `--py-version <x.y>`     | Bytecode version hint (required for some headerless marshals)   |
+| `--basedir <dir>`        | Override output root (default: alongside input)                 |
+| `--file-ext <ext>`       | Change emitted extension (default `py`)                         |
+
+## Programmatic API
+
+```js
+const {PycReader} = require('depyo/lib/PycReader');
+const {PycDecompiler} = require('depyo/lib/PycDecompiler');
+
+const fs = require('fs');
+const buffer = fs.readFileSync('greet.pyc');
+const reader = new PycReader(buffer);
+const obj = reader.ReadObject();
+
+const decompiler = new PycDecompiler(obj);
+const ast = decompiler.decompile();
+console.log(ast.codeFragment().toString());
+```
 
 ## Support matrix
-- Python 1.0–3.14 opcode tables with expected fixtures.
-- Modern features: match/case, walrus, f-strings, exception groups, type params.
-- PyPy bytecode sets decompile; expected files are not yet part of CI.
-- Legacy CI smokes (1.x/2.7/3.0–3.6) are informational (`continue-on-error`); modern feature checks are blocking.
+
+- **Python 1.0–3.15** opcode tables and expected fixtures.
+- **Modern features:** match/case (guards, OR-patterns, bindings, wildcards), walrus, f-strings (nested, equals-sign debug), exception groups (`except*`), async comprehensions, type parameters, PEP 696 TypeVar defaults, PEP 750 t-strings.
+- **PyPy** bytecode decompiles; expected fixtures not yet part of CI.
+- **CI gates:** Modern feature checks are blocking; legacy 1.x / 2.7 / 3.0–3.6 smokes gate as well.
 
 ## Known limitations
-- **Inline comprehensions (Python 3.12+):** PEP 709 inlines list/dict/set comprehensions into parent code objects. Depyo currently reconstructs these as for-loops rather than comprehension expressions. Functions, classes, match/case, exception handling, and other constructs work correctly.
 
-## Contributing / DX tips
+- **Inline comprehensions (3.12+):** PEP 709 inlines list/dict/set comprehensions into the parent code object. Depyo currently reconstructs these as for-loops rather than comprehension expressions. Functions, classes, match/case, exception handling, and other constructs work correctly.
+- **Comments / blank lines:** Lost in compilation and not recoverable. `--raw-spacing` can hint at original gaps using line-number attributes.
+- **Source-level AST drift:** Some constructs are normalized by CPython before bytecode (e.g. `if not x: raise AssertionError` ↔ `assert x`). Depyo renders what the compiler produced.
+
+## Testing
+
+```bash
+# Smoke per version
+node scripts/run-fixtures.js --root test/bytecode_3.14 --pattern py314_with_except_star --fail-fast
+node scripts/run-fixtures.js --root test/bytecode_3.6  --pattern py36_fstrings          --fail-fast
+
+# Full matrix
+node scripts/run-matrix.js
+node scripts/run-matrix.js --pattern py311_exception_groups --fail-fast
+
+# Marshal-blob fixtures (headerless)
+node scripts/run-marshal-fixtures.js
+
+# Regenerate snapshot fixtures (destructive)
+node scripts/generate-marshal-fixtures.js --clean
+
+# Tier-1 oracle: parseability of every decompiled fixture
+node scripts/check-parseable.js
+
+# Tier-2 oracle: AST equivalence between source .py and decompiled .py
+node scripts/check-ast-equivalence.js
+
+# Sentinel leak gate (CI-critical)
+node scripts/check-no-sentinels.js
+```
+
+Modern fixtures are generated via `test/generate_modern_tests.py` (Python 3.8+ on PATH).
+
+## Contributing
+
 - Use `node scripts/run-fixtures.js --pattern <piece>` for fast repros.
 - For full coverage, `node scripts/run-matrix.js --fail-fast` (optionally add `--pattern`).
-- Enable `--raw-spacing` to inspect potential comment/blank-line gaps.
+- `--raw-spacing` helps inspect potential comment/blank-line gaps.
 - `--stats` helps when profiling throughput.
+
+Issues, repro `.pyc` files, and PRs welcome at https://github.com/skuznetsov/depyo.js/issues.
 
 Comments and docs are in English; output mirrors the target Python version syntax.
 
-## Comparison snapshot (at a glance)
+## License
 
-| Project            | Supported versions          | Modern features (match, walrus, f-strings, exc groups) | Delivery     | Expected fixtures | Notes                                     |
-| ------------------ | --------------------------- | ------------------------------------------------------ | ------------ | ----------------- | ----------------------------------------- |
-| depyo              | 1.0–3.14 (PyPy decompiles)  | Yes                                                    | npm/npx, CLI | Yes (1.0–3.14)    | Node.js CLI, asm/raw-spacing options      |
-| uncompyle6/decompyle3 | 2.x–3.12+ (lag on 3.13/3.14) | Partial (depends on branch)                           | pip          | Partial           | Python-based, slower adoption of new ops  |
-| pycdc (C++)        | Mostly 2.x–3.x (limited new) | Partial                                                | source build | No                | Fast, but modern coverage limited         |
-
-## Quick benchmark (informal)
-- Machine: local Node 25, single-thread.
-- Case: `py314_exception_groups.pyc` decompiled 50× in-process: ~5.3 ms total (≈0.1 ms per decompile).  
-Use `node depyo.js --stats <file.pyc>` for your environment.
-
-## Promotion ideas (OSS)
-- Announce on HN/Reddit (Show HN / r/Python) with npm/npx one-liners.
-- Add to awesome lists (`awesome-python`, `awesome-reverse-engineering`).
-- Provide asciinema/GIF of `npx depyo file.pyc` + `--asm`.
-- Encourage contributions via Issues/Discussions and `help wanted` labels.
+MIT — see [LICENSE](LICENSE).
