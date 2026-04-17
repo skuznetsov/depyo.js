@@ -1,6 +1,6 @@
 {
   "name": "depyo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Python bytecode decompiler (Python 1.0–3.14) implemented in Node.js",
   "bin": {
     "depyo": "./depyo.js"
