@@ -19,8 +19,6 @@ def handle_read(self):
         return
     except OSError as why:
         return why
-    except OSError as why:
-        return why
     
     return data
 
@@ -31,4 +29,3 @@ def __exit__(self, type, value, traceback):
         return exc
     except RuntimeError as exc:
         return exc
-

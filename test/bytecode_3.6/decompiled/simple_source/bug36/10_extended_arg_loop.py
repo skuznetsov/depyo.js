@@ -21,8 +21,6 @@ def main(dbg=None, sys_argv=list(sys.argv)):
             break
         except RuntimeError:
             dbg.intf[-1].msg(args + part1)
-        except RuntimeError:
-            dbg.intf[-1].msg(args + part1)
         except SystemExit:
             break
         
