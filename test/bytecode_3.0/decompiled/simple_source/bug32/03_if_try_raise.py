@@ -7,11 +7,7 @@ def setup(ok, dist, **attrs):
         except IOError as exc:
             error = exc
             raise
-        except:
-            pass
         except RuntimeError as msg:
             raise
-        except:
-            pass
     
     return dist

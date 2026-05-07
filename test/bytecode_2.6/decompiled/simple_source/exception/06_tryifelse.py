@@ -5,7 +5,5 @@ def accept():
         return
     except OSError as why:
         raise
-    except:
-        pass
     
     return conn

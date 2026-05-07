@@ -11,8 +11,6 @@ def handle2(module):
             module = 1
         except ImportError as exc:
             module = exc
-        
-    
     return module
 
 try:

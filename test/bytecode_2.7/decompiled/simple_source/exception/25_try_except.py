@@ -25,9 +25,8 @@ for badarg in (2, 3):
     try:
         pass
     except TypeError:
-        pass
+        y = 3
     except ValueError:
         pass
-    except:
-        y = 3
-    y = 4
+    else:
+        y = 4
