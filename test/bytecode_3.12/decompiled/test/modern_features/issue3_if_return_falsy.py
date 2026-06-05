@@ -25,5 +25,4 @@ def negative_branch(cond):
         return 2
 
 def real_short_circuit(cond, x):
-    cond if cond else x
-
+    return cond and x
