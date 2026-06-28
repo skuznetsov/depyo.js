@@ -26,7 +26,7 @@ i = -2_147_483_647
 print i, repr(i)
 i = i - 1
 print i, repr(i)
-i = -0,2
+i = -2147483648
 print i, repr(i)
-i = -1,2
+i = -2147483649
 print i, repr(i)
