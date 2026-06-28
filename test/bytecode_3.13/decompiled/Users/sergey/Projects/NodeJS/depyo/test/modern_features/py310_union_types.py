@@ -3,6 +3,6 @@ def process(value: int | str) -> str:
 
 def maybe_int(x: int | None) -> int:
     if x is None:
-        pass
+        return x
     
-    return x; return 0
+    return 0
