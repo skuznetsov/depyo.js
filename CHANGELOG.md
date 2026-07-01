@@ -6,6 +6,41 @@ version numbers and the same fixes.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.11] - 2026-07-01
+
+### Fixed
+- **Compound `while` conditions** (depyo.js #14): `while a and b:` and
+  `while a or b:` are now reconstructed across 3.8–3.14. Previously the top-tested
+  shape (3.8/3.9/3.13/3.14) rendered `while a or b:` as `if not a: while b:`, and
+  the 3.10–3.13 duplicated-condition shape produced the wrong operator, an
+  infinite loop, or `if a: while b:` because the detector only read the first
+  condition group. A header chain-scan now computes the real body start and exit,
+  and each guard folds into the correct `and`/`or` chain by jump-target geometry.
+- **`continue` on 3.8–3.14** (depyo.js #14): `while …: … if c: continue` lost the
+  `continue` on 3.8–3.10 (a JUMP_ABSOLUTE back to the loop top inside an `if` was
+  swallowed, rendering `if c: pass` and hoisting the trailing body out of the
+  loop) and on 3.14 (folded into a bogus `x = x % 2 and x + 2`). Both are
+  reconstructed now, with `if c: pass` at a loop tail correctly kept distinct from
+  a real `continue`.
+- **Conditional `break` in `while True:`** (depyo.js #14): `while True: … if c:
+  break` on 3.11–3.14 compiles the guard as a single conditional jump straight to
+  the loop exit; it rendered as `if not c: pass` and looped forever. Now emitted
+  as `if c: break`.
+- **3.11 chained-compare crash** (depyo.js #14): a chained comparison inside a
+  3.11 `while` hit `POP_JUMP_BACKWARD_IF_TRUE`/`_FALSE`, which had no handler and
+  aborted decompilation (`unsupported opcode`, non-zero exit). Handlers added;
+  output is now valid best-effort Python.
+
+### Known issues
+- `while a < x < b:` (chained comparison inside a `while`) still reconstructs as an
+  `if` on 3.10–3.11 (semantically single-iteration); 3.12–3.13 reconstruct it as a
+  correct but non-idiomatic nested `while 1: … break`, and 3.14 reconstructs it
+  correctly. Full idiomatic reconstruction needs a dedicated chained-compare loop
+  detector — a separate reconstruction problem tracked in #14.
+- `while True:` with a `break` on 3.8/3.9 still unrolls (the pre-3.10 loop-back is
+  a bare `JUMP_ABSOLUTE` with no entry guard, and extending infinite-loop
+  detection to 3.8/3.9 regressed async-for/walrus loop shapes) — tracked in #14.
+
 ## [1.2.10] - 2026-07-01
 
 ### Fixed
