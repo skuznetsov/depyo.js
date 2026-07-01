@@ -6,6 +6,20 @@ version numbers and the same fixes.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.9] - 2026-07-01
+
+### Fixed
+- **Chained-compare guard duplicated its body on 3.10–3.12** (depyo.js #14):
+  `if not a < x < b: raise ...` (and `if a < x < b: return ...`) emitted the
+  `raise`/`return` twice, because CPython 3.10–3.12 physically copy the block
+  tail into the chain's short-circuit exit. The dead copy is now recognised and
+  dropped, so the guard renders once on 3.9–3.14.
+
+### Known issues
+- `while a < x < b:` still reconstructs as an `if` on 3.10–3.12 — that's the
+  3.12+ duplicated-condition (`while` → do-while + entry guard) loop shape, a
+  separate reconstruction problem tracked in #14.
+
 ## [1.2.8] - 2026-06-30
 
 ### Fixed

@@ -27,3 +27,12 @@ def negated(x):
     if not 0 <= x < 100:
         foo()
     return x
+
+
+def guard_raise(x):
+    # inline-terminator body: on 3.10-3.12 the compiler duplicates the raise at
+    # the chain's first-compare short-circuit target; that dead copy must be
+    # dropped (not emitted a second time after the if).
+    if not 0 <= x < 100:
+        raise ValueError("out of range")
+    return x

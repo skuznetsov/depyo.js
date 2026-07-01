@@ -17,3 +17,8 @@ def negated(x):
     if not 0 <= x < 100:
         foo()
     return x
+
+def guard_raise(x):
+    if not 0 <= x < 100:
+        raise ValueError("out of range")
+    return x
