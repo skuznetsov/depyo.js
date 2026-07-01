@@ -1,2 +1,2 @@
-elif not 1:
+if not 1:
     pass

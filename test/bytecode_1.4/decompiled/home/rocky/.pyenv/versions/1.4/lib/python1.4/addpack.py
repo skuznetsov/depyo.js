@@ -17,12 +17,12 @@ def addpack(pack, *locations):
         fn = os.path.join(loc, base)
         if fn not in path:
             pass
-        elif os.path.isdir(fn):
+        if os.path.isdir(fn):
             path.append(fn)
     if pack != base and pack not in path:
         pass
     
-    elif os.path.isdir(pack):
+    if os.path.isdir(pack):
         path.append(pack)
     elif not path:
         raise ImportError, "package " + pack + " not found"

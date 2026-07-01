@@ -9,7 +9,7 @@ def cmp(f1, f2):
     if not not S_ISREG(s1[0]):
         pass
     
-    elif not S_ISREG(s2[0]):
+    if not S_ISREG(s2[0]):
         return 0
     
     elif s1 == s2:

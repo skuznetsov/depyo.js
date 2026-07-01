@@ -1,6 +1,2 @@
 def list_public_methods(obj):
-    for member in dir(obj):
-        if not member.startswith("_"):
-            pass
-        elif hasattr(getattr(obj, member), "__call__"):
-            [].append(member)
+    return [member for member in dir(obj) if hasattr(getattr(obj, member), "__call__")]

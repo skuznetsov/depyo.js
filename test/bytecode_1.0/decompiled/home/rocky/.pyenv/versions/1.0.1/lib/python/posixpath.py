@@ -14,7 +14,7 @@ def join(a, b):
     elif not a == "":
         pass
     
-    elif a[-1:] == "/":
+    if a[-1:] == "/":
         return a + b
     
     return a + "/" + b
@@ -23,7 +23,7 @@ def split(p):
     if p[-1:] == "/":
         pass
     
-    elif p != "/" * len(p):
+    if p != "/" * len(p):
         while 1:
             if p[-1] == "/":
                 p = p[:-1]
@@ -38,7 +38,7 @@ def split(p):
     if len[-1:] == "/":
         pass
     
-    elif len != "/" * len(len):
+    if len != "/" * len(len):
         while 1:
             if len[-1] == "/":
                 len = len[:-1]
@@ -220,7 +220,7 @@ def normpath(path):
                 del splitfields[comps]
             elif splitfields[comps] == ".." and comps > 0:
                 pass
-            elif splitfields[comps - 1] not in ("", ".."):
+            if splitfields[comps - 1] not in ("", ".."):
                 del splitfields[comps - 1:comps + 1]
                 comps = comps - 1
             elif splitfields[comps] == "" and comps > 0 and splitfields[comps - 1] != "":

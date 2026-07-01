@@ -1,13 +1,12 @@
 def n_classdef3(a, b, c, l):
     r = 1
-    if 3.0 <= a <= 3.2:
-        pass
     
-    for n in l:
-        if b:
-            break
-        elif c:
-            r = 2
+    if 3.0 <= a <= 3.2:
+        for n in l:
+            if b:
+                break
+            elif c:
+                r = 2
     
     r = 3
     return r

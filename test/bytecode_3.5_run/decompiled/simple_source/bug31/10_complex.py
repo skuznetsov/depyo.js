@@ -4,7 +4,7 @@ def assertCloseAbs(x, y, eps=1e-9):
     if abs(x) > abs(y):
         x = y
         y = x
-    elif y == 0:
+    if y == 0:
         return abs(x) < eps
     elif x == 0:
         return abs(y) < eps
@@ -22,7 +22,7 @@ def check_div(x, y):
         q = z.__truediv__(x)
         assertClose(q, y)
     
-    elif y != 0:
+    if y != 0:
         q = z / y
         assertClose(q, x)
         q = z.__truediv__(y)

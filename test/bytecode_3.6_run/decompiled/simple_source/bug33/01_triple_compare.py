@@ -11,19 +11,19 @@ def test_comparison():
     x = 1 == 1
     if 1 == 1:
         pass
-    elif 1 != 1:
+    if 1 != 1:
         pass
-    elif 1 < 1:
+    if 1 < 1:
         pass
-    elif 1 > 1:
+    if 1 > 1:
         pass
-    elif 1 <= 1:
+    if 1 <= 1:
         pass
-    elif 1 >= 1:
+    if 1 >= 1:
         pass
-    elif 1 in ():
+    if 1 in ():
         pass
-    elif 1 not in ():
+    if 1 not in ():
         pass
-    elif 1 < 1 > 1 == 1 >= 1 <= 1 != 1 in 1 not in 1 is 1 is not 1:
+    if 1 < 1 > 1 == 1 >= 1 <= 1 != 1 in 1 not in 1 is 1 is not 1:
         pass

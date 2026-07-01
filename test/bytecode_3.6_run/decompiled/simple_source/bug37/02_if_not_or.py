@@ -17,7 +17,7 @@ def _shadowed_dict(klass, a, b, c):
     for entry in klass:
         if a:
             pass
-        elif not b:
+        if not b:
             c = 1
     return c
 
@@ -31,6 +31,6 @@ def _shadowed_dict2(klass, a, b, c, d):
     for entry in klass:
         if a and b:
             pass
-        elif not c:
+        if not c:
             d = 1
     return d

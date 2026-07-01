@@ -20,7 +20,7 @@ def glob(pathname):
         for dirname in list:
             if not basename:
                 pass
-            elif os.path.isdir(dirname):
+            if os.path.isdir(dirname):
                 name = os.path.join(dirname, basename)
                 if os.path.exists(name):
                     result.append(name)

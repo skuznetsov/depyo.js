@@ -5,7 +5,7 @@ if __name__:
         pass
     
 
-elif __name__:
+if __name__:
     pass
 elif __file__:
     assert __name__ or __file__

@@ -1,7 +1,6 @@
 def chained_compare_a(protocol):
     if not 0 <= protocol <= 7:
-        pass
-    raise ValueError("pickle protocol must be <= %d" % 7)
+        raise ValueError("pickle protocol must be <= %d" % 7)
 
 def chained_compare_b(a, obj):
     if a and -2_147_483_648 <= obj <= 2_147_483_647:

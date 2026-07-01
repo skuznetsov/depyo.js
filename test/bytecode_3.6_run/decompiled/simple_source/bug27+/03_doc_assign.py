@@ -4,7 +4,7 @@ def test_doc_descriptor():
             if object:
                 object = (object.__class__.__name__) + " instance"
             
-            elif otype:
+            if otype:
                 otype = otype.__name__
             return "object=%s; type=%s" % (object, otype)
     

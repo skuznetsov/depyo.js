@@ -5,8 +5,7 @@ for widget, entry, expect in ((a, b, 1),
     b, 3)):
     if not widget:
         pass
-    elif not entry["text"] == expect:
-        raise AssertionError
+    assert entry["text"] == expect
     if not widget:
         pass
     entry["text"] = "A"

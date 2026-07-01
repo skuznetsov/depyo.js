@@ -11,7 +11,7 @@ def loop(select, use_poll=False):
     if use_poll:
         pass
     
-    elif hasattr(select, "poll"):
+    if hasattr(select, "poll"):
         poll_fun = "b"
     
     else:
