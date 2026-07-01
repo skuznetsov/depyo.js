@@ -6,6 +6,39 @@ version numbers and the same fixes.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.10] - 2026-07-01
+
+### Fixed
+- **`while` loops on Python 3.10–3.13** (depyo.js #14): CPython 3.10–3.13 compile
+  `while COND:` with a *duplicated* condition (an entry guard plus a copy of the
+  condition at the loop bottom), and `while True:` with no entry guard at all —
+  neither shape was recognised, so single-condition loops rendered as `if`s with
+  a leaked `if COND: pass`, and `while True:` loops were dropped entirely (their
+  body leaked to the enclosing scope). Now reconstructed:
+  - single-expression conditions — `while x < 100:`, `while x != 0:`,
+    `while not done:`, `while i < len(items):` — across 3.9–3.14;
+  - `while True:` / infinite loops (with `break`, trailing `return`, and nesting)
+    across 3.10–3.13, including 3.11's explicit `JUMP_FORWARD` breaks (previously
+    misread as a ternary or a spurious `else`).
+- **`break` on 3.11+**: a forward jump out of the enclosing loop is now emitted as
+  `break` instead of collapsing into an empty `if …: pass` or a bogus `else`.
+- **`continue` on 3.11–3.13**: `while …: … if c: continue` reconstructs correctly
+  instead of folding the `continue` into invalid Python
+  (`x = x % 2 and x += 10`); a `continue` targeting the loop top is no longer
+  mistaken for a `while True:` header.
+- **3.14 single-condition `while` regression fixed**: the loop detector no longer
+  wraps a 3.14 top-tested `while COND:` in a bogus `while True:` header (which had
+  produced `while <error> or COND:`); `while True:` and `while a and b:` also
+  reconstruct correctly on 3.14 now.
+
+### Known issues
+- On 3.10–3.13, compound loop conditions (`while a and b:`, `while a or b:`),
+  chained comparisons inside a `while`, `while … : continue` on 3.10, and
+  `while/else` with a `break` still reconstruct imperfectly — each is a separate
+  reconstruction problem tracked in #14. (`while/else` *without* a `break`
+  compiles identically to a `while` followed by the trailing statements, so it is
+  reconstructed as such — a semantically equivalent form.)
+
 ## [1.2.9] - 2026-07-01
 
 ### Fixed
