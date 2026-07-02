@@ -30,16 +30,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
   3.11 `while` hit `POP_JUMP_BACKWARD_IF_TRUE`/`_FALSE`, which had no handler and
   aborted decompilation (`unsupported opcode`, non-zero exit). Handlers added;
   output is now valid best-effort Python.
+- **Chained comparison as a `while` header** (depyo.js #14): `while a < x < b:`
+  on 3.10–3.13 compiles as a duplicated-condition loop whose middle guards
+  target a `POP_TOP` cleanup and whose body is entered via `JUMP_FORWARD` —
+  invisible to both dup-while detectors. It rendered as a single-iteration
+  `if a < x < b:` on 3.10/3.11 (semantically wrong) and as a non-idiomatic
+  nested `while 1: … break` on 3.12/3.13. A dedicated detector keyed on the
+  folded chain condition now reconstructs the idiomatic `while a < x < b:`,
+  gated on the bottom re-test being an opcode-for-opcode copy of the header
+  chain.
+- **`while True:` and bottom-tested loops on 3.8/3.9** (depyo.js #14): with no
+  `SETUP_LOOP` and no entry guard, several 3.8/3.9 peephole shapes unrolled the
+  loop into the enclosing scope and dropped `break`s entirely. Now
+  reconstructed: `if c: break` as the last body statement (compiled to a
+  backward conditional jump to the loop top), the same shape at the bottom of
+  top-tested `while COND:`/`for` loops (previously `if c: pass`), mid-body
+  breaks (unconditional loop-back with break evidence), the inverted
+  `if not c: continue` + `break` tail, and `continue` guards whose fall-through
+  is the loop's own bottom test. Async-for, walrus-header, and top-tested
+  shapes are explicitly discriminated — the naive gate-lowering that regressed
+  them before is not used.
 
 ### Known issues
-- `while a < x < b:` (chained comparison inside a `while`) still reconstructs as an
-  `if` on 3.10–3.11 (semantically single-iteration); 3.12–3.13 reconstruct it as a
-  correct but non-idiomatic nested `while 1: … break`, and 3.14 reconstructs it
-  correctly. Full idiomatic reconstruction needs a dedicated chained-compare loop
-  detector — a separate reconstruction problem tracked in #14.
-- `while True:` with a `break` on 3.8/3.9 still unrolls (the pre-3.10 loop-back is
-  a bare `JUMP_ABSOLUTE` with no entry guard, and extending infinite-loop
-  detection to 3.8/3.9 regressed async-for/walrus loop shapes) — tracked in #14.
+- On 3.8, loops interacting with `try/except` bodies and `async for` blocks
+  (fixtures `03_loop_try_break`, `03_async_from_coroutine`) now keep their
+  loops and `break`s, but the exception/async scaffolding around them is still
+  reconstructed imperfectly — a separate bug family in the 3.8 exception
+  machinery, unchanged by the loop work.
 
 ## [1.2.10] - 2026-07-01
 
