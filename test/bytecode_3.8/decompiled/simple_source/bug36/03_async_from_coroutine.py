@@ -17,10 +17,11 @@ def test_comp_5(f):
 
 async def test2(x, buffer, f):
     with x:
-        pass
-    
-    async for i in f:
-        pass
+        async for i in f:
+            if i:
+                pass
+            break
+        buffer()
     buffer()
 
 async def test3(x, buffer, f):
@@ -31,3 +32,4 @@ async def test3(x, buffer, f):
             buffer()
         buffer.append()
     buffer()
+
