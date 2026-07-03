@@ -1,7 +1,6 @@
 # check-parseable baseline — paths currently failing Python syntax check.
 # Regenerate with: node scripts/check-parseable.js --update-baseline
 # Fix the bug that produces the failure and remove the entry.
-test/bytecode_3.13/decompiled/Users/sergey/Projects/NodeJS/depyo/test/modern_features/py314_with.py
 test/bytecode_3.2/decompiled/home/rocky/.pyenv/versions/1.0.1/lib/python/posixpath.py
 test/bytecode_3.2/decompiled/simple_source/bug33/03_raise_from.py
 test/bytecode_3.2/decompiled/simple_source/comprehension/05_3x_set_comphension.py
