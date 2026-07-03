@@ -6,7 +6,11 @@ version numbers and the same fixes.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [1.2.11] - 2026-07-01
+## [1.3.0] - 2026-07-03
+
+Version 1.2.11 was renamed to 1.3.0 before publication: the loop-reconstruction
+work below changes decompiled output across Python 3.8–3.14 broadly enough to
+warrant a minor bump.
 
 ### Fixed
 - **Compound `while` conditions** (depyo.js #14): `while a and b:` and
